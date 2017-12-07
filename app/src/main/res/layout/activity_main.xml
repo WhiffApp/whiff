@@ -31,7 +31,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/mybutton"
-        android:text="@string/whiff"
+        android:text="@string/scan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
