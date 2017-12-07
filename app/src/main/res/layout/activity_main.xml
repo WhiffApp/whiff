@@ -66,6 +66,4 @@
         app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
         app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
 
-    /*test*/
-
 </android.support.constraint.ConstraintLayout>
