@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wordLogo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe5b8"
+    tools:context="fyp.uow.whiff.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/wordLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.386"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whiff" />
+
+    <Button
+        android:id="@+id/whiffButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="108dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/whiff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/importButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/import_file"
+        app:layout_constraintStart_toStartOf="@+id/whiffButton"
+        app:layout_constraintTop_toBottomOf="@+id/whiffButton" />
+
+    <Button
+        android:id="@+id/helpAndFaqButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/helpAndFaq"
+        app:layout_constraintStart_toStartOf="@+id/importButton"
+        app:layout_constraintTop_toBottomOf="@+id/importButton" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/helpAndFaq"
+        app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
+        app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
+
+
+</android.support.constraint.ConstraintLayout>
