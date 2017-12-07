@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Whiff</string>
     <string name="wordLogo">Worded Logo</string>
-    <string name="scan">Scan</string>
+    <string name="scan">Scan Packets</string>
     <string name="import_file">Import File</string>
     <string name="helpAndFaq"><![CDATA[Help & FAQ]]></string>
     <string name="settings">Settings</string>
