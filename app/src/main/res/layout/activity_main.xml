@@ -28,9 +28,10 @@
         android:layout_below="@id/imageView"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/mybutton"
         android:text="@string/scan"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -42,6 +43,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/mybutton"
         android:text="@string/import_file"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/whiffButton"
         app:layout_constraintTop_toBottomOf="@+id/whiffButton" />
 
@@ -52,6 +54,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/mybutton"
         android:text="@string/helpAndFaq"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/importButton"
         app:layout_constraintTop_toBottomOf="@+id/importButton" />
 
@@ -62,6 +65,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/mybutton"
         android:text="@string/settings"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
         app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
 
@@ -72,6 +76,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/mybutton"
         android:text="@string/exit"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/settingsButton"
         app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
 
