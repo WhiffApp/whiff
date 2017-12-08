@@ -8,6 +8,7 @@
     android:background="#ffe5b8"
     tools:context="fyp.uow.whiff.MainActivity">
 
+    <!-- adding properties to imageView -->
     <ImageView
         android:id="@+id/wordLogo"
         android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/whiff" />
 
+    <!-- adding properties to button -->
     <Button
         android:id="@+id/whiffButton"
         android:layout_width="200dp"
