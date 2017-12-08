@@ -11,6 +11,7 @@
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
         <item name="tabIndicatorColor">#b8f6ff</item>
         <item name="tabIndicatorHeight">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
