@@ -13,6 +13,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button helpButton = findViewById(R.id.helpAndFaqButton);
+
+        helpButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent i=new Intent(MainActivity.this, help_activity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+
+        //Exit Button Settings
         Button exitButton  = findViewById(R.id.exitButton);
 
         exitButton.setOnClickListener(

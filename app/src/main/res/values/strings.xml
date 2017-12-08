@@ -6,4 +6,8 @@
     <string name="helpAndFaq"><![CDATA[Help & FAQ]]></string>
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
+    <string name="title_activity_help_activity">help_activity</string>
+    <string name="helpText">Help</string>
+    <string name="faqText">FAQ</string>
+    <string name="action_settings">Settings</string>
 </resources>
