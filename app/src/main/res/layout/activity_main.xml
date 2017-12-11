@@ -30,7 +30,7 @@
         android:layout_below="@id/wordLogo"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/mybutton"
         android:text="@string/scan"
         android:textColor="@android:color/black"
@@ -61,17 +61,6 @@
         app:layout_constraintTop_toBottomOf="@+id/importButton" />
 
     <Button
-        android:id="@+id/settingsButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/mybutton"
-        android:text="@string/settings"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
-        app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
-
-    <Button
         android:id="@+id/exitButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -79,7 +68,7 @@
         android:background="@drawable/mybutton"
         android:text="@string/exit"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="@+id/settingsButton"
-        app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
+        app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
+        app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
 
 </android.support.constraint.ConstraintLayout>
