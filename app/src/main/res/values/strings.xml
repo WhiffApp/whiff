@@ -19,5 +19,9 @@
 \n\t\t Aliquam at magna eget mauris bibendum malesuada. Cras id massa tempus, rutrum ante non, mollis purus. Maecenas sagittis a nibh non interdum. Vivamus vel mi risus. Curabitur cursus iaculis erat eget vulputate. Pellentesque nec magna in massa convallis lacinia. Donec pulvinar lobortis nunc, sed vestibulum dui venenatis scelerisque. Vivamus aliquet sed dolor ac dapibus. Praesent dolor dolor, porta quis pretium sollicitudin, dictum ut dui.r
     </string>
     <string name="faqMessage">Place Holder</string>
+    <string name="scanning_gif">scanning gif</string>
+    <string name="scanningStatusText">Press Start to Capture Packets</string>
+    <string name="startButtonText">Start</string>
+    <string name="title_activity_scan_activity">scan_activity</string>
 
 </resources>

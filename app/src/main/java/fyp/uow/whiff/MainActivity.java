@@ -13,6 +13,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Scan Button Settings
+        Button scanButton = findViewById(R.id.scanButton);
+
+        scanButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent i=new Intent(MainActivity.this, scan_activity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+
+        //Help Button Settings
         Button helpButton = findViewById(R.id.helpAndFaqButton);
 
         helpButton.setOnClickListener(
