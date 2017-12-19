@@ -26,4 +26,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    implementation group: 'net.java.dev.jna', name:'jna', version: '4.1.0'
+    implementation group: 'ch.qos.logback', name:'logback-core', version: '1.2.3'
+    implementation group: 'ch.qos.logback', name:'logback-classic', version: '1.2.3'
+    implementation 'org.pcap4j:pcap4j-core:1.+'
+    implementation 'org.pcap4j:pcap4j-packetfactory-static:1.+'
 }
