@@ -7,6 +7,7 @@
     android:background="#ffe5b8"
     tools:context="fyp.uow.whiff.scan_activity">
 
+    <!--Create TextView-->
     <TextView
         android:id="@+id/scanningStatus"
         android:layout_width="300dp"
@@ -23,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Create Button -->
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
