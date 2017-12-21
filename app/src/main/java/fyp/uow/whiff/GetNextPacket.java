@@ -15,10 +15,6 @@ import org.pcap4j.util.NifSelector;
 
 import java.io.IOException;
 
-/**
- * Created by danie on 19/12/2017.
- */
-
 public class GetNextPacket {
 
     private static final String COUNT_KEY
