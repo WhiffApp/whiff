@@ -12,13 +12,14 @@ public class scan_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-        try {
-            GetNextPacket g = new GetNextPacket();
-        } catch (PcapNativeException e) {
-            e.printStackTrace();
-        } catch (NotOpenException e) {
-            e.printStackTrace();
-        }
     }
+
+    /* try {
+        GetNextPacket g = new GetNextPacket();
+    } catch (PcapNativeException e) {
+        e.printStackTrace();
+    } catch (NotOpenException e) {
+        e.printStackTrace();
+    } */
 
 }
