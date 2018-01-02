@@ -122,14 +122,21 @@ public class HomePage extends AppCompatActivity
 
         if (id == R.id.nav_Packet_Capture) {
             //TODO Create new activity
+<<<<<<< HEAD
         } else if (id == R.id.nav_WEP_Crack) {
             Intent WEPActivity = new Intent (this, WEPCrack.class);
             startActivity(WEPActivity);
+=======
+            Intent i = new Intent(HomePage.this, WEPCrack.class);
+            startActivity(i);
+        } else if (id == R.id.nav_wep_crack) {
 
-        } else if (id == R.id.nav_Import_File) {
+>>>>>>> 36ea10b3eed77b446d76a4fb0801e998e525067f
 
+        } else if (id == R.id.nav_import_data) {
 
-        } else if (id == R.id.nav_Help_FAQ) {
+        } else if (id == R.id.nav_help_faq) {
+
 
         }
 
