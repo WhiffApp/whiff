@@ -103,7 +103,11 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.filter_settings) {
+            return true;
+        }
+
+        if (id == R.id.export_settings) {
             return true;
         }
 
