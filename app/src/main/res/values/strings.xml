@@ -8,5 +8,6 @@
     <string name="navigation_drawer_wep_crack">WEP Crack</string>
     <string name="navigation_drawer_import">Import Data</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="filter">Filter</string>
+    <string name="export">Export</string>
 </resources>
