@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 import com.app.whiff.whiff.R;
 
@@ -122,7 +123,8 @@ public class HomePage extends AppCompatActivity
         if (id == R.id.nav_Packet_Capture) {
             //TODO Create new activity
         } else if (id == R.id.nav_WEP_Crack) {
-
+            Intent WEPActivity = new Intent (this, WEPCrack.class);
+            startActivity(WEPActivity);
 
         } else if (id == R.id.nav_Import_File) {
 
