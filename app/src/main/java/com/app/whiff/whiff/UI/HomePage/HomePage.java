@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.UI.HomePage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -118,6 +119,8 @@ public class HomePage extends AppCompatActivity
         if (id == R.id.nav_packet_capture) {
             // Handle the camera action
             //TODO Create new activity
+            Intent i = new Intent(HomePage.this, WEPCrack.class);
+            startActivity(i);
         } else if (id == R.id.nav_gallery) {
 
 

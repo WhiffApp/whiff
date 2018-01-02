@@ -7,15 +7,15 @@
         <item
             android:id="@+id/nav_packet_capture"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
-            android:title="Packet capture" />
+            android:title="@string/navigation_drawer_packet_capture" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/navigation_drawer_wep_crack" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/navigation_drawer_import" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
