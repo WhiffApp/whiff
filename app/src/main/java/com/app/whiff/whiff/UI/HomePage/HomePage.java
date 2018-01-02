@@ -116,12 +116,11 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_packet_capture) {
-            // Handle the camera action
             //TODO Create new activity
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_Filter_Packets) {
 
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_WEP_Crack) {
 
         } else if (id == R.id.nav_manage) {
 

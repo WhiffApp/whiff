@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_speaker_phone_black_24dp"
             android:title="Packet capture" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_Filter_Packets"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Filter Packets" />
         <item
