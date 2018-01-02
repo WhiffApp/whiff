@@ -115,9 +115,9 @@ public class HomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_packet_capture) {
+        if (id == R.id.nav_Packet_Capture) {
             //TODO Create new activity
-        } else if (id == R.id.nav_Filter_Packets) {
+        } else if (id == R.id.nav_WEP_Crack) {
 
 
         } else if (id == R.id.nav_WEP_Crack) {

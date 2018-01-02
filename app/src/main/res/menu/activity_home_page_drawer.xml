@@ -5,21 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_packet_capture"
+            android:id="@+id/nav_Packet_Capture"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
             android:title="Packet capture" />
-        <item
-            android:id="@+id/nav_Filter_Packets"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Filter Packets" />
         <item
             android:id="@+id/nav_WEP_Crack"
             android:icon="@drawable/ic_lock_open_black_24dp"
             android:title="WEP Crack" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_Help_FAQ"
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            android:title="Help and FAQ" />
     </group>
 
     <item android:title="Communicate">
