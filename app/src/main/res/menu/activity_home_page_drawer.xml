@@ -5,10 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_packet_capture"
+            android:id="@+id/nav_Packet_Capture"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
-            android:title="@string/navigation_drawer_packet_capture" />
+            android:title="Packet capture" />
         <item
+<<<<<<< HEAD
             android:id="@+id/nav_wep_crack"
             android:icon="@drawable/ic_lock_open_black_24dp"
             android:title="@string/navigation_drawer_wep_crack" />
@@ -16,6 +17,15 @@
             android:id="@+id/nav_import_data"
             android:icon="@drawable/ic_file_upload_black_24dp"
             android:title="@string/navigation_drawer_import" />
+=======
+            android:id="@+id/nav_WEP_Crack"
+            android:icon="@drawable/ic_lock_open_black_24dp"
+            android:title="WEP Crack" />
+        <item
+            android:id="@+id/nav_Import_File"
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:title="Import File" />
+>>>>>>> 257c2fe6cd6a2ad07ed24ae15d0c86a8a58edc7f
     </group>
 
     <item android:title="Communicate">
@@ -24,10 +34,6 @@
                 android:id="@+id/nav_help_faq"
                 android:icon="@drawable/ic_help_outline_black_24dp"
                 android:title="@string/navigation_drawer_help_faq" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
     </item>
 
