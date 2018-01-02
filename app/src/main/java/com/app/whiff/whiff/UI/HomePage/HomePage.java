@@ -120,9 +120,7 @@ public class HomePage extends AppCompatActivity
         } else if (id == R.id.nav_WEP_Crack) {
 
 
-        } else if (id == R.id.nav_WEP_Crack) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_Help_FAQ) {
 
         } else if (id == R.id.nav_share) {
 
