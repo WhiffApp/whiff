@@ -125,16 +125,13 @@ public class HomePage extends AppCompatActivity
             //TODO Create new activity
             Intent i = new Intent(HomePage.this, WEPCrack.class);
             startActivity(i);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_wep_crack) {
 
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_import_data) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_help_faq) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
