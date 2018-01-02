@@ -4,5 +4,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="navigation_drawer_packet_capture">Packet Capture</string>
+    <string name="navigation_drawer_wep_crack">WEP Crack</string>
+    <string name="navigation_drawer_import">Import Data</string>
+
     <string name="action_settings">Settings</string>
 </resources>
