@@ -22,7 +22,7 @@
         <activity
             android:name=".UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
