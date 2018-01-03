@@ -13,10 +13,6 @@
             android:icon="@drawable/ic_lock_open_black_24dp"
             android:title="@string/navigation_drawer_wep_crack" />
         <item
-            android:id="@+id/nav_import_data"
-            android:icon="@drawable/ic_file_upload_black_24dp"
-            android:title="@string/navigation_drawer_import" />
-        <item
             android:id="@+id/nav_Import_File"
             android:icon="@drawable/ic_file_upload_black_24dp"
             android:title="Import File" />

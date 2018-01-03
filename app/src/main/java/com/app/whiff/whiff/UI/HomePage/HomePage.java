@@ -125,7 +125,7 @@ public class HomePage extends AppCompatActivity
         } else if (id == R.id.nav_wep_crack) {
             Intent WEPActivity = new Intent (this, WEPCrack.class);
             startActivity(WEPActivity);
-        } else if (id == R.id.nav_import_data) {
+        } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {
 
