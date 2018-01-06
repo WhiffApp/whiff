@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#a5d6d3</color>
-    <color name="colorPrimaryDark">#303f9f</color>
-    <color name="colorAccent">#ff4081</color>
-    <color name="background_material_light">#f6f6e5</color>
-    <color name="WhiffGreen">#386d7e</color>
-    <color name="background_holo_light">#f3f3f3</color>
-    <color name="Whiff_Background">#e8f2e5</color>
-    <color name="WhiffBlue">#4d4e4f</color>
-    <color name="ww">#84c9c6</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.whiff.whiff">
+    package="fyp.uow.whiff">
 
     <application
         android:allowBackup="true"
@@ -8,11 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".UI.HomePage.HomePage"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.HomePage.WEPCrack"
-            android:label="@string/title_activity_wepcrack"
-            android:theme="@style/AppTheme" />
+            android:name=".help_activity"
+            android:label="@string/title_activity_help_activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".scan_activity"></activity>
     </application>
 
 </manifest>

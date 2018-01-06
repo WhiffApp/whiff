@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe5b8"
+    tools:context="fyp.uow.whiff.MainActivity">
+
+    <!-- adding properties to imageView -->
+    <ImageView
+        android:id="@+id/wordLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/wordLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whiff" />
+
+    <!-- adding properties to button -->
+    <Button
+        android:id="@+id/scanButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wordLogo"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/scan"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordLogo" />
+
+    <Button
+        android:id="@+id/importButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/import_file"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/scanButton"
+        app:layout_constraintTop_toBottomOf="@+id/scanButton" />
+
+    <Button
+        android:id="@+id/helpAndFaqButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/helpAndFaq"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/importButton"
+        app:layout_constraintTop_toBottomOf="@+id/importButton" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/exit"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/helpAndFaqButton"
+        app:layout_constraintTop_toBottomOf="@+id/helpAndFaqButton" />
+
+</android.support.constraint.ConstraintLayout>
