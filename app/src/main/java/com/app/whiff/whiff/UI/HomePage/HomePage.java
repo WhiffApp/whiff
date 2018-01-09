@@ -17,16 +17,24 @@ import android.content.Intent;
 
 import com.app.whiff.whiff.R;
 
+import java.io.IOException;
+
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
+    static {
+        System.loadLibrary("jnetpcap");
+    }
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
     public HomePagePresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try {
+            Runtime.getRuntime().exec("su");
+        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
