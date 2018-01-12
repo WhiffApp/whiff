@@ -23,50 +23,73 @@ public class help extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        Button mainButton = (Button)findViewById(R.id.button);
-
-        mainButton.setOnClickListener(
+        Button devButton = (Button)findViewById(R.id.getDevButton);
+        devButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
 
+                        String[] listDev = new String[3];
+                        listDev[0] = "su";
+                        listDev[1] = "cd /system/bin";
+                        listDev[2] = "tcpdump -D";
 
-                        String[] command = new String[3];
-                        command[0] = "su";
-                        command[1] = "cd /system/bin";
-                        command[2] = "tcpdump -D";
+                        TextView mainText = (TextView) findViewById(R.id.textView2);
+                        mainText.setText(callCmd(listDev));
+                    }
+                });
 
+        Button pcapButton = (Button)findViewById(R.id.pcapButton);
+        pcapButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
 
-                        try {
-                            Runtime rt = Runtime.getRuntime();
-                            Process proc = rt.exec(command);
+                        String[] pcap = new String[3];
+                        pcap[0] = "su";
+                        pcap[1] = "cd /system/bin";
+                        pcap[2] = "tcpdump -v -s 0 -c 5";
 
-                            BufferedReader stdInput = new BufferedReader(new
-                                    InputStreamReader(proc.getInputStream()));
-
-                            BufferedReader stdError = new BufferedReader(new
-                                    InputStreamReader(proc.getErrorStream()));
-
-                            String temp = null;
-                            String print = null;
-                            while ((temp = stdInput.readLine()) != null) {
-                                if (print == null){
-                                    print = temp + "\n";
-                                }
-                                else{
-                                    print = print + temp + "\n";
-                                }
-                            }
-                            while ((temp = stdError.readLine()) != null) {
-                                print = print + temp;
-                            }
-
-                            TextView mainText = (TextView) findViewById(R.id.textView2);
-                            mainText.setText(print);
-
-                        } catch (IOException e) {
-                            Log.i("exception", e.toString());
-                        }
+                        TextView mainText = (TextView) findViewById(R.id.textView2);
+                        mainText.setText(callCmd(pcap));
                     }
                 });
     }
+
+    public String callCmd(String[] command){
+
+        String output = "";
+
+        try {
+            Runtime rt = Runtime.getRuntime();
+            Process proc = rt.exec(command);
+
+            BufferedReader stdInput = new BufferedReader(new
+                    InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new
+                    InputStreamReader(proc.getErrorStream()));
+
+            String temp = null;
+            String print = null;
+            while ((temp = stdInput.readLine()) != null) {
+                if (print == null){
+                    print = temp + "\n";
+                }
+                else{
+                    print = print + temp + "\n";
+                }
+            }
+            while ((temp = stdError.readLine()) != null) {
+                print = print + temp;
+            }
+
+            output = print;
+
+        } catch (IOException e) {
+            Log.i("exception", e.toString());
+        }
+
+        return output;
+    }
 }
+
+
