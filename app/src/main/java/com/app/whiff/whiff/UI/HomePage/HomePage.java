@@ -136,8 +136,8 @@ public class HomePage extends AppCompatActivity
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {
-
-
+            Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
+            startActivity(helpActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
