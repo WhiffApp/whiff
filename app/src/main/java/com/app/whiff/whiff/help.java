@@ -46,7 +46,7 @@ public class help extends AppCompatActivity {
                         String[] pcap = new String[3];
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -v -s 0 -c 5";
+                        pcap[2] = "tcpdump -s 0 -c 5";
 
                         TextView mainText = (TextView) findViewById(R.id.textView2);
                         mainText.setText(callCmd(pcap));
@@ -68,15 +68,9 @@ public class help extends AppCompatActivity {
             BufferedReader stdError = new BufferedReader(new
                     InputStreamReader(proc.getErrorStream()));
 
-            String temp = null;
-            String print = null;
+            String temp, print = "";
             while ((temp = stdInput.readLine()) != null) {
-                if (print == null){
-                    print = temp + "\n";
-                }
-                else{
-                    print = print + temp + "\n";
-                }
+                print = print + temp + "\n";
             }
             while ((temp = stdError.readLine()) != null) {
                 print = print + temp;
