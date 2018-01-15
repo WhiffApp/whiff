@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        android:maxLines = "15"
+        android:scrollbars = "vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +36,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
-        android:text="Capture 5 Packets"
+        android:text="Capture Packets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/devSpinner" />

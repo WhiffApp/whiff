@@ -2,6 +2,7 @@ package com.app.whiff.whiff;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -60,7 +61,6 @@ public class help extends AppCompatActivity {
         devSpinner.setAdapter(devList);
         final String selectedDev = devSpinner.getSelectedItem().toString();
 
-
         Button pcapButton = (Button)findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
                 new Button.OnClickListener() {
@@ -69,10 +69,12 @@ public class help extends AppCompatActivity {
                         String[] pcap = new String[3];
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -i " + selectedDev + " -s 0 -c 5";
+                        pcap[2] = "tcpdump -i " + selectedDev + " -vvv -XX -s0 -tttt -c 5";
 
                         TextView mainText = (TextView) findViewById(R.id.textView2);
+                        mainText.setMovementMethod(new ScrollingMovementMethod());
                         mainText.setText(callCmd(pcap));
+
                     }
                 });
     }
