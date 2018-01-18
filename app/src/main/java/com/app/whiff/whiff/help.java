@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.stericson.RootTools.RootTools;
+
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 
@@ -26,6 +28,13 @@ public class help extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+
+        // Use root tools to check for root
+        if (RootTools.isRootAvailable()) {
+            System.out.println("Root Available");
+        } else {
+            System.out.println("Root not available.");
+        }
 
         Spinner devSpinner;
         ArrayAdapter devList;
