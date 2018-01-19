@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.UI.HomePage;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
 
@@ -24,22 +26,34 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
     static {
-        System.loadLibrary("jnetpcap");
+        System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
     }
+    public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
     public HomePagePresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            Runtime.getRuntime().exec("su");
-        } catch (IOException e) {}
+        /*
+         * Do not call su from main thread.
+         * Please see: https://su.chainfire.eu/
+         */
+//        try {
+//            Runtime.getRuntime().exec("su");
+//        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home_page);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        connectWithPresenter();
+
+        connectWithPresenter(); // HomePagePresenter object
+
+        Context context = getApplicationContext();
+
+        TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
         fabStop.hide();
@@ -50,6 +64,7 @@ public class HomePage extends AppCompatActivity
                 //TODO call packet listener here
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Log.d("HomePage MSG","Start Clicked");
             }
         });
         fabStop.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +74,7 @@ public class HomePage extends AppCompatActivity
                 //TODO stop listening here
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.e("HomePage MSG","Start Clicked");
+                Log.d("HomePage MSG","Stop Clicked");
             }
         });
 
@@ -81,6 +96,9 @@ public class HomePage extends AppCompatActivity
     {
         fabStop.hide();
         fabStart.show();
+    }
+    public void showMessage(String message) {
+        TV1.setText(message);
     }
     public void connectWithPresenter()
     {

@@ -29,15 +29,20 @@ public class WEPCrack extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        List<PcapIf> alldevs = new ArrayList<PcapIf>(); // Will be filled with NICs
-        StringBuilder errbuf = new StringBuilder();     // For any error msgs
-
-        int r = Pcap.findAllDevs(alldevs, errbuf);
-        if (r == Pcap.NOT_OK || alldevs.isEmpty()) {
-            System.err.printf("Can't read list of devices, error is %s", errbuf.toString());
-            Log.i("Can't read list of devices, error is %s", errbuf.toString());
-            return;
-        }
+        /*
+         * Jnetpcap function to get all devices
+         * Does not work on Android
+         * Because no network interfaces will be found.
+         */
+//        List<PcapIf> alldevs = new ArrayList<PcapIf>(); // Will be filled with NICs
+//        StringBuilder errbuf = new StringBuilder();     // For any error msgs
+//
+//        int r = Pcap.findAllDevs(alldevs, errbuf);
+//        if (r == Pcap.NOT_OK || alldevs.isEmpty()) {
+//            System.err.printf("Can't read list of devices, error is %s", errbuf.toString());
+//            Log.i("Can't read list of devices, error is %s", errbuf.toString());
+//            return;
+//      }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
