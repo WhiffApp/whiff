@@ -32,11 +32,6 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         view = homepage;
         context = homepage;
         mHandler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message inputMessage) {
-                message = inputMessage;
-
-            }
         };
     }
 
