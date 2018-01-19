@@ -24,6 +24,11 @@ import java.util.List;
 
 public class help extends AppCompatActivity {
 
+    String selectedDev;
+    Spinner devSpinner;
+    ArrayAdapter devList;
+    ArrayList<String> devStringList=new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +41,6 @@ public class help extends AppCompatActivity {
             System.out.println("Root not available.");
         }
 
-        Spinner devSpinner;
-        ArrayAdapter devList;
-        ArrayList<String> devStringList=new ArrayList<String>();
         final String[] listDev = new String[3];
         listDev[0] = "su";
         listDev[1] = "cd /system/bin";
@@ -68,12 +70,13 @@ public class help extends AppCompatActivity {
         devList = new ArrayAdapter(this, android.R.layout.simple_list_item_1, devStringList);
         devSpinner = (Spinner)findViewById(R.id.devSpinner);
         devSpinner.setAdapter(devList);
-        final String selectedDev = devSpinner.getSelectedItem().toString();
 
         Button pcapButton = (Button)findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
+
+                        selectedDev = devSpinner.getSelectedItem().toString();
 
                         String[] pcap = new String[3];
                         pcap[0] = "su";
