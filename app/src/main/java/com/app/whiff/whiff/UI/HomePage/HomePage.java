@@ -2,6 +2,8 @@ package com.app.whiff.whiff.UI.HomePage;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -28,6 +30,17 @@ public class HomePage extends AppCompatActivity
     static {
         System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message message) {
+            Bundle bundle = message.getData();
+            String text = bundle.getString("key");
+            TextView TV1 = (TextView) findViewById(R.id.TV1);
+            TV1.setText(text);
+        }
+    };
+
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
@@ -102,7 +115,7 @@ public class HomePage extends AppCompatActivity
     }
     public void connectWithPresenter()
     {
-        presenter = new HomePagePresenter(this);
+        presenter = new HomePagePresenter(this, handler);
     }
     @Override
     public void onBackPressed() {

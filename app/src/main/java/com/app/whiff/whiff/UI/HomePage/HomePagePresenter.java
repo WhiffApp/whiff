@@ -1,6 +1,7 @@
 package com.app.whiff.whiff.UI.HomePage;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -25,14 +26,14 @@ public class HomePagePresenter implements HomePagePresenterInterface {
 
     public Context context;
     public HomePageViewInterface view;
-    public Handler mHandler;
     public String message;
+    public Handler handler;
+    public String mLine = "";
 
-    public HomePagePresenter(HomePage homepage) {
+    public HomePagePresenter(HomePage homepage, Handler handler) {
         view = homepage;
         context = homepage;
-        mHandler = new Handler(Looper.getMainLooper()) {
-        };
+        this.handler = handler;
     }
 
     public void StartClicked() {
@@ -44,6 +45,7 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 if (Looper.myLooper() == Looper.getMainLooper()) {
                     Log.d("HomePagePresenter","Running on main thread");
                 } else {
@@ -54,9 +56,19 @@ public class HomePagePresenter implements HomePagePresenterInterface {
 
                             Command command = new Command(0, "tcpdump -D") {
                                 @Override
-                                public void commandOutput(int id, String line) {
+                                public void commandOutput(int id, final String line) {
                                     super.commandOutput(id, line);
                                     System.out.println(line);
+                                    if (mLine != null && !mLine.isEmpty())
+                                        mLine = mLine + "\n" + line;
+                                    else
+                                        mLine = line;
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            view.showMessage(mLine);
+                                        }
+                                    });
                                 }
                                 @Override
                                 public void commandTerminated(int id, String reason) {
