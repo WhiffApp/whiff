@@ -1,16 +1,45 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\danie\\Documents\\GitHub\\whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+            "outputFile": "C:\\PROJECTS\\Android\\Whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\danie\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\d631f7b0800e30f539571c9fa2f52baf\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "source": "C:\\Users\\elvincheng\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\fa5774c7b2d0feb17a247967478e4ac3\\res\\values-xlarge\\values.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,126,197,267,337,405",
-                        "endColumns": "70,70,69,69,67,67",
-                        "endOffsets": "121,192,262,332,400,468"
+                        "startLines": "3,5,7,8,9,10,12",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "56,134,199,266,333,399,466",
+                        "endColumns": "76,63,66,66,65,65,54",
+                        "endOffsets": "128,193,261,328,394,460,516"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,132,196,263,330,396,462",
+                        "endColumns": "76,63,66,66,65,65,54",
+                        "endOffsets": "127,191,258,325,391,457,512"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\4d1821edd4d2ae3485bad1de7bdf5956\\res\\values-xlarge\\values.xml",
+                    "from": {
+                        "startLines": "3,5,7,8,9,10,12",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "56,134,199,266,333,399,466",
+                        "endColumns": "76,63,66,66,65,65,54",
+                        "endOffsets": "128,193,261,328,394,460,516"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,132,196,263,330,396,462",
+                        "endColumns": "76,63,66,66,65,65,54",
+                        "endOffsets": "127,191,258,325,391,457,512"
                     }
                 }
             ]

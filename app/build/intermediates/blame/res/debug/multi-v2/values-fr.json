@@ -1,16 +1,45 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\danie\\Documents\\GitHub\\whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr\\values-fr.xml",
+            "outputFile": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr\\values-fr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\danie\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\d631f7b0800e30f539571c9fa2f52baf\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\4d1821edd4d2ae3485bad1de7bdf5956\\res\\values-fr\\values.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,166,274,397,512,623,705,811,941,1024,1104,1190,1300,1412,1515,1626,1733,1840,1962,2061,2147",
-                        "endColumns": "110,107,122,114,110,81,105,129,82,79,85,109,111,102,110,106,106,121,98,85,100",
-                        "endOffsets": "161,269,392,507,618,700,806,936,1019,1099,1185,1295,1407,1510,1621,1728,1835,1957,2056,2142,2243"
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,167,275,398,513,624,706,812,942,1052,1164,1267,1378,1485,1592",
+                        "endColumns": "110,107,122,114,110,81,105,129,109,111,102,110,106,106,121",
+                        "endOffsets": "162,270,393,508,619,701,807,937,1047,1159,1262,1373,1480,1587,1709"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,166,274,397,512,623,705,811,941,1051,1163,1266,1377,1484,1591",
+                        "endColumns": "110,107,122,114,110,81,105,129,109,111,102,110,106,106,121",
+                        "endOffsets": "161,269,392,507,618,700,806,936,1046,1158,1261,1372,1479,1586,1708"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\PROJECTS\\Android\\Whiff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr\\values-fr.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\elvincheng\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\fa5774c7b2d0feb17a247967478e4ac3\\res\\values-fr\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,167,275,398,513,624,706,812,942,1052,1164,1267,1378,1485,1592",
+                        "endColumns": "110,107,122,114,110,81,105,129,109,111,102,110,106,106,121",
+                        "endOffsets": "162,270,393,508,619,701,807,937,1047,1159,1262,1373,1480,1587,1709"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,166,274,397,512,623,705,811,941,1051,1163,1266,1377,1484,1591",
+                        "endColumns": "110,107,122,114,110,81,105,129,109,111,102,110,106,106,121",
+                        "endOffsets": "161,269,392,507,618,700,806,936,1046,1158,1261,1372,1479,1586,1708"
                     }
                 }
             ]

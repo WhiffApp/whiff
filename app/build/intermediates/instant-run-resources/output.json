@@ -1,1 +1,1 @@
-[{"outputType":{"type":"INSTANT_RUN_PACKAGED_RESOURCES"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":1},"path":"resources-debug.ir.ap_","properties":{"packageId":"com.app.whiff.whiff","split":"","minSdkVersion":"21"}}]
+[{"outputType":{"type":"INSTANT_RUN_PACKAGED_RESOURCES"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":1},"path":"resources-debug.ir.ap_","properties":{"packageId":"edu.sim.whiff","split":"","minSdkVersion":"19"}}]
