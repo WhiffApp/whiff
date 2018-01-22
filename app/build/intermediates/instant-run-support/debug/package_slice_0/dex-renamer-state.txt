@@ -1,0 +1,4 @@
+#Fri Jan 19 15:21:11 SGT 2018
+base.0=C\:\\Users\\danie\\Documents\\GitHub\\whiff\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
