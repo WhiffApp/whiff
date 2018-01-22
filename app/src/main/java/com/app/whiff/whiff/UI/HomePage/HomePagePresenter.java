@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.UI.HomePage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,76 +27,108 @@ public class HomePagePresenter implements HomePagePresenterInterface {
 
     public Context context;
     public HomePageViewInterface view;
-    public String message;
-    public Handler handler;
+    // public String message = "";
+    public Handler homePageHandler;
+
+    @SuppressLint("HandlerLeak")
+    Handler TCPdumpHandler = new Handler() {
+        @Override
+        public void handleMessage(Message message) {
+            Bundle bundle = message.getData();
+            String text = bundle.getString("key");
+
+            if (mLine != null && !mLine.isEmpty())
+                mLine = mLine + "\n" + text;
+            else
+                mLine = text;
+
+            homePageHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    view.showMessage(mLine);
+                }
+            });
+
+        }
+    };
     public String mLine = "";
+    public TCPdump tcpdump;
 
     public HomePagePresenter(HomePage homepage, Handler handler) {
         view = homepage;
         context = homepage;
-        this.handler = handler;
+        homePageHandler = handler;
+        tcpdump = new TCPdump(homepage, TCPdumpHandler);
     }
 
     public void StartClicked() {
         view.hideFabStart();
 
+        // Install TCPdump
+        tcpdump.installTCPdump();
+
+        // Begin packet capture
+        tcpdump.doSniff();
+
         // Begin packet capture
 
-        // 1. Start new thread so that UI is not blocked by TCPdump and su calls
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                if (Looper.myLooper() == Looper.getMainLooper()) {
-                    Log.d("HomePagePresenter","Running on main thread");
-                } else {
-                    // Install TCPdump if not already installed
-                    if (RootTools.isAccessGiven()) {
-                        RootTools.installBinary(context, R.raw.tcpdump,"tcpdump");
-                        if (RootTools.hasBinary(context, "tcpdump")) {
-
-                            Command command = new Command(0, "tcpdump -D") {
-                                @Override
-                                public void commandOutput(int id, final String line) {
-                                    super.commandOutput(id, line);
-                                    System.out.println(line);
-                                    if (mLine != null && !mLine.isEmpty())
-                                        mLine = mLine + "\n" + line;
-                                    else
-                                        mLine = line;
-                                    handler.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            view.showMessage(mLine);
-                                        }
-                                    });
-                                }
-                                @Override
-                                public void commandTerminated(int id, String reason) {
-                                    super.commandTerminated(id, reason);
-                                    System.out.println(reason);
-                                }
-                                @Override
-                                public void commandCompleted(int id, int exitcode) {
-                                    super.commandCompleted(id, exitcode);
-                                    System.out.println(exitcode);
-                                }
-                            };
-                            try {
-                                RootTools.getShell(true).add(command);
-                            } catch (IOException | RootDeniedException | TimeoutException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                }
-            }
-        }).start();
+//        // 1. Start new thread so that UI is not blocked by TCPdump and su calls
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                if (Looper.myLooper() == Looper.getMainLooper()) {
+//                    Log.d("HomePagePresenter","Running on main thread");
+//                } else {
+//                    // Install TCPdump if not already installed
+//                    if (RootTools.isAccessGiven()) {
+//                        RootTools.installBinary(context, R.raw.tcpdump,"tcpdump");
+//                        if (RootTools.hasBinary(context, "tcpdump")) {
+//
+//                            Command command = new Command(0, "tcpdump -D") {
+//                                @Override
+//                                public void commandOutput(int id, final String line) {
+//                                    super.commandOutput(id, line);
+//                                    System.out.println(line);
+//                                    if (mLine != null && !mLine.isEmpty())
+//                                        mLine = mLine + "\n" + line;
+//                                    else
+//                                        mLine = line;
+//                                    handler.post(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            view.showMessage(mLine);
+//                                        }
+//                                    });
+//                                }
+//                                @Override
+//                                public void commandTerminated(int id, String reason) {
+//                                    super.commandTerminated(id, reason);
+//                                    System.out.println(reason);
+//                                }
+//                                @Override
+//                                public void commandCompleted(int id, int exitcode) {
+//                                    super.commandCompleted(id, exitcode);
+//                                    System.out.println(exitcode);
+//                                }
+//                            };
+//                            try {
+//                                RootTools.getShell(true).add(command);
+//                            } catch (IOException | RootDeniedException | TimeoutException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }).start();
     }
 
     public void StopClicked() {
         view.hideFabStop();
+        // @TODO
+        tcpdump.stopSniff();
     }
 
 }

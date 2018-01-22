@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.UI.HomePage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,7 @@ public class HomePage extends AppCompatActivity
         System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
     }
 
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message message) {
