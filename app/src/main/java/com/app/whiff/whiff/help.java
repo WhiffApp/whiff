@@ -28,6 +28,8 @@ public class help extends AppCompatActivity {
     Spinner devSpinner;
     ArrayAdapter devList;
     ArrayList<String> devStringList=new ArrayList<String>();
+    DBHandler dbHandler;
+    String[] pcap = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +73,15 @@ public class help extends AppCompatActivity {
         devSpinner = (Spinner)findViewById(R.id.devSpinner);
         devSpinner.setAdapter(devList);
 
+        //For DB Use
+        //dbHandler = new DBHandler(this, null, null, 1);
+
         Button pcapButton = (Button)findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
 
                         selectedDev = devSpinner.getSelectedItem().toString();
-
-                        String[] pcap = new String[3];
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
                         pcap[2] = "tcpdump -i " + selectedDev + " -vvv -XX -s0 -tttt -c 5";
@@ -86,7 +89,6 @@ public class help extends AppCompatActivity {
                         TextView mainText = (TextView) findViewById(R.id.textView2);
                         mainText.setMovementMethod(new ScrollingMovementMethod());
                         mainText.setText(callCmd(pcap));
-
                     }
                 });
     }
