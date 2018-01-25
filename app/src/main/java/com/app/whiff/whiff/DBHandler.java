@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -29,11 +30,11 @@ public class DBHandler extends SQLiteOpenHelper{
     //Create DB
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_PACKETS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+        String query = "CREATE TABLE " + TABLE_PACKETS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 //COLUMN_SOURCE + " TEXT " +
                 //COLUMN_DESTINATION + " TEXT " +
-                COLUMN_DATA + " TEXT " +
+                COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
     }
@@ -58,19 +59,35 @@ public class DBHandler extends SQLiteOpenHelper{
 
     //Print DB as string
     public String databaseToString(){
+
+        Log.d("DBHandler", "getTableAsString called");
+
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_PACKETS + " WHERE 1";
+        String query = "SELECT * FROM " + TABLE_PACKETS ;
+        String[] columns = {COLUMN_ID, COLUMN_DATA};
 
-        Cursor c = db.rawQuery(query, null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
 
-        while(!c.isAfterLast()){
+        /*while(!c.isAfterLast()){
             if(c.getString(c.getColumnIndex("data"))!= null){
                 //dbString += c.getString(c.getColumnIndex("source"));
                 //dbString += c.getString(c.getColumnIndex("destination"));
                 dbString += c.getString(c.getColumnIndex("data"));
                 dbString += "\n";
             }
+        }*/
+
+        if (c.moveToFirst() ){
+            String[] columnNames = c.getColumnNames();
+            do {
+                for (String name: columnNames) {
+                    dbString += String.format("%s: %s\n", name,
+                            c.getString(c.getColumnIndex(name)));
+                }
+                dbString += "\n";
+
+            } while (c.moveToNext());
         }
 
         db.close();

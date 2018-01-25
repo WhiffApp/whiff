@@ -74,7 +74,7 @@ public class help extends AppCompatActivity {
         devSpinner.setAdapter(devList);
 
         //For DB Use
-        //dbHandler = new DBHandler(this, null, null, 1);
+        dbHandler = new DBHandler(this, null, null, 1);
 
         Button pcapButton = (Button)findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
@@ -84,11 +84,18 @@ public class help extends AppCompatActivity {
                         selectedDev = devSpinner.getSelectedItem().toString();
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -i " + selectedDev + " -vvv -XX -s0 -tttt -c 5";
+                        pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5";
 
                         TextView mainText = (TextView) findViewById(R.id.textView2);
                         mainText.setMovementMethod(new ScrollingMovementMethod());
-                        mainText.setText(callCmd(pcap));
+
+                        String output = callCmd(pcap);
+                        //mainText.setText(output);
+
+                        CapturePackets capturePackets = new CapturePackets(output);
+                        dbHandler.addPacket(capturePackets);
+
+                        mainText.setText(dbHandler.databaseToString());
                     }
                 });
     }
