@@ -57,6 +57,19 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    //Delete DB
+    public void dropDB(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PACKETS);
+        String query = "CREATE TABLE " + TABLE_PACKETS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                //COLUMN_SOURCE + " TEXT " +
+                //COLUMN_DESTINATION + " TEXT " +
+                COLUMN_DATA + " TEXT NOT NULL" +
+                ");";
+        db.execSQL(query);
+    }
+
     //Print DB as string
     public String databaseToString(){
 

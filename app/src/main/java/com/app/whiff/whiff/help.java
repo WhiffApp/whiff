@@ -93,6 +93,7 @@ public class help extends AppCompatActivity {
                         //mainText.setText(output);
 
                         CapturePackets capturePackets = new CapturePackets(output);
+                        dbHandler.dropDB();
                         dbHandler.addPacket(capturePackets);
 
                         mainText.setText(dbHandler.databaseToString());
