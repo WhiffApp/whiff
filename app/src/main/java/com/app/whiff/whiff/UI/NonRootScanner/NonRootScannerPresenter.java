@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-
-
 /**
  * NonRootScannerPresenter
  * Actions to take when buttons are clicked in NonRootScanner activity.
@@ -38,7 +36,7 @@ public class NonRootScannerPresenter implements NonRootScannerPresenterInterface
         }
     };
 
-    // Handler that handles messages sent from TCPdump thread
+    // Handler that handles messages
     @SuppressLint("HandlerLeak")
     Handler TCPdumpHandler = new Handler() {
         @Override
@@ -74,13 +72,14 @@ public class NonRootScannerPresenter implements NonRootScannerPresenterInterface
 
     public void StartClicked() {
         view.hideFabStart();
-        // tcpdump.installTCPdump();   // Install TCPdump
-        // tcpdump.doSniff();  // Begin packet capture
+        // Start VPNService
+        nonRootScannerHandler.StartVPNService();
+
     }
 
     public void StopClicked() {
         view.hideFabStop();
-        // tcpdump.stopSniff();
+        // Stop VPNService
     }
 
 }

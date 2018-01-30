@@ -1,15 +1,10 @@
 package com.app.whiff.whiff.UI.NonRootScanner;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.VpnService;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,20 +14,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
-import com.app.whiff.whiff.UI.HomePage.HomePagePresenter;
-import com.app.whiff.whiff.UI.HomePage.HomePagePresenterInterface;
-import com.app.whiff.whiff.UI.HomePage.HomePageViewInterface;
-import com.app.whiff.whiff.UI.HomePage.WEPCrack;
-
 
 public class NonRootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
 
-    public Button vpnButton;
+    // public Button vpnButton;
     public NonRootScannerPresenterInterface presenter;
 
 
@@ -42,33 +31,52 @@ public class NonRootScanner extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*
-         * Do not call su from main thread.
-         * Please see: https://su.chainfire.eu/
-         */
-//        try {
-//            Runtime.getRuntime().exec("su");
-//        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_non_root_scanner);
 
-        vpnButton = (Button)findViewById(R.id.vpn);
-        vpnButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        connectWithPresenter(); // HomePagePresenter object
+
+        // Context context = getApplicationContext();
+
+        TV1 = (TextView) findViewById(R.id.TV1);
+        fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
+        fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
+        fabStop.hide();
+        fabStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // call packet listener here
+                presenter.StartClicked();
+                Snackbar.make(view, "Start clicked, VPN service started.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Log.d("NonRootScanner MSG","Start Clicked, VPN service started.");
             }
         });
+        fabStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // stop listening here
+                presenter.StopClicked();
+                Snackbar.make(view, "Stop clicked, VPN service stopped.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Log.d("NonRootScanner MSG","Stop Clicked, VPN service stopped.");
+            }
+        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
-
-
-
-
-
-
 
     public void hideFabStart() {
         fabStart.hide();
@@ -134,8 +142,8 @@ public class NonRootScanner extends AppCompatActivity
         if (id == R.id.nav_Packet_Capture) {
             //TODO Create new activity
         } else if (id == R.id.nav_wep_crack) {
-            Intent WEPActivity = new Intent (this, WEPCrack.class);
-            startActivity(WEPActivity);
+            // Intent WEPActivity = new Intent (this, WEPCrack.class);
+            // startActivity(WEPActivity);
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {
