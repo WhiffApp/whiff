@@ -16,8 +16,8 @@ import java.nio.channels.SocketChannel;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import edu.sim.whiff.Packet.TCPHeader;
-import edu.sim.whiff.TCB.TCBStatus;
+import com.app.whiff.whiff.UI.NonRootScanner.Packet.TCPHeader;
+import com.app.whiff.whiff.UI.NonRootScanner.TCB.TCBStatus;
 
 public class TCPOutput implements Runnable
 {

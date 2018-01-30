@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import edu.sim.whiff.TCB.TCBStatus;
+import com.app.whiff.whiff.UI.NonRootScanner.TCB.TCBStatus;
 
 public class TCPInput implements Runnable
 {

@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
+import com.app.whiff.whiff.UI.NonRootScanner.NonRootScanner;
 
 
 public class HomePage extends AppCompatActivity
@@ -162,8 +163,11 @@ public class HomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_Packet_Capture) {
+        if (id == R.id.nav_root_packet_capture) {
             //TODO Create new activity
+        } else if (id == R.id.nav_non_root_packet_capture) {
+            Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
+            startActivity(RootScannerActivity);
         } else if (id == R.id.nav_wep_crack) {
             Intent WEPActivity = new Intent (this, WEPCrack.class);
             startActivity(WEPActivity);

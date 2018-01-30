@@ -22,13 +22,16 @@ public class NonRootScannerPresenter implements NonRootScannerPresenterInterface
 
     private static final int VPN_REQUEST_CODE = 0x0F;
     private boolean waitingForVPNStart;
-    private NonRootScannerHandler nonRootScannerHandler;
+    // private NonRootScannerHandler nonRootScannerHandler = new NonRootScannerHandler(this);
+    private PacketCaptureService packetCaptureService = new PacketCaptureService();
 
-    private BroadcastReceiver vpnStateReceiver = new BroadcastReceiver() {
+    // Receives the state of VPN in Android control panel
+    private BroadcastReceiver vpnStateReceiver = new BroadcastReceiver()
+    {
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            if (PacketCaptureService.BROADCAST_VPN_STATE.equals(intent.getAction()))
+            if (packetCaptureService.BROADCAST_VPN_STATE.equals(intent.getAction()))
             {
                 if (intent.getBooleanExtra("running", false))
                     waitingForVPNStart = false;
@@ -61,19 +64,11 @@ public class NonRootScannerPresenter implements NonRootScannerPresenterInterface
     }
 
     public void VpnButtonClicked() {
-        Intent vpnIntent = VpnService.prepare(this);
-        if (vpnIntent != null)
-            System.out.println("Vpn Button Clicked, intent != null");
-           // nonRootScannerHandler.startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
-        else
-            System.out.println("Vpn Button Clicked, intent == null");
-            // nonRootScannerHandler.onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
     }
 
     public void StartClicked() {
         view.hideFabStart();
         // Start VPNService
-        nonRootScannerHandler.StartVPNService();
 
     }
 

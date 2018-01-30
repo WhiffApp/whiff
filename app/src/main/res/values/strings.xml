@@ -4,7 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="navigation_drawer_packet_capture">Packet Capture</string>
+    <string name="navigation_drawer_root_packet_capture">Rooted Packet Capture</string>
+    <string name="navigation_drawer_non_root_packet_capture">Non-Rooted Packet Capture</string>
     <string name="navigation_drawer_wep_crack">WEP Crack</string>
     <string name="navigation_drawer_import">Import Data</string>
     <string name="navigation_drawer_help_faq">Help and FAQ</string>

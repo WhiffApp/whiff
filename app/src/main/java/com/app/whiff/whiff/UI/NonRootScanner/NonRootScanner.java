@@ -139,8 +139,10 @@ public class NonRootScanner extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_Packet_Capture) {
+        if (id == R.id.nav_root_packet_capture) {
             //TODO Create new activity
+        } else if (id == R.id.nav_non_root_packet_capture) {
+
         } else if (id == R.id.nav_wep_crack) {
             // Intent WEPActivity = new Intent (this, WEPCrack.class);
             // startActivity(WEPActivity);

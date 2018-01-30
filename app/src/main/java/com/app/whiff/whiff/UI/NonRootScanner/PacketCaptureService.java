@@ -24,13 +24,16 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.app.whiff.whiff.R;
+
 public class PacketCaptureService extends VpnService
 {
     private static final String TAG = PacketCaptureService.class.getSimpleName();
     private static final String VPN_ADDRESS = "10.0.0.5";   // Only IPv4 support for now
     private static final String VPN_ROUTE   = "0.0.0.0";    // Intercept everything
 
-    public static final String BROADCAST_VPN_STATE = "edu.sim.whiff.VPN_STATE";
+    // public static final String BROADCAST_VPN_STATE = "edu.sim.whiff.VPN_STATE";
+    public static final String BROADCAST_VPN_STATE = "com.app.whiff.whiff.UI.NonRootScanner.VPN_STATE";
 
     private static boolean isRunning = false;
 
