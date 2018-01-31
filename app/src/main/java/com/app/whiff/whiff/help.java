@@ -15,6 +15,10 @@ import com.stericson.RootTools.RootTools;
 
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
+import org.jnetpcap.packet.*;
+import org.jnetpcap.packet.PcapPacketHandler;
+import org.jnetpcap.util.JNetPcapFormatter;
+import org.jnetpcap.util.PcapPacketArrayList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -84,24 +88,49 @@ public class help extends AppCompatActivity {
                         selectedDev = devSpinner.getSelectedItem().toString();
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5";
+                        pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5 ";
 
                         TextView mainText = (TextView) findViewById(R.id.textView2);
                         mainText.setMovementMethod(new ScrollingMovementMethod());
 
-                        String output = callCmd(pcap);
+                        dbHandler.dropDB();
+
+                        try {
+                            Runtime rt = Runtime.getRuntime();
+                            Process proc = rt.exec(pcap);
+
+                            BufferedReader stdInput = new BufferedReader(new
+                                    InputStreamReader(proc.getInputStream()));
+
+                            BufferedReader stdError = new BufferedReader(new
+                                    InputStreamReader(proc.getErrorStream()));
+
+                            String temp = "";
+                            while ((temp = stdInput.readLine()) != null) {
+                                CapturePackets capturePackets = new CapturePackets(temp);
+                                dbHandler.addPacket(capturePackets);
+                            }
+                            while ((temp = stdError.readLine()) != null) {
+                                mainText.setText(temp);
+                                break;
+                            }
+
+                        } catch (IOException e) {
+                            Log.i("exception", e.toString());
+                        }
+
                         //mainText.setText(output);
 
-                        CapturePackets capturePackets = new CapturePackets(output);
+                        /*CapturePackets capturePackets = new CapturePackets(output);
                         dbHandler.dropDB();
-                        dbHandler.addPacket(capturePackets);
+                        dbHandler.addPacket(capturePackets);*/
 
                         mainText.setText(dbHandler.databaseToString());
                     }
                 });
     }
 
-    public String callCmd(String[] command){
+    /*public String callCmd(String[] command){
 
         String output = "";
 
@@ -130,7 +159,7 @@ public class help extends AppCompatActivity {
         }
 
         return output;
-    }
+    }*/
 }
 
 
