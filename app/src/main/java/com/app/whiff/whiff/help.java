@@ -80,6 +80,9 @@ public class help extends AppCompatActivity {
         //For DB Use
         dbHandler = new DBHandler(this, null, null, 1);
 
+        final TextView mainText = (TextView) findViewById(R.id.textView2);
+        mainText.setMovementMethod(new ScrollingMovementMethod());
+
         Button pcapButton = (Button)findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
                 new Button.OnClickListener() {
@@ -89,11 +92,6 @@ public class help extends AppCompatActivity {
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
                         pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5 ";
-
-                        TextView mainText = (TextView) findViewById(R.id.textView2);
-                        mainText.setMovementMethod(new ScrollingMovementMethod());
-
-                        dbHandler.dropDB();
 
                         try {
                             Runtime rt = Runtime.getRuntime();
@@ -128,6 +126,17 @@ public class help extends AppCompatActivity {
                         mainText.setText(dbHandler.databaseToString());
                     }
                 });
+
+        Button dropDBButton = (Button)findViewById(R.id.dropDBButton);
+        dropDBButton.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        dbHandler.dropDB();
+                        mainText.setText("Database Cleared!");
+
+                    }
+                }
+        );
     }
 
     /*public String callCmd(String[] command){
