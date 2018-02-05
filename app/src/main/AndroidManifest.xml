@@ -23,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.NonRootScanner.NonRootScanner"
+            android:label="NonRootScanner"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"

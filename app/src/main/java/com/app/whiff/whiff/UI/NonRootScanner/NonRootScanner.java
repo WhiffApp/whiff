@@ -1,71 +1,46 @@
-package com.app.whiff.whiff.UI.HomePage;
+package com.app.whiff.whiff.UI.NonRootScanner;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
-import com.app.whiff.whiff.UI.NonRootScanner.NonRootScanner;
 
+public class NonRootScanner extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
 
-public class HomePage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
+    // public Button vpnButton;
+    public NonRootScannerPresenterInterface presenter;
 
-    // @TODO
-    // Uncomment when using jnetpcap library
-    // Also, should jnetpcap really be loaded in this class?
-//    static {
-//        System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
-//    }
-
-//    @SuppressLint("HandlerLeak")
-//    Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message message) {
-//            Bundle bundle = message.getData();
-//            String text = bundle.getString("key");
-//            TextView TV1 = (TextView) findViewById(R.id.TV1);
-//            TV1.setText(text);
-//        }
-//    };
 
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-    public HomePagePresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*
-         * Do not call su from main thread.
-         * Please see: https://su.chainfire.eu/
-         */
-//        try {
-//            Runtime.getRuntime().exec("su");
-//        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_non_root_scanner);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         connectWithPresenter(); // HomePagePresenter object
 
-        Context context = getApplicationContext();
+        // Context context = getApplicationContext();
 
         TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
@@ -74,21 +49,21 @@ public class HomePage extends AppCompatActivity
         fabStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // call packet listener here
                 presenter.StartClicked();
-                //TODO call packet listener here
-                Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Start clicked, VPN service started.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.d("HomePage MSG","Start Clicked");
+                Log.d("NonRootScanner MSG","Start Clicked, VPN service started.");
             }
         });
         fabStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // stop listening here
                 presenter.StopClicked();
-                //TODO stop listening here
-                Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Stop clicked, VPN service stopped.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.d("HomePage MSG","Stop Clicked");
+                Log.d("NonRootScanner MSG","Stop Clicked, VPN service stopped.");
             }
         });
 
@@ -100,6 +75,7 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     public void hideFabStart() {
@@ -118,7 +94,7 @@ public class HomePage extends AppCompatActivity
 
     public void connectWithPresenter() {
         // presenter = new HomePagePresenter(this, handler);
-        presenter = new HomePagePresenter(this);
+        presenter = new NonRootScannerPresenter(this);
     }
 
     @Override
@@ -166,11 +142,10 @@ public class HomePage extends AppCompatActivity
         if (id == R.id.nav_root_packet_capture) {
             //TODO Create new activity
         } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
-            startActivity(RootScannerActivity);
+
         } else if (id == R.id.nav_wep_crack) {
-            Intent WEPActivity = new Intent (this, WEPCrack.class);
-            startActivity(WEPActivity);
+            // Intent WEPActivity = new Intent (this, WEPCrack.class);
+            // startActivity(WEPActivity);
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {
