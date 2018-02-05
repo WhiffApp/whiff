@@ -1,4 +1,4 @@
-package com.app.whiff.whiff.UI.HomePage;
+package com.app.whiff.whiff.UI.RootScanner;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,10 +14,10 @@ import com.app.whiff.whiff.TCPdump;
  * Actions to take when buttons are clicked in RootScanner activity.
  */
 
-public class HomePagePresenter implements HomePagePresenterInterface {
+public class RootScannerPresenter implements RootScannerPresenterInterface {
 
     public Context context;
-    public HomePageViewInterface view;
+    public RootScannerViewInterface view;
     public String mLine = "";      // Message from handler
     public TCPdump tcpdump;
 
@@ -48,7 +48,7 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         }
     };
 
-    public HomePagePresenter(HomePage homepage) {
+    public RootScannerPresenter(RootScanner homepage) {
         view = homepage;
         context = homepage;
         tcpdump = new TCPdump(homepage, TCPdumpHandler);

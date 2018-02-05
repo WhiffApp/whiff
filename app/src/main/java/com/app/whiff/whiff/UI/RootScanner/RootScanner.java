@@ -1,30 +1,28 @@
-package com.app.whiff.whiff.UI.HomePage;
+package com.app.whiff.whiff.UI.RootScanner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.UI.NonRootScanner.NonRootScanner;
-import com.app.whiff.whiff.UI.RootScanner.RootScanner;
 
 
-public class HomePage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
+public class RootScanner extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
 
     // @TODO
     // Uncomment when using jnetpcap library
@@ -47,7 +45,7 @@ public class HomePage extends AppCompatActivity
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-    public HomePagePresenterInterface presenter;
+    public RootScannerPresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +118,7 @@ public class HomePage extends AppCompatActivity
 
     public void connectWithPresenter() {
         // presenter = new RootScannerPresenter(this, handler);
-        presenter = new HomePagePresenter(this);
+        presenter = new RootScannerPresenter(this);
     }
 
     @Override
@@ -167,14 +165,10 @@ public class HomePage extends AppCompatActivity
 
         if (id == R.id.nav_root_packet_capture) {
             //TODO Create new activity
-            Intent RootScannerActivity = new Intent(this, RootScanner.class);
-            startActivity(RootScannerActivity);
         } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, NonRootScanner.class);
-            startActivity(NonRootScannerActivity);
+            Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
+            startActivity(RootScannerActivity);
         } else if (id == R.id.nav_wep_crack) {
-            Intent WEPActivity = new Intent (this, WEPCrack.class);
-            startActivity(WEPActivity);
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {

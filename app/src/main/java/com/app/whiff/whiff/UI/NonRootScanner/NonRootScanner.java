@@ -38,7 +38,7 @@ public class NonRootScanner extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        connectWithPresenter(); // HomePagePresenter object
+        connectWithPresenter(); // RootScannerPresenter object
 
         // Context context = getApplicationContext();
 
@@ -93,7 +93,7 @@ public class NonRootScanner extends AppCompatActivity
     }
 
     public void connectWithPresenter() {
-        // presenter = new HomePagePresenter(this, handler);
+        // presenter = new RootScannerPresenter(this, handler);
         presenter = new NonRootScannerPresenter(this);
     }
 
