@@ -18,10 +18,33 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://github.com/aboutsip/pkts"
+    }
+}
+
 dependencies {
-    implementation fileTree(include: ['*.jar'],  dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.stericson.RootShell:RootShell@aar'
     implementation 'com.stericson.RootTools:RootTools@aar'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-core
+//    implementation group: 'io.pkts', name: 'pkts-core', version: '3.0.2'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-tools
+//    implementation group: 'io.pkts', name: 'pkts-tools', version: '3.0.2'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-streams
+//    implementation group: 'io.pkts', name: 'pkts-streams', version: '3.0.2'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-sdp
+//    implementation group: 'io.pkts', name: 'pkts-sdp', version: '3.0.2'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-sip
+//    implementation group: 'io.pkts', name: 'pkts-sip', version: '3.0.2'
+//// https://mvnrepository.com/artifact/io.pkts/pkts-buffers
+//    implementation group: 'io.pkts', name: 'pkts-buffers', version: '3.0.2'
+//// https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+//    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+//// https://mvnrepository.com/artifact/log4j/log4j
+//    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support:design:26.1.0'

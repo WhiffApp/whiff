@@ -1,6 +1,7 @@
 package com.app.whiff.whiff.UI.NonRootScanner;
 
 import android.content.Intent;
+import android.net.VpnService;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,7 +22,8 @@ import com.app.whiff.whiff.R;
 public class NonRootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
 
-    // public Button vpnButton;
+    public static final int VPN_REQUEST_CODE = 0x0F;
+
     public NonRootScannerPresenterInterface presenter;
 
 
@@ -40,8 +42,6 @@ public class NonRootScanner extends AppCompatActivity
 
         connectWithPresenter(); // RootScannerPresenter object
 
-        // Context context = getApplicationContext();
-
         TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
@@ -51,6 +51,7 @@ public class NonRootScanner extends AppCompatActivity
             public void onClick(View view) {
                 // call packet listener here
                 presenter.StartClicked();
+                // startVPN();  // Called from Presenter
                 Snackbar.make(view, "Start clicked, VPN service started.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("NonRootScanner MSG","Start Clicked, VPN service started.");
@@ -86,6 +87,19 @@ public class NonRootScanner extends AppCompatActivity
     public void hideFabStop() {
         fabStop.hide();
         fabStart.show();
+    }
+
+    public void startVPN() {
+        Intent vpnIntent = VpnService.prepare(this);
+        if (vpnIntent != null) {
+            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+        } else {
+            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+        }
+    }
+
+    public void stopVPN() {
+        // Placeholder
     }
 
     public void showMessage(String message) {

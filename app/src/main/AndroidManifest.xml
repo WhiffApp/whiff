@@ -23,20 +23,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.RootScanner.RootScanner"
+        <activity
+            android:name=".UI.RootScanner.RootScanner"
             android:label="RootScanner"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".UI.NonRootScanner.NonRootScanner"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <service android:name=".UI.RootScanner.TCPdumpService"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_background"
+            android:label="@string/app_name"
+        <activity
+            android:name=".UI.NonRootScanner.NonRootScanner"
             android:label="NonRootScanner"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <service android:name=".UI.NonRootScanner.PacketCaptureService" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <service
+            android:name=".UI.NonRootScanner.PacketCaptureService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"
             android:theme="@style/AppTheme" />
-        <activity android:name=".help"></activity>
+        <activity android:name=".help" />
+        <activity
+            android:name=".UI.Test.pktsTest"
+            android:label="@string/title_activity_pkts_test"
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".UI.RootScanner.TCPdumpService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

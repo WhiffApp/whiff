@@ -7,5 +7,6 @@ package com.app.whiff.whiff.UI.NonRootScanner;
 public interface NonRootScannerViewInterface {
     void hideFabStart();
     void hideFabStop();
-    void showMessage(String message);
+    void startVPN();
+    void stopVPN();
 }

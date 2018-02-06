@@ -26,5 +26,6 @@
     <string name="connected">Network Sniffer is started.</string>
     <string name="disconnecting">Network Sniffer is stopping...</string>
     <string name="disconnected">Network Sniffer is stopped.</string>
+    <string name="title_activity_pkts_test">pktsTest</string>
 
 </resources>

@@ -7,5 +7,4 @@ package com.app.whiff.whiff.UI.NonRootScanner;
     public interface NonRootScannerPresenterInterface {
     void StartClicked();
     void StopClicked();
-    void VpnButtonClicked();
 }
