@@ -5,6 +5,7 @@ package com.app.whiff.whiff.UI.RootScanner;
  */
 
     public interface RootScannerPresenterInterface {
+    void ActivityStarted();
     void StartClicked();
     void StopClicked();
 }

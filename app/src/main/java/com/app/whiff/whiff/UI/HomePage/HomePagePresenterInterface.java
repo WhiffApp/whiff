@@ -5,6 +5,8 @@ package com.app.whiff.whiff.UI.HomePage;
  */
 
     public interface HomePagePresenterInterface {
+    void RootScannerButtonClicked();
+    void NonRootScannerButtonClicked();
     void StartClicked();
     void StopClicked();
 }

@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.app.whiff.whiff.TCPdump;
-
 
 /**
  * RootScannerPresenter
@@ -54,9 +52,12 @@ public class RootScannerPresenter implements RootScannerPresenterInterface {
         tcpdump = new TCPdump(homepage, TCPdumpHandler);
     }
 
+    public void ActivityStarted() {
+        tcpdump.installTCPdump();   // Install tcpdump when activity is started
+    }
+
     public void StartClicked() {
         view.hideFabStart();
-        tcpdump.installTCPdump();   // Install TCPdump
         tcpdump.doSniff();  // Begin packet capture
     }
 

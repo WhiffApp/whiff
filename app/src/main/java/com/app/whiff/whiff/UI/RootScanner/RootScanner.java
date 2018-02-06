@@ -24,24 +24,6 @@ import com.app.whiff.whiff.UI.NonRootScanner.NonRootScanner;
 public class RootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
 
-    // @TODO
-    // Uncomment when using jnetpcap library
-    // Also, should jnetpcap really be loaded in this class?
-//    static {
-//        System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
-//    }
-
-//    @SuppressLint("HandlerLeak")
-//    Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message message) {
-//            Bundle bundle = message.getData();
-//            String text = bundle.getString("key");
-//            TextView TV1 = (TextView) findViewById(R.id.TV1);
-//            TV1.setText(text);
-//        }
-//    };
-
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
@@ -49,16 +31,9 @@ public class RootScanner extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*
-         * Do not call su from main thread.
-         * Please see: https://su.chainfire.eu/
-         */
-//        try {
-//            Runtime.getRuntime().exec("su");
-//        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_root_scanner);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -100,6 +75,8 @@ public class RootScanner extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        presenter.ActivityStarted();
     }
 
     public void hideFabStart() {

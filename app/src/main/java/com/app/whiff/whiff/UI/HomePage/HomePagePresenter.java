@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.app.whiff.whiff.TCPdump;
+import com.app.whiff.whiff.UI.RootScanner.TCPdump;
 
 
 /**
@@ -52,6 +52,14 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         view = homepage;
         context = homepage;
         tcpdump = new TCPdump(homepage, TCPdumpHandler);
+    }
+
+    public void RootScannerButtonClicked() {
+        // Start RootScanner Activity
+    }
+
+    public void NonRootScannerButtonClicked() {
+        // Start NonRootScanner Activity
     }
 
     public void StartClicked() {

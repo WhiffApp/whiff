@@ -1,4 +1,4 @@
-package com.app.whiff.whiff;
+package com.app.whiff.whiff.UI.RootScanner;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.app.whiff.whiff.R;
 import com.stericson.RootShell.exceptions.RootDeniedException;
 import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
@@ -27,7 +28,7 @@ public class TCPdump extends ContextWrapper {
     public Context context;
     public Handler handler;
 
-    public static final String TCPdumpBinaryPath = "/data/data/com.app.whiff.whiff/files/tcpdump";
+    public static final String TCPdumpBinaryPath = "/data/data/com.app.whiff.whiff/files/";
 
     public TCPdump(Context base, Handler handler) {
         super(base);
@@ -58,7 +59,7 @@ public class TCPdump extends ContextWrapper {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Command command = new Command(0, "tcpdump --list-interfaces") {
+                Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces") {
                     // Command command = new Command(0, "tcpdump -i wlan0 -vvv") {
                     @Override
                     public void commandOutput(int id, final String line) {

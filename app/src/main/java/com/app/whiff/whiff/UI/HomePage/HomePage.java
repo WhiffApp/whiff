@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
@@ -26,38 +27,19 @@ import com.app.whiff.whiff.UI.RootScanner.RootScanner;
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
 
-    // @TODO
-    // Uncomment when using jnetpcap library
-    // Also, should jnetpcap really be loaded in this class?
-//    static {
-//        System.loadLibrary("jnetpcap"); // For pcap reading and analysis functions
-//    }
+    // Buttons to launch other activities
+    public Button RootScannerButton;
+    public Button NonRootScannerButton;
 
-//    @SuppressLint("HandlerLeak")
-//    Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message message) {
-//            Bundle bundle = message.getData();
-//            String text = bundle.getString("key");
-//            TextView TV1 = (TextView) findViewById(R.id.TV1);
-//            TV1.setText(text);
-//        }
-//    };
-
-    public TextView TV1;
+    // Start/Stop Button
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
+
+    // Reference to presenter
     public HomePagePresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*
-         * Do not call su from main thread.
-         * Please see: https://su.chainfire.eu/
-         */
-//        try {
-//            Runtime.getRuntime().exec("su");
-//        } catch (IOException e) {}
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home_page);
@@ -69,7 +51,26 @@ public class HomePage extends AppCompatActivity
 
         Context context = getApplicationContext();
 
-        TV1 = (TextView) findViewById(R.id.TV1);
+        RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
+        RootScannerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.RootScannerButtonClicked();
+                Intent RootScannerActivity = new Intent(view.getContext(), RootScanner.class);
+                startActivity(RootScannerActivity);
+            }
+        });
+
+        NonRootScannerButton = (Button) findViewById(R.id.NonRootScannerButton);
+        NonRootScannerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.NonRootScannerButtonClicked();
+                Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
+                startActivity(NonRootScannerActivity);
+            }
+        });
+
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
         fabStop.hide();
@@ -83,6 +84,7 @@ public class HomePage extends AppCompatActivity
                 Log.d("RootScanner MSG","Start Clicked");
             }
         });
+
         fabStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +117,6 @@ public class HomePage extends AppCompatActivity
     }
 
     public void showMessage(String message) {
-        TV1.setText(message);
     }
 
     public void connectWithPresenter() {

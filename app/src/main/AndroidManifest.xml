@@ -31,6 +31,7 @@
             android:label="NonRootScanner"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <service android:name=".UI.NonRootScanner.PacketCaptureService" />
         <activity
             android:name=".UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"

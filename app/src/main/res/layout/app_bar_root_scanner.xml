@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.whiff.whiff.UI.NonRootScanner.NonRootScanner">
+    tools:context="com.app.whiff.whiff.UI.RootScanner.RootScanner">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_non_root_scanner" />
+        layout="@layout/content_root_scanner" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_start"
