@@ -95,7 +95,7 @@ public class DBHandler extends SQLiteOpenHelper{
             String[] columnNames = c.getColumnNames();
             do {
                 for (String name: columnNames) {
-                    dbString += String.format("%s. \t",
+                    dbString += String.format("%s \t",
                             c.getString(c.getColumnIndex(name)));
                 }
                 dbString += "\n";

@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class help extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class help extends AppCompatActivity {
     ArrayList<String> devStringList=new ArrayList<String>();
     DBHandler dbHandler;
     String[] pcap = new String[3];
+    String[] readPcap = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +94,22 @@ public class help extends AppCompatActivity {
                         selectedDev = devSpinner.getSelectedItem().toString();
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5 ";
+                        pcap[2] = "tcpdump -i " + selectedDev + " -c 5 -w /sdcard/whiff.pcap";
 
                         try {
                             Runtime rt = Runtime.getRuntime();
                             Process proc = rt.exec(pcap);
+                        } catch (IOException e) {
+                            Log.i("exception", e.toString());
+                        }
+
+                        readPcap[0] = "su";
+                        readPcap[1] = "cd /system/bin";
+                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvv";
+
+                        try {
+                            Runtime rt = Runtime.getRuntime();
+                            Process proc = rt.exec(readPcap);
 
                             BufferedReader stdInput = new BufferedReader(new
                                     InputStreamReader(proc.getInputStream()));
@@ -103,11 +117,34 @@ public class help extends AppCompatActivity {
                             BufferedReader stdError = new BufferedReader(new
                                     InputStreamReader(proc.getErrorStream()));
 
-                            String temp = "";
+                            String temp, stringToDB = "";
+                            int count = 1;
                             while ((temp = stdInput.readLine()) != null) {
-                                CapturePackets capturePackets = new CapturePackets(temp);
-                                dbHandler.addPacket(capturePackets);
+                                boolean isNewRow = newRow(temp);
+                                if(isNewRow == true){
+                                    if(count == 1){
+                                        stringToDB = temp;
+                                        count++;
+                                    }
+                                    else{
+                                        CapturePackets capturePackets = new CapturePackets(stringToDB);
+                                        dbHandler.addPacket(capturePackets);
+                                        stringToDB = temp;
+                                        count++;
+                                    }
+                                }
+                                else{
+                                    stringToDB += temp;
+                                }
+
                             }
+
+                            if((temp = stdInput.readLine()) == null){
+                                CapturePackets capturePackets = new CapturePackets(stringToDB);
+                                dbHandler.addPacket(capturePackets);
+                                count++;
+                            }
+
                             while ((temp = stdError.readLine()) != null) {
                                 mainText.setText(temp);
                                 break;
@@ -137,6 +174,27 @@ public class help extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public boolean newRow(String line){
+        String temp1 = line.split(" ")[0];
+        String temp2 = line.split(" ")[1];
+
+        Pattern p1 = Pattern.compile("(\\d{4})(-)(\\d{2})(-)(\\d{2})");
+        Pattern p2 = Pattern.compile("(\\d{2})(:)(\\d{2})(:)(\\d{2})(.)(\\d+)");
+
+        Matcher m1 = p1.matcher(temp1);
+        Matcher m2 = p2.matcher(temp2);
+
+        boolean b1 = m1.matches();
+        boolean b2 = m2.matches();
+
+        if(b1 == true && b2 == true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /*public String callCmd(String[] command){
