@@ -32,8 +32,8 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_PACKETS + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                //COLUMN_SOURCE + " TEXT " +
-                //COLUMN_DESTINATION + " TEXT " +
+                COLUMN_SOURCE + " TEXT NOT NULL, " +
+                COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -49,8 +49,8 @@ public class DBHandler extends SQLiteOpenHelper{
     //Create new row in DB
     public void addPacket(CapturePackets capturePackets){
         ContentValues values = new ContentValues();
-       // values.put(COLUMN_SOURCE, capturePackets.get_source());
-        //values.put(COLUMN_DESTINATION, capturePackets.get_destination());
+        values.put(COLUMN_SOURCE, capturePackets.get_source());
+        values.put(COLUMN_DESTINATION, capturePackets.get_destination());
         values.put(COLUMN_DATA, capturePackets.get_data());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PACKETS, null, values);
@@ -63,8 +63,8 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PACKETS);
         String query = "CREATE TABLE " + TABLE_PACKETS + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                //COLUMN_SOURCE + " TEXT " +
-                //COLUMN_DESTINATION + " TEXT " +
+                COLUMN_SOURCE + " TEXT NOT NULL, " +
+                COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -78,18 +78,9 @@ public class DBHandler extends SQLiteOpenHelper{
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PACKETS ;
-        String[] columns = {COLUMN_ID, COLUMN_DATA};
+        String[] columns = {COLUMN_ID, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_DATA};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
-
-        /*while(!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("data"))!= null){
-                //dbString += c.getString(c.getColumnIndex("source"));
-                //dbString += c.getString(c.getColumnIndex("destination"));
-                dbString += c.getString(c.getColumnIndex("data"));
-                dbString += "\n";
-            }
-        }*/
 
         if (c.moveToFirst() ){
             String[] columnNames = c.getColumnNames();
