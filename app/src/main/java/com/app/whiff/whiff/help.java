@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class help extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class help extends AppCompatActivity {
     ArrayList<String> devStringList=new ArrayList<String>();
     DBHandler dbHandler;
     String[] pcap = new String[3];
+    String[] readPcap = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +94,22 @@ public class help extends AppCompatActivity {
                         selectedDev = devSpinner.getSelectedItem().toString();
                         pcap[0] = "su";
                         pcap[1] = "cd /system/bin";
-                        pcap[2] = "tcpdump -i " + selectedDev + " -t -c 5 ";
+                        pcap[2] = "tcpdump -i " + selectedDev + " -c 5 -w /sdcard/whiff.pcap";
 
                         try {
                             Runtime rt = Runtime.getRuntime();
                             Process proc = rt.exec(pcap);
+                        } catch (IOException e) {
+                            Log.i("exception", e.toString());
+                        }
+
+                        readPcap[0] = "su";
+                        readPcap[1] = "cd /system/bin";
+                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvvXX";
+
+                        try {
+                            Runtime rt = Runtime.getRuntime();
+                            Process proc = rt.exec(readPcap);
 
                             BufferedReader stdInput = new BufferedReader(new
                                     InputStreamReader(proc.getInputStream()));
@@ -103,11 +117,32 @@ public class help extends AppCompatActivity {
                             BufferedReader stdError = new BufferedReader(new
                                     InputStreamReader(proc.getErrorStream()));
 
-                            String temp = "";
+                            String temp, stringToDB = "";
+                            int count = 1;
                             while ((temp = stdInput.readLine()) != null) {
-                                CapturePackets capturePackets = new CapturePackets(temp);
-                                dbHandler.addPacket(capturePackets);
+                                boolean isNewRow = newPacket(temp);
+                                if(isNewRow == true){
+                                    if(count == 1){
+                                        stringToDB = temp;
+                                        count++;
+                                    }
+                                    else{
+                                        parsePacket(stringToDB);
+                                        stringToDB = temp;
+                                        count++;
+                                    }
+                                }
+                                else{
+                                    stringToDB += temp;
+                                }
+
                             }
+
+                            if((temp = stdInput.readLine()) == null){
+                                parsePacket(stringToDB);
+                                count++;
+                            }
+
                             while ((temp = stdError.readLine()) != null) {
                                 mainText.setText(temp);
                                 break;
@@ -116,12 +151,6 @@ public class help extends AppCompatActivity {
                         } catch (IOException e) {
                             Log.i("exception", e.toString());
                         }
-
-                        //mainText.setText(output);
-
-                        /*CapturePackets capturePackets = new CapturePackets(output);
-                        dbHandler.dropDB();
-                        dbHandler.addPacket(capturePackets);*/
 
                         mainText.setText(dbHandler.databaseToString());
                     }
@@ -139,36 +168,73 @@ public class help extends AppCompatActivity {
         );
     }
 
-    /*public String callCmd(String[] command){
+    public void parsePacket(String stringToDB){
 
-        String output = "";
+        String[] ipAdd = getIP(stringToDB);
+        /*ipAdd[0] = "127.0.0.1";
+        ipAdd[1] = "127.0.0.1";*/
+        CapturePackets capturePackets = new CapturePackets(ipAdd[0],ipAdd[1],stringToDB);
+        dbHandler.addPacket(capturePackets);
+    }
 
-        try {
-            Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec(command);
-
-            BufferedReader stdInput = new BufferedReader(new
-                    InputStreamReader(proc.getInputStream()));
-
-            BufferedReader stdError = new BufferedReader(new
-                    InputStreamReader(proc.getErrorStream()));
-
-            String temp, print = "";
-            while ((temp = stdInput.readLine()) != null) {
-                print = print + temp + "\n";
+    public String[] getIP(String stringToDB){
+        String[] ipAdd = new String[2];
+        Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
+        Pattern ipExactPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})");
+        String[] word = stringToDB.split(" ");
+        int dotCount, count = 0;
+        for(int i=0;i<word.length;i++){
+            Matcher ipMatcher = ipPattern.matcher(word[i]);
+            if (ipMatcher.matches() == true){
+                ipAdd[count] = word[i];
+                count++;
+                if(count > 1){
+                    break;
+                }
             }
-            while ((temp = stdError.readLine()) != null) {
-                print = print + temp;
-            }
-
-            output = print;
-
-        } catch (IOException e) {
-            Log.i("exception", e.toString());
         }
 
-        return output;
-    }*/
+        /*for(int i=0;i<2;i++){
+            boolean ipChecked = false;
+            for(int j=0;j<ipAdd[i].length();j++){
+                if(ipChecked == false) {
+                    String temp = ipAdd[i].substring(0, ipAdd[i].length() - j);
+                    Matcher ipExactMatcher = ipExactPattern.matcher(temp);
+                    if (ipExactMatcher.matches() == true) {
+                        ipAdd[i] = temp;
+                        ipChecked = true;
+                    }
+                }
+                else{
+                    j = ipAdd[i].length();
+                }
+            }
+        }*/
+
+        return ipAdd;
+    }
+
+    //Check if line is start of new packet
+    public boolean newPacket(String line){
+        String temp1 = line.split(" ")[0];
+        String temp2 = line.split(" ")[1];
+
+        Pattern p1 = Pattern.compile("^(\\d{4})(-)(\\d{2})(-)(\\d{2})");
+        Pattern p2 = Pattern.compile("(\\d{2})(:)(\\d{2})(:)(\\d{2})(.)(\\d+)");
+
+        Matcher m1 = p1.matcher(temp1);
+        Matcher m2 = p2.matcher(temp2);
+
+        boolean b1 = m1.matches();
+        boolean b2 = m2.matches();
+
+        if(b1 == true && b2 == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 
