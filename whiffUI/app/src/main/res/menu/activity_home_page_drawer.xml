@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Packet_Capture"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="Packet capture" />
+        <item
+            android:id="@+id/nav_wep_crack"
+            android:icon="@drawable/ic_lock_open_black_24dp"
+            android:title="@string/navigation_drawer_wep_crack" />
+        <item
+            android:id="@+id/nav_Import_File"
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:title="Import File" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_help_faq"
+                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:title="@string/navigation_drawer_help_faq" />
+        </menu>
+    </item>
+
+</menu>
