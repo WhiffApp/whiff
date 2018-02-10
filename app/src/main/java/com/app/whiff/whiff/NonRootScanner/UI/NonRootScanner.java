@@ -19,16 +19,15 @@ import android.view.MenuItem;
 import android.content.Intent;
 
 import com.app.whiff.whiff.HomePage.WEPCrack;
-import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.Utils;
 
 public class NonRootScanner extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, NonRootViewInterface {
+        implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-    public NonRootPresenterInterface presenter;
+    public NonRootScannerPresenterInterface presenter;
     private static final int VPN_REQUEST_CODE = 0x0F;
     private static final String TAG = NonRootScanner.class.getSimpleName();
 
@@ -152,7 +151,7 @@ public class NonRootScanner extends AppCompatActivity
     }
     public void connectWithPresenter()
     {
-        presenter = new NonRootPresenter(this);
+        presenter = new NonRootScannerPresenter(this);
     }
     @Override
     public void onBackPressed() {

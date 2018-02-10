@@ -4,9 +4,9 @@ package com.app.whiff.whiff.NonRootScanner.UI;
  * Created by gyych on 1/1/2018.
  */
 
-public class NonRootPresenter implements NonRootPresenterInterface {
-    public NonRootViewInterface view;
-    public NonRootPresenter(NonRootScanner homepage)
+public class NonRootScannerPresenter implements NonRootScannerPresenterInterface {
+    public NonRootScannerViewInterface view;
+    public NonRootScannerPresenter(NonRootScanner homepage)
     {
         view = homepage;
     }

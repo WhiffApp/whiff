@@ -29,12 +29,12 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".NonRootScanner.UI.NonRootScanner.UI.HomePage.Temp.NonRootScanner"
+            android:name=".NonRootScanner.UI.NonRootScanner"
             android:label="NonRootScanner"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".NonRootScanner.UI.NonRootScanner.UI.HomePage.Temp.PacketCaptureService"
+            android:name=".NonRootScanner.PacketCaptureService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE">
@@ -48,10 +48,6 @@
             android:label="@string/title_activity_wepcrack"
             android:theme="@style/AppTheme" />
         <activity android:name=".help" />
-        <activity
-            android:name=".UI.Test.pktsTest"
-            android:label="@string/title_activity_pkts_test"
-            android:theme="@style/AppTheme" />
 
         <service
             android:name=".RootScanner.TCPdumpService"

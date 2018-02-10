@@ -1,6 +1,7 @@
 package com.app.whiff.whiff.NonRootScanner;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LRUCache<K, V> extends LinkedHashMap<K, V>
 {
@@ -16,7 +17,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V>
     }
 
     @Override
-   protected boolean removeEldestEntry(Entry<K, V> eldest)
+   protected boolean removeEldestEntry(Map.Entry<K, V> eldest)
     {
         if (size() > maxSize)
         {
@@ -28,6 +29,6 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V>
 
     public static interface CleanupCallback<K, V>
     {
-        public void cleanup(Entry<K, V> eldest);
+        public void cleanup(Map.Entry<K, V> eldest);
     }
 }
