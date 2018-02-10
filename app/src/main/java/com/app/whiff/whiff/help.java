@@ -105,7 +105,7 @@ public class help extends AppCompatActivity {
 
                         readPcap[0] = "su";
                         readPcap[1] = "cd /system/bin";
-                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvvXX";
+                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvv";
 
                         try {
                             Runtime rt = Runtime.getRuntime();
@@ -138,7 +138,7 @@ public class help extends AppCompatActivity {
 
                             }
 
-                            if((temp = stdInput.readLine()) == null){
+                            if((stdInput.readLine()) == null){
                                 parsePacket(stringToDB);
                                 count++;
                             }
@@ -162,7 +162,12 @@ public class help extends AppCompatActivity {
                     public void onClick(View v){
                         dbHandler.dropDB();
                         mainText.setText("Database Cleared!");
-
+                        mainText.scrollTo(0,0);
+                        try {
+                            Runtime.getRuntime().exec("rm /sdcard/whiff.pcap");
+                        } catch (IOException e) {
+                            Log.i("exception", e.toString());
+                        }
                     }
                 }
         );
@@ -171,8 +176,6 @@ public class help extends AppCompatActivity {
     public void parsePacket(String stringToDB){
 
         String[] ipAdd = getIP(stringToDB);
-        /*ipAdd[0] = "127.0.0.1";
-        ipAdd[1] = "127.0.0.1";*/
         CapturePackets capturePackets = new CapturePackets(ipAdd[0],ipAdd[1],stringToDB);
         dbHandler.addPacket(capturePackets);
     }
@@ -180,9 +183,10 @@ public class help extends AppCompatActivity {
     public String[] getIP(String stringToDB){
         String[] ipAdd = new String[2];
         Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
-        Pattern ipExactPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})");
         String[] word = stringToDB.split(" ");
-        int dotCount, count = 0;
+        int count = 0;
+
+
         for(int i=0;i<word.length;i++){
             Matcher ipMatcher = ipPattern.matcher(word[i]);
             if (ipMatcher.matches() == true){
@@ -194,24 +198,19 @@ public class help extends AppCompatActivity {
             }
         }
 
-        /*for(int i=0;i<2;i++){
-            boolean ipChecked = false;
-            for(int j=0;j<ipAdd[i].length();j++){
-                if(ipChecked == false) {
-                    String temp = ipAdd[i].substring(0, ipAdd[i].length() - j);
-                    Matcher ipExactMatcher = ipExactPattern.matcher(temp);
-                    if (ipExactMatcher.matches() == true) {
-                        ipAdd[i] = temp;
-                        ipChecked = true;
-                    }
-                }
-                else{
-                    j = ipAdd[i].length();
-                }
-            }
-        }*/
+        for(int i=0;i<2;i++){
+            ipAdd[i] = convertToIP(ipAdd[i]);
+        }
 
         return ipAdd;
+    }
+
+    public String convertToIP(String stringToConvert){
+        if (stringToConvert !=null) {
+            String[] temp = stringToConvert.split(Pattern.quote("."));
+            stringToConvert = temp[0] + "." + temp[1] + "." + temp[2] + "." + temp[3];
+        }
+        return stringToConvert;
     }
 
     //Check if line is start of new packet
