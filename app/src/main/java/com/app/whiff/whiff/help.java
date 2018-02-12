@@ -17,12 +17,14 @@ import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 import org.jnetpcap.packet.*;
 import org.jnetpcap.packet.PcapPacketHandler;
+import org.jnetpcap.protocol.network.Arp;
 import org.jnetpcap.util.JNetPcapFormatter;
 import org.jnetpcap.util.PcapPacketArrayList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -174,13 +176,33 @@ public class help extends AppCompatActivity {
     }
 
     public void parsePacket(String stringToDB){
-
-        String[] ipAdd = getIP(stringToDB);
+        String[] ARPinfo = checkIfARP(stringToDB);
+        String[] ipAdd = getIP(stringToDB, ARPinfo);
         CapturePackets capturePackets = new CapturePackets(ipAdd[0],ipAdd[1],stringToDB);
         dbHandler.addPacket(capturePackets);
     }
 
-    public String[] getIP(String stringToDB){
+    //Check if protocol is ARP
+    public String[] checkIfARP(String stringToDB){
+        String[] ARPinfo = new String[2];
+        String[] word = stringToDB.split(" ");
+        if (word[2].equals("ARP,")){
+            ARPinfo[0] = "ARP";
+            if (word[9].equals("Reply")){
+                ARPinfo[1] = "ARP Reply";
+            } else if (word[9].equals("Request")){
+                ARPinfo[1] = "ARP Request";
+            } else {
+                ARPinfo[1] = "Unavailable";
+            }
+        }
+        else {
+            ARPinfo[0] = "no";
+        }
+        return ARPinfo;
+    }
+
+    public String[] getIP(String stringToDB, String[] ARPinfo){
         String[] ipAdd = new String[2];
         Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
         String[] word = stringToDB.split(" ");
@@ -200,6 +222,12 @@ public class help extends AppCompatActivity {
 
         for(int i=0;i<2;i++){
             ipAdd[i] = convertToIP(ipAdd[i]);
+        }
+
+        if(ARPinfo[0].equals("ARP")){
+            String temp = ipAdd[0];
+            ipAdd[0] = ipAdd[1].substring(0,ipAdd[1].length()-1);
+            ipAdd[1] = temp;
         }
 
         return ipAdd;
