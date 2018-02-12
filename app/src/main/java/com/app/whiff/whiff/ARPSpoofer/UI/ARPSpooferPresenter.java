@@ -1,4 +1,4 @@
-package com.app.whiff.whiff.RootScanner.UI;
+package com.app.whiff.whiff.ARPSpoofer.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,10 +14,10 @@ import com.app.whiff.whiff.RootScanner.TCPdump;
  * Actions to take when buttons are clicked in ARPSpoofer activity.
  */
 
-public class RootScannerPresenter implements RootScannerPresenterInterface {
+public class ARPSpooferPresenter implements ARPSpooferPresenterInterface {
 
     public Context context;
-    public RootScannerViewInterface view;
+    public ARPSpooferViewInterface view;
     public String mLine = "";      // Message from handler
     public TCPdump tcpdump;
 
@@ -48,7 +48,7 @@ public class RootScannerPresenter implements RootScannerPresenterInterface {
         }
     };
 
-    public RootScannerPresenter(RootScanner homepage) {
+    public ARPSpooferPresenter(ARPSpoofer homepage) {
         view = homepage;
         context = homepage;
         tcpdump = new TCPdump(homepage, TCPdumpHandler);

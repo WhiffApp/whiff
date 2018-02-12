@@ -1,4 +1,4 @@
-package com.app.whiff.whiff.RootScanner.UI;
+package com.app.whiff.whiff.ARPSpoofer.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,17 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.app.whiff.whiff.R;
 
 
-public class RootScanner extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
+public class ARPSpoofer extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, ARPSpooferViewInterface {
 
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-    public RootScannerPresenterInterface presenter;
+    public ARPSpooferPresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class RootScanner extends AppCompatActivity
 
     public void connectWithPresenter() {
         // presenter = new ARPSpooferPresenter(this, handler);
-        presenter = new RootScannerPresenter(this);
+        presenter = new ARPSpooferPresenter(this);
     }
 
     @Override
