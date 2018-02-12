@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".HomePage.HomePage"
             android:label="@string/app_name"
@@ -26,8 +26,7 @@
         <activity
             android:name=".RootScanner.UI.RootScanner"
             android:label="RootScanner"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NonRootScanner.UI.NonRootScanner"
             android:label="NonRootScanner"
@@ -42,6 +41,14 @@
                 <action android:name="android.net.VpnService" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".ARPSpoofer.UI.ARPSpoofer"
+            android:label="ARPSpoofer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <service
+            android:name=".ARPSpoofer.ARPSpoofService"
+            android:exported="false"></service>
 
         <activity
             android:name=".HomePage.WEPCrack"

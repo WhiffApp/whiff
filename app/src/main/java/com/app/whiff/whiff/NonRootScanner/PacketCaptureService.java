@@ -37,22 +37,22 @@ import io.reactivex.subjects.BehaviorSubject;
 public class PacketCaptureService extends VpnService implements Handler.Callback
 {
     //  The following are the commands to start/stop the PacketCaptureService
-    public static final String ACTION_START = "edu.sim.whiff.PacketCaptureService.START";
-    public static final String ACTION_STOP  = "edu.sim.whiff.PacketCaptureService.STOP";
+    public static final String ACTION_START = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.START";
+    public static final String ACTION_STOP  = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.STOP";
 
     //  The following are the Packet Filtering criterias which can be specified before capture
-    public static final String CAPTURE_NAME     = "edu.sim.whiff.PacketCaptureService.CAPTURE_NAME";
-    public static final String PCF_PROTO_TYPE   = "edu.sim.whiff.PacketCaptureService.PCF_PROTO_TYPE";
-    public static final String PCF_SRC_IP       = "edu.sim.whiff.PacketCaptureService.PCF_SRC_IP";
-    public static final String PCF_SRC_PORT     = "edu.sim.whiff.PacketCaptureService.PCF_SRC_PORT";
-    public static final String PCF_DST_IP       = "edu.sim.whiff.PacketCaptureService.PCF_DST_IP";
-    public static final String PCF_DST_PORT     = "edu.sim.whiff.PacketCaptureService.PCF_DST_PORT";
+    public static final String CAPTURE_NAME     = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.CAPTURE_NAME";
+    public static final String PCF_PROTO_TYPE   = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.PCF_PROTO_TYPE";
+    public static final String PCF_SRC_IP       = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.PCF_SRC_IP";
+    public static final String PCF_SRC_PORT     = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.PCF_SRC_PORT";
+    public static final String PCF_DST_IP       = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.PCF_DST_IP";
+    public static final String PCF_DST_PORT     = "com.app.whiff.whiff.NonRootScanner.PacketCaptureService.PCF_DST_PORT";
 
     private static final String TAG = PacketCaptureService.class.getSimpleName();
     private static final String VPN_ADDRESS = "10.0.0.5";   // Only IPv4 support for now
     private static final String VPN_ROUTE   = "0.0.0.0";    // Intercept everything
 
-    public static final String BROADCAST_VPN_STATE = "edu.sim.whiff.VPN_STATE";
+    public static final String BROADCAST_VPN_STATE = "com.app.whiff.whiff.NonRootScanner.VPN_STATE";
 
     private ParcelFileDescriptor vpnInterface = null;
 

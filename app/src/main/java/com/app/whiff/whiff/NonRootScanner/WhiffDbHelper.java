@@ -9,7 +9,7 @@ public class WhiffDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
 
-    public static final String DATABASE_NAME = "edu.sim.whiff.db";
+    public static final String DATABASE_NAME = "com.app.whiff.whiff.NonRootScanner.db";
 
     private static final String SQL_CREATE_TABLE_CAPTURE =
             "CREATE TABLE " + WhiffDbContract.CaptureTable.TABLE_NAME + " (" +
