@@ -38,7 +38,7 @@ public class RootScanner extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        connectWithPresenter(); // ARPSpooferPresenter object
+        connectWithPresenter(); // RootScannerPresenter object
 
         Context context = getApplicationContext();
 
@@ -53,7 +53,7 @@ public class RootScanner extends AppCompatActivity
                 //TODO call packet listener here
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.d("ARPSpoofer MSG","Start Clicked");
+                Log.d("RootScanner MSG","Start Clicked");
             }
         });
         fabStop.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class RootScanner extends AppCompatActivity
                 //TODO stop listening here
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Log.d("ARPSpoofer MSG","Stop Clicked");
+                Log.d("RootScanner MSG","Stop Clicked");
             }
         });
 
@@ -94,7 +94,7 @@ public class RootScanner extends AppCompatActivity
     }
 
     public void connectWithPresenter() {
-        // presenter = new ARPSpooferPresenter(this, handler);
+        // presenter = new RootScannerPresenter(this, handler);
         presenter = new RootScannerPresenter(this);
     }
 

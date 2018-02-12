@@ -10,8 +10,8 @@ import com.app.whiff.whiff.RootScanner.TCPdump;
 
 
 /**
- * ARPSpooferPresenter
- * Actions to take when buttons are clicked in ARPSpoofer activity.
+ * RootScannerPresenter
+ * Actions to take when buttons are clicked in RootScanner activity.
  */
 
 public class RootScannerPresenter implements RootScannerPresenterInterface {
@@ -36,7 +36,7 @@ public class RootScannerPresenter implements RootScannerPresenterInterface {
 
             view.showMessage(mLine);
 
-            // The following code is unnecessary because ARPSpooferPresenter is running
+            // The following code is unnecessary because RootScannerPresenter is running
             // on the UI thread.
 //            homePageHandler.post(new Runnable() {
 //                @Override
