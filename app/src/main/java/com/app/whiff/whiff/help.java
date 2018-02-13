@@ -176,16 +176,37 @@ public class help extends AppCompatActivity {
     }
 
     public void parsePacket(String stringToDB){
-        String[] ARPinfo = checkIfARP(stringToDB);
-        String[] ipAdd = getIP(stringToDB, ARPinfo);
-        CapturePackets capturePackets = new CapturePackets(ipAdd[0],ipAdd[1],stringToDB);
+        String[] word = stringToDB.split(" ");
+        String[] DateTime = getDateTime(word);
+        String[] protocolInfo = checkProtocol(word);
+        String[] ipAdd = getIP(word, protocolInfo);
+        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], stringToDB);
         dbHandler.addPacket(capturePackets);
     }
 
+    public String[] getDateTime(String[] word){
+        String[] DateTime = new String[2];
+        DateTime[0] = word[0];
+        DateTime[1] = word[1];
+        return DateTime;
+    }
+
+    public String[] checkProtocol(String[] word){
+        String[] protoInfo = checkIfARP(word);
+        if(protoInfo[0].equals("no")) {
+            for (int i = 0; i < word.length; i++) {
+                if (word[i].equals("proto")) {
+                    protoInfo[0] = word[i + 1];
+                    break;
+                }
+            }
+        }
+        return protoInfo;
+    }
+
     //Check if protocol is ARP
-    public String[] checkIfARP(String stringToDB){
+    public String[] checkIfARP(String[] word){
         String[] ARPinfo = new String[2];
-        String[] word = stringToDB.split(" ");
         if (word[2].equals("ARP,")){
             ARPinfo[0] = "ARP";
             if (word[9].equals("Reply")){
@@ -202,10 +223,9 @@ public class help extends AppCompatActivity {
         return ARPinfo;
     }
 
-    public String[] getIP(String stringToDB, String[] ARPinfo){
+    public String[] getIP(String[] word, String[] ARPinfo){
         String[] ipAdd = new String[2];
         Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
-        String[] word = stringToDB.split(" ");
         int count = 0;
 
 
