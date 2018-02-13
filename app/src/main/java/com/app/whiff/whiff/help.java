@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.transform.Source;
+
 public class help extends AppCompatActivity {
 
     String selectedDev;
@@ -107,7 +109,7 @@ public class help extends AppCompatActivity {
                             Log.i("exception", e.toString());
                         }
 
-                        getPcapLines[0] = "su";
+                        /*getPcapLines[0] = "su";
                         getPcapLines[1] = "cd /system/bin";
                         getPcapLines[2] = "tcpdump -r sdcard/whiff.pcap -nttttvv | wc -l";
 
@@ -123,7 +125,7 @@ public class help extends AppCompatActivity {
 
                         } catch (IOException e) {
                             Log.i("exception", e.toString());
-                        }
+                        }*/
 
                         readPcap[0] = "su";
                         readPcap[1] = "cd /system/bin";
@@ -166,7 +168,7 @@ public class help extends AppCompatActivity {
 
                             }
 
-                            if((stdInput.readLine()) == null && count == TotalLines){
+                            if((stdInput.readLine()) == null){
                                 parsePacket(stringToDB);
                             }
 
@@ -205,7 +207,7 @@ public class help extends AppCompatActivity {
         String[] DateTime = getDateTime(word);
         String[] protocolInfo = checkProtocol(word);
         String[] ipAdd = getIP(word, protocolInfo);
-        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], stringToDB);
+        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], stringToDB);
         dbHandler.addPacket(capturePackets);
     }
 
@@ -219,10 +221,17 @@ public class help extends AppCompatActivity {
     public String[] checkProtocol(String[] word){
         String[] protoInfo = checkIfARP(word);
         if(protoInfo[0].equals("no")) {
-            for (int i = 0; i < word.length; i++) {
+            /*for (int i = 0; i < word.length; i++) {
                 if (word[i].equals("proto")) {
                     protoInfo[0] = word[i + 1];
                     break;
+                }
+            }*/
+            if (word[2].equals("IP")){
+                if(word[13].equals("proto")){
+                    protoInfo[0] = word[14];
+                    String[] ports = getPort(word);
+                    protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1];
                 }
             }
         }
@@ -234,12 +243,11 @@ public class help extends AppCompatActivity {
         String[] ARPinfo = new String[2];
         if (word[2].equals("ARP,")){
             ARPinfo[0] = "ARP";
-            if (word[9].equals("Reply")){
-                ARPinfo[1] = "ARP Reply";
-            } else if (word[9].equals("Request")){
-                ARPinfo[1] = "ARP Request";
-            } else {
-                ARPinfo[1] = "Unavailable";
+            ARPinfo[1] = "Reply";
+            if(word[9].equals("Request")){
+                if(word[10].equals("who-has")){
+                    ARPinfo[1] = "Broadcast";
+                }
             }
         }
         else {
@@ -248,11 +256,34 @@ public class help extends AppCompatActivity {
         return ARPinfo;
     }
 
+    public String[] getPort(String[] word){
+        String[] ipPort = new String[2];
+        Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
+        int count = 0;
+
+        for(int i=0;i<word.length;i++){
+            Matcher ipMatcher = ipPattern.matcher(word[i]);
+            if (ipMatcher.matches() == true){
+                ipPort[count] = word[i];
+                count++;
+                if(count > 1){
+                    break;
+                }
+            }
+        }
+
+        for(int i = 0; i < 2; i++) {
+            String[] temp = ipPort[i].split(Pattern.quote("."));
+            ipPort[i] = temp[4];
+        }
+
+        return ipPort;
+    }
+
     public String[] getIP(String[] word, String[] ARPinfo){
         String[] ipAdd = new String[2];
         Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
         int count = 0;
-
 
         for(int i=0;i<word.length;i++){
             Matcher ipMatcher = ipPattern.matcher(word[i]);
@@ -269,7 +300,11 @@ public class help extends AppCompatActivity {
             ipAdd[i] = convertToIP(ipAdd[i]);
         }
 
-        if(ARPinfo[0].equals("ARP")){
+        if(ARPinfo[0].equals("ARP") && ARPinfo[1].equals("Request")){
+            ipAdd[0] = ipAdd[1].substring(0,ipAdd[1].length()-1);
+            ipAdd[1] = "Broadcast";
+        }
+        else if(ARPinfo[0].equals("ARP")){
             String temp = ipAdd[0];
             ipAdd[0] = ipAdd[1].substring(0,ipAdd[1].length()-1);
             ipAdd[1] = temp;

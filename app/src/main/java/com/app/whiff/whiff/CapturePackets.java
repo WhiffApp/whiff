@@ -13,8 +13,9 @@ public class CapturePackets {
     private String _destination;
     private String _data;
     private String _protocol;
+    private String _protocolInfo;
 
-    public CapturePackets(String _date, String _time, String _source, String _destination, String _protocol, String _data) {
+    public CapturePackets(String _date, String _time, String _source, String _destination, String _protocol, String _protocolInfo, String _data) {
         this._id = _id;
         this._date = _date;
         this._time = _time;
@@ -22,6 +23,7 @@ public class CapturePackets {
         this._destination = _destination;
         this._data = _data;
         this._protocol = _protocol;
+        this._protocolInfo = _protocolInfo;
     }
 
     public void set_id(int _id) {
@@ -46,6 +48,10 @@ public class CapturePackets {
 
     public void set_protocol(String _protocol) {
         this._protocol = _protocol;
+    }
+
+    public void set_protocolInfo(String _protocolInfo) {
+        this._protocolInfo = _protocolInfo;
     }
 
     public void set_data(String _data) {
@@ -74,6 +80,10 @@ public class CapturePackets {
 
     public String get_protocol() {
         return _protocol;
+    }
+
+    public String get_protocolInfo() {
+        return _protocolInfo;
     }
 
     public String get_data() {

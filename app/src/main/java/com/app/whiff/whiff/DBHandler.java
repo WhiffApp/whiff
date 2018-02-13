@@ -24,6 +24,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_SOURCE = "_source";
     public static final String COLUMN_DESTINATION = "_destination";
     public static final String COLUMN_PROTOCOL = "_protocol";
+    public static final String COLUMN_PROTOCOLINFO = "_protocolInfo";
     public static final String COLUMN_DATA = "_data";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -40,6 +41,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_SOURCE + " TEXT NOT NULL, " +
                 COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
+                COLUMN_PROTOCOLINFO + " TEXT, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -60,6 +62,7 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(COLUMN_SOURCE, capturePackets.get_source());
         values.put(COLUMN_DESTINATION, capturePackets.get_destination());
         values.put(COLUMN_PROTOCOL, capturePackets.get_protocol());
+        values.put(COLUMN_PROTOCOLINFO, capturePackets.get_protocolInfo());
         values.put(COLUMN_DATA, capturePackets.get_data());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PACKETS, null, values);
@@ -77,6 +80,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_SOURCE + " TEXT NOT NULL, " +
                 COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
+                COLUMN_PROTOCOLINFO + " TEXT, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -90,7 +94,7 @@ public class DBHandler extends SQLiteOpenHelper{
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PACKETS ;
-        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_DATA};
+        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATA};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
 
