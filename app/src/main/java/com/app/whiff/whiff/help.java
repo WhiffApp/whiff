@@ -39,6 +39,8 @@ public class help extends AppCompatActivity {
     DBHandler dbHandler;
     String[] pcap = new String[3];
     String[] readPcap = new String[3];
+    String[] getPcapLines = new String[3];
+    int TotalLines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +107,27 @@ public class help extends AppCompatActivity {
                             Log.i("exception", e.toString());
                         }
 
+                        getPcapLines[0] = "su";
+                        getPcapLines[1] = "cd /system/bin";
+                        getPcapLines[2] = "tcpdump -r sdcard/whiff.pcap -nttttvv | wc -l";
+
+                        try {
+                            Runtime rt = Runtime.getRuntime();
+                            Process proc = rt.exec(getPcapLines);
+
+                            BufferedReader stdInput = new BufferedReader(new
+                                    InputStreamReader(proc.getInputStream()));
+
+                            BufferedReader stdError = new BufferedReader(new
+                                    InputStreamReader(proc.getErrorStream()));
+
+                        } catch (IOException e) {
+                            Log.i("exception", e.toString());
+                        }
+
                         readPcap[0] = "su";
                         readPcap[1] = "cd /system/bin";
-                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvv";
+                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvvXX | tr \"\n\" \"\n \"";
 
                         try {
                             Runtime rt = Runtime.getRuntime();
@@ -135,14 +155,19 @@ public class help extends AppCompatActivity {
                                     }
                                 }
                                 else{
-                                    stringToDB += temp;
+                                    temp = temp.substring(1, temp.length());
+                                    if(isHex(temp) == true){
+                                        stringToDB += "\n" + temp;
+                                    }
+                                    else {
+                                        stringToDB += temp;
+                                    }
                                 }
 
                             }
 
-                            if((stdInput.readLine()) == null){
+                            if((stdInput.readLine()) == null && count == TotalLines){
                                 parsePacket(stringToDB);
-                                count++;
                             }
 
                             while ((temp = stdError.readLine()) != null) {
@@ -266,7 +291,7 @@ public class help extends AppCompatActivity {
         String temp1 = line.split(" ")[0];
         String temp2 = line.split(" ")[1];
 
-        Pattern p1 = Pattern.compile("^(\\d{4})(-)(\\d{2})(-)(\\d{2})");
+        Pattern p1 = Pattern.compile("(\\d{4})(-)(\\d{2})(-)(\\d{2})");
         Pattern p2 = Pattern.compile("(\\d{2})(:)(\\d{2})(:)(\\d{2})(.)(\\d+)");
 
         Matcher m1 = p1.matcher(temp1);
@@ -281,6 +306,14 @@ public class help extends AppCompatActivity {
         else{
             return false;
         }
+    }
+
+    public boolean isHex(String line){
+        String temp = line.split(" ")[0];
+        Pattern p = Pattern.compile("(0x)(\\w{4})(:)");
+        Matcher m = p.matcher(temp);
+        boolean b = m.matches();
+        return b;
     }
 }
 
