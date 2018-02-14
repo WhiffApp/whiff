@@ -105,7 +105,7 @@ public class DBHandler extends SQLiteOpenHelper{
                     dbString += String.format("%s \t",
                             c.getString(c.getColumnIndex(name)));
                 }
-                dbString += "\n";
+                dbString += "\n\n";
 
             } while (c.moveToNext());
         }
