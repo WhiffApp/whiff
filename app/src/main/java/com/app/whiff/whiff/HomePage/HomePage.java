@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
 
+import com.app.whiff.whiff.ARPSpoofer.UI.ARPSpoofer;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
@@ -28,6 +29,7 @@ public class HomePage extends AppCompatActivity
     // Buttons to launch other activities
     public Button RootScannerButton;
     public Button NonRootScannerButton;
+    public Button ARPSpooferButton;
 
     // Start/Stop Button
     public FloatingActionButton fabStart;
@@ -66,6 +68,16 @@ public class HomePage extends AppCompatActivity
                 presenter.NonRootScannerButtonClicked();
                 Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
                 startActivity(NonRootScannerActivity);
+            }
+        });
+
+        ARPSpooferButton = (Button) findViewById(R.id.ARPSpooferButton);
+        ARPSpooferButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.ARPSpooferButtonClicked();
+                Intent ARPSpooferACtivity = new Intent(view.getContext(), ARPSpoofer.class);
+                startActivity(ARPSpooferACtivity);
             }
         });
 

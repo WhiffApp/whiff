@@ -62,6 +62,10 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         // Start NonRootScanner Activity
     }
 
+    public void ARPSpooferButtonClicked() {
+        // Start ARPSpoofer Activity
+    }
+
     public void StartClicked() {
         view.hideFabStart();
         tcpdump.installTCPdump();   // Install TCPdump
