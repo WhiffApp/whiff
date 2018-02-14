@@ -12,16 +12,20 @@ public class CapturePackets {
     private String _source;
     private String _destination;
     private String _data;
+    private String _dataAscii;
+    private String _dataHex;
     private String _protocol;
     private String _protocolInfo;
 
-    public CapturePackets(String _date, String _time, String _source, String _destination, String _protocol, String _protocolInfo, String _data) {
+    public CapturePackets(String _date, String _time, String _source, String _destination, String _protocol, String _protocolInfo, String _dataHex, String _dataAscii, String _data) {
         this._id = _id;
         this._date = _date;
         this._time = _time;
         this._source = _source;
         this._destination = _destination;
         this._data = _data;
+        this._dataAscii = _dataAscii;
+        this._dataHex = _dataHex;
         this._protocol = _protocol;
         this._protocolInfo = _protocolInfo;
     }
@@ -58,6 +62,14 @@ public class CapturePackets {
         this._data = _data;
     }
 
+    public void set_dataAscii(String _dataAscii) {
+        this._dataAscii = _dataAscii;
+    }
+
+    public void set_dataHex(String _dataHex) {
+        this._dataHex = _dataHex;
+    }
+
     public int get_id() {
         return _id;
     }
@@ -88,5 +100,13 @@ public class CapturePackets {
 
     public String get_data() {
         return _data;
+    }
+
+    public String get_dataAscii() {
+        return _dataAscii;
+    }
+
+    public String get_dataHex() {
+        return _dataHex;
     }
 }

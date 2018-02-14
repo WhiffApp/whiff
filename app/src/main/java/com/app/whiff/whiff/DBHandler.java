@@ -3,11 +3,9 @@ package com.app.whiff.whiff;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.view.View;
 
 /**
  * Created by Jon on 18/1/2018.
@@ -26,6 +24,8 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_PROTOCOL = "_protocol";
     public static final String COLUMN_PROTOCOLINFO = "_protocolInfo";
     public static final String COLUMN_DATA = "_data";
+    public static final String COLUMN_DATAHEX = "_dataHex";
+    public static final String COLUMN_DATAASCII = "_dataAscii";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -42,6 +42,8 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOLINFO + " TEXT, " +
+                COLUMN_DATAHEX + " TEXT NOT NULL, " +
+                COLUMN_DATAASCII + " TEXT NOT NULL, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -63,6 +65,8 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(COLUMN_DESTINATION, capturePackets.get_destination());
         values.put(COLUMN_PROTOCOL, capturePackets.get_protocol());
         values.put(COLUMN_PROTOCOLINFO, capturePackets.get_protocolInfo());
+        values.put(COLUMN_DATAHEX, capturePackets.get_dataHex());
+        values.put(COLUMN_DATAASCII, capturePackets.get_dataAscii());
         values.put(COLUMN_DATA, capturePackets.get_data());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PACKETS, null, values);
@@ -81,6 +85,8 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_DESTINATION + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOLINFO + " TEXT, " +
+                COLUMN_DATAHEX + " TEXT NOT NULL, " +
+                COLUMN_DATAASCII + " TEXT NOT NULL, " +
                 COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
@@ -94,7 +100,7 @@ public class DBHandler extends SQLiteOpenHelper{
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PACKETS ;
-        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATA};
+        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATAHEX, COLUMN_DATAASCII, COLUMN_DATA};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
 
@@ -102,7 +108,7 @@ public class DBHandler extends SQLiteOpenHelper{
             String[] columnNames = c.getColumnNames();
             do {
                 for (String name: columnNames) {
-                    dbString += String.format("%s \t",
+                    dbString += String.format("%s \n",
                             c.getString(c.getColumnIndex(name)));
                 }
                 dbString += "\n\n";

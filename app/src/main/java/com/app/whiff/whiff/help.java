@@ -28,6 +28,7 @@ public class help extends AppCompatActivity {
     DBHandler dbHandler;
     String[] pcap = new String[3];
     String[] readPcap = new String[3];
+    String hex, ascii = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,16 +117,22 @@ public class help extends AppCompatActivity {
                                     if(count == 1){
                                         stringToDB = temp;
                                         count++;
+                                        hex = "";
+                                        ascii = "";
                                     }
                                     else{
-                                        parsePacket(stringToDB);
+                                        parsePacket(stringToDB, hex, ascii);
                                         stringToDB = temp;
                                         count++;
+                                        hex = "";
+                                        ascii = "";
                                     }
                                 }
                                 else{
                                     temp = temp.substring(1, temp.length());
                                     if(isHex(temp)) {
+                                        hex += getHex(temp) + "\n";
+                                        ascii += getAscii(temp) + "\n";
                                         stringToDB += "\n" + temp;
                                     } else {
                                         stringToDB += temp;
@@ -135,7 +142,7 @@ public class help extends AppCompatActivity {
                             }
 
                             if((stdInput.readLine()) == null){
-                                parsePacket(stringToDB);
+                                parsePacket(stringToDB, hex, ascii);
                             }
 
                             if ((temp = stdError.readLine()) != null) {
@@ -162,13 +169,13 @@ public class help extends AppCompatActivity {
         );
     }
 
-    //{arse Packet to DB
-    public void parsePacket(String stringToDB){
+    //Parse Packet to DB
+    public void parsePacket(String stringToDB, String hex, String ascii){
         String[] word = stringToDB.split(" ");
         String[] DateTime = getDateTime(word);
         String[] protocolInfo = checkProtocol(word);
         String[] ipAdd = getIP(word, protocolInfo);
-        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], stringToDB);
+        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii, stringToDB);
         dbHandler.addPacket(capturePackets);
     }
 
@@ -180,6 +187,22 @@ public class help extends AppCompatActivity {
         return DateTime;
     }
 
+    //Get Hex Values
+    public String getHex(String temp){
+        String output = "";
+        String[] hex = temp.split(" ");
+        for (int i = 0; i < (hex.length-1); i++){
+            output += hex[i] + "\t";
+        }
+        return output;
+    }
+
+    //Get Ascii Values
+    public String getAscii(String temp){
+        String[] hex = temp.split(" ");
+        return hex[hex.length-1];
+    }
+
     //Check Protocol
     public String[] checkProtocol(String[] word){
         String[] protoInfo = checkIfARP(word);
@@ -188,7 +211,10 @@ public class help extends AppCompatActivity {
                 if(word[13].equals("proto")){
                     protoInfo[0] = word[14];
                     String[] ports = getPort(word);
-                    protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1].substring(0,ports[1].length()-1);
+                    protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1].substring(0,ports[1].length()-1) + "\n" +
+                            "Time To Live: " + word[6].substring(0,word[6].length()-1) + "\n" + "Identification: " + word[8].substring(0,word[8].length()-1) +
+                            "\n" + "Offset: " + word[10].substring(0,word[10].length()-1) + "\n" + "Flags: " + word[12].substring(1,word[12].length()-2) +
+                            "\n" + "Protocol: " + word[14] + "\n" + "Length: " + word[17].substring(0,word[17].length()-1);
                 }
             }
         }
