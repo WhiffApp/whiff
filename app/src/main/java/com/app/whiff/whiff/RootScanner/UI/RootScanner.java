@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.RootScanner.UI;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,15 +16,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.app.whiff.whiff.RootScanner.TCPdump;
+import com.app.whiff.whiff.RootScanner.TCPdumpService;
 
 
 public class RootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
 
+    // UI elements
+    public EditText parameters;
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
@@ -40,8 +46,8 @@ public class RootScanner extends AppCompatActivity
 
         connectWithPresenter(); // RootScannerPresenter object
 
-        Context context = getApplicationContext();
 
+        parameters = (EditText) findViewById(R.id.parameters);
         TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
@@ -50,7 +56,12 @@ public class RootScanner extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StartClicked();
-                //TODO call packet listener here
+                String inputText = parameters.getText().toString();
+                System.out.println("inputText = " + inputText);
+                String TCPdumpParams = "-U -w test.pcap";
+                Intent TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
+                TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
+                startService(TCPdumpServiceIntent);
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Start Clicked");
@@ -60,7 +71,9 @@ public class RootScanner extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StopClicked();
-                //TODO stop listening here
+                String TCPdumpParams = "stop";
+                Intent TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
+                TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Stop Clicked");
@@ -79,6 +92,10 @@ public class RootScanner extends AppCompatActivity
         presenter.ActivityStarted();
     }
 
+    public void installTCPdump() {
+        new TCPdump(getApplicationContext()).installTCPdump();
+    }
+
     public void hideFabStart() {
         fabStart.hide();
         fabStop.show();
@@ -94,7 +111,6 @@ public class RootScanner extends AppCompatActivity
     }
 
     public void connectWithPresenter() {
-        // presenter = new RootScannerPresenter(this, handler);
         presenter = new RootScannerPresenter(this);
     }
 
@@ -156,5 +172,16 @@ public class RootScanner extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public class ResponseReceiver extends BroadcastReceiver {
+        public static final String ACTION_RESP =
+                "com.app.whiff.whiff.intent.action.MESSAGE_PROCESSED";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String text = intent.getStringExtra(TCPdumpService.PARAM_OUT_MESSAGE);
+            System.out.println(text);
+        }
     }
 }

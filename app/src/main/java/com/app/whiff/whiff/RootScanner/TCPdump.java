@@ -2,10 +2,7 @@ package com.app.whiff.whiff.RootScanner;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 
 import com.app.whiff.whiff.R;
@@ -13,8 +10,6 @@ import com.stericson.RootShell.exceptions.RootDeniedException;
 import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
@@ -26,14 +21,12 @@ import java.util.concurrent.TimeoutException;
 public class TCPdump extends ContextWrapper {
 
     public Context context;
-    public Handler handler;
 
     public static final String TCPdumpBinaryPath = "/data/data/com.app.whiff.whiff/files/";
 
-    public TCPdump(Context base, Handler handler) {
+    public TCPdump(Context base) {
         super(base);
         context = base;
-        this.handler = handler;
     }
 
     public void installTCPdump() {
@@ -59,22 +52,12 @@ public class TCPdump extends ContextWrapper {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces") {
+                Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump -U -w test.pcap") {
+                // Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces") {
                     // Command command = new Command(0, "tcpdump -i wlan0 -vvv") {
                     @Override
                     public void commandOutput(int id, final String line) {
                         System.out.println(line);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bundle bundle = new Bundle();
-                                bundle.putString("key",line);
-                                Message message = new Message();
-                                message.setData(bundle);
-                                message.setTarget(handler);
-                                message.sendToTarget();
-                            }
-                        });
                         super.commandOutput(id, line);
                     }
 
@@ -108,17 +91,6 @@ public class TCPdump extends ContextWrapper {
                     @Override
                     public void commandOutput(int id, final String line) {
                         System.out.println(line);
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bundle bundle = new Bundle();
-                                bundle.putString("key",line);
-                                Message message = new Message();
-                                message.setData(bundle);
-                                message.setTarget(handler);
-                                message.sendToTarget();
-                            }
-                        });
                         super.commandOutput(id, line);
                     }
 

@@ -16,6 +16,9 @@
     <string name="filter">Filter</string>
     <string name="export">Export</string>
 
+    <string name="title_activity_root_scanner">Rooted Scanner</string>
+    <string name="tcpdump_params">Parameters</string>
+
     <string name="title_activity_non_root_scanner">Non-Root Scanner</string>
     <string name="start_vpn">Start Capture</string>
     <string name="stop_vpn">Stop from Notification Bar</string>

@@ -7,5 +7,5 @@ package com.app.whiff.whiff.RootScanner.UI;
 public interface RootScannerViewInterface {
     void hideFabStart();
     void hideFabStop();
-    void showMessage(String message);
+    void installTCPdump();
 }
