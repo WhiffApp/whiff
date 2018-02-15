@@ -213,13 +213,20 @@ public class help extends AppCompatActivity {
             String[] protoInfo = checkIfARP(word, stringToDB);
             if (protoInfo[0].equals("no")) {
                 if (word[2].equals("IP")) {
-                    if (word[13].equals("proto")) {
-                        protoInfo[0] = word[14];
+                    protoInfo[0] = word[14];
+                    if(protoInfo[0].equals("ICMP")){
+                        protoInfo[1] = "Time To Live: " + word[6].substring(0, word[6].length() - 1) + "\n" + "Identification: " + word[8].substring(0, word[8].length() - 1) +
+                                "\n" + "Offset: " + word[10].substring(0, word[10].length() - 1) + "\n" + "Flags: " + word[12].substring(1, word[12].length() - 2) +
+                                "\n" + "Length: " + word[17].substring(0, word[17].length() - 1) + "\n" + word[23] + " " + word[24] + " " + word[25];
+                    }
+                    else {
                         String[] ports = getPort(word);
-                        protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1].substring(0, ports[1].length() - 1) + "\n" +
+                        ports[1] = ports[1].substring(0, ports[1].length() - 1);
+                        protoInfo[0] = translatePort(ports, protoInfo[0], word[14]);
+                        protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1] + "\n" +
                                 "Time To Live: " + word[6].substring(0, word[6].length() - 1) + "\n" + "Identification: " + word[8].substring(0, word[8].length() - 1) +
                                 "\n" + "Offset: " + word[10].substring(0, word[10].length() - 1) + "\n" + "Flags: " + word[12].substring(1, word[12].length() - 2) +
-                                "\n" + "Protocol: " + word[14] + "\n" + "Length: " + word[17].substring(0, word[17].length() - 1);
+                                "\n" + "Length: " + word[17].substring(0, word[17].length() - 1);
                     }
                 } else {
                     protoInfo[0] = "Unsupported Protocol";
@@ -272,7 +279,12 @@ public class help extends AppCompatActivity {
         }
         for(int i = 0; i < 2; i++) {
             String[] temp = ipPort[i].split(Pattern.quote("."));
-            ipPort[i] = temp[4];
+            if(temp.length == 5) {
+                ipPort[i] = temp[4];
+            }
+            else {
+                ipPort[i] = "Not Available";
+            }
         }
         return ipPort;
     }
@@ -347,6 +359,79 @@ public class help extends AppCompatActivity {
         Matcher m = p.matcher(temp);
         boolean b = m.matches();
         return b;
+    }
+
+    public String translatePort(String[] ports, String protoInfo, String proto){
+        boolean portChanged = false;
+        if(proto.equals("TCP")) {
+            for (int i = 0; i < 2; i++) {
+                switch (ports[i]) {
+                    case ("20"):
+                        protoInfo = "FTP";
+                        portChanged = true;
+
+                    case ("21"):
+                        protoInfo = "FTP";
+                        portChanged = true;
+
+                    case ("22"):
+                        protoInfo = "SSH";
+                        portChanged = true;
+
+                    case ("23"):
+                        protoInfo = "Telnet";
+                        portChanged = true;
+
+                    case ("25"):
+                        protoInfo = "SMTP";
+                        portChanged = true;
+
+                    case ("53"):
+                        protoInfo = "DNS";
+                        portChanged = true;
+
+                    case ("80"):
+                        protoInfo = "HTTP";
+                        portChanged = true;
+
+                    case ("443"):
+                        protoInfo = "HTTPS";
+                        portChanged = true;
+
+                    default:
+                }
+                if (portChanged) {
+                    break;
+                }
+            }
+        }
+        else if(proto.equals("UDP")) {
+            for (int i = 0; i < 2; i++) {
+                switch (ports[i]) {
+                    case ("53"):
+                        protoInfo = "DNS";
+                        portChanged = true;
+
+                    case ("67"):
+                        protoInfo = "DHCP";
+                        portChanged = true;
+
+                    case ("68"):
+                        protoInfo = "DHCP";
+                        portChanged = true;
+
+                    case ("69"):
+                        protoInfo = "TFTP";
+                        portChanged = true;
+
+                    default:
+                }
+                if (portChanged) {
+                    break;
+                }
+            }
+        }
+        return protoInfo;
     }
 }
 
