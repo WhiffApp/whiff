@@ -172,11 +172,15 @@ public class help extends AppCompatActivity {
     //Parse Packet to DB
     public void parsePacket(String stringToDB, String hex, String ascii){
         String[] word = stringToDB.split(" ");
-        String[] DateTime = getDateTime(word);
-        String[] protocolInfo = checkProtocol(word);
-        String[] ipAdd = getIP(word, protocolInfo);
-        CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii, stringToDB);
-        dbHandler.addPacket(capturePackets);
+        if(word.length > 1) {
+            String[] protocolInfo = checkProtocol(word, stringToDB);
+            if ((!(protocolInfo[0].equals("Unsupported Protocol"))) && (protocolInfo[0] != null)) {
+                String[] DateTime = getDateTime(word);
+                String[] ipAdd = getIP(word, protocolInfo);
+                CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii, stringToDB);
+                dbHandler.addPacket(capturePackets);
+            }
+        }
     }
 
     //Get Date and TimeStamp
@@ -204,30 +208,36 @@ public class help extends AppCompatActivity {
     }
 
     //Check Protocol
-    public String[] checkProtocol(String[] word){
-        String[] protoInfo = checkIfARP(word);
-        if(protoInfo[0].equals("no")) {
-            if (word[2].equals("IP")){
-                if(word[13].equals("proto")){
-                    protoInfo[0] = word[14];
-                    String[] ports = getPort(word);
-                    protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1].substring(0,ports[1].length()-1) + "\n" +
-                            "Time To Live: " + word[6].substring(0,word[6].length()-1) + "\n" + "Identification: " + word[8].substring(0,word[8].length()-1) +
-                            "\n" + "Offset: " + word[10].substring(0,word[10].length()-1) + "\n" + "Flags: " + word[12].substring(1,word[12].length()-2) +
-                            "\n" + "Protocol: " + word[14] + "\n" + "Length: " + word[17].substring(0,word[17].length()-1);
+    public String[] checkProtocol(String[] word, String stringToDB){
+        if (stringToDB != null) {
+            String[] protoInfo = checkIfARP(word, stringToDB);
+            if (protoInfo[0].equals("no")) {
+                if (word[2].equals("IP")) {
+                    if (word[13].equals("proto")) {
+                        protoInfo[0] = word[14];
+                        String[] ports = getPort(word);
+                        protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1].substring(0, ports[1].length() - 1) + "\n" +
+                                "Time To Live: " + word[6].substring(0, word[6].length() - 1) + "\n" + "Identification: " + word[8].substring(0, word[8].length() - 1) +
+                                "\n" + "Offset: " + word[10].substring(0, word[10].length() - 1) + "\n" + "Flags: " + word[12].substring(1, word[12].length() - 2) +
+                                "\n" + "Protocol: " + word[14] + "\n" + "Length: " + word[17].substring(0, word[17].length() - 1);
+                    }
+                } else {
+                    protoInfo[0] = "Unsupported Protocol";
                 }
             }
+            return protoInfo;
         }
-        return protoInfo;
+        return null;
     }
 
     //Check if protocol is ARP
-    public String[] checkIfARP(String[] word){
+    public String[] checkIfARP(String[] word, String stringToDB){
         String[] ARPinfo = new String[2];
         if (word[2].equals("ARP,")){
             ARPinfo[0] = "ARP";
             ARPinfo[1] = "Hardware Type: " + word[3] + "\n" + "Protocol Type: " + word[6] + "\n" +
-                    "Hardware Size: " + word[5].substring(0,word[5].length()-2) + "\n" + "Hardware Size: " + word[8].substring(0,word[8].length()-2) + "\n" + "Length: " + getARPLength(word);
+                    "Hardware Size: " + word[5].substring(0,word[5].length()-2) + "\n" + "Hardware Size: " + word[8].substring(0,word[8].length()-2) +
+                    "\n" + "Length: " + getARPLength(word) + "\n" + stringToDB.split(",")[3].substring(1);
         }
         else {
             ARPinfo[0] = "no";
