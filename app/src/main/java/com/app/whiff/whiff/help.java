@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -13,18 +12,10 @@ import android.widget.TextView;
 
 import com.stericson.RootTools.RootTools;
 
-import org.jnetpcap.Pcap;
-import org.jnetpcap.PcapIf;
-import org.jnetpcap.packet.*;
-import org.jnetpcap.packet.PcapPacketHandler;
-import org.jnetpcap.util.JNetPcapFormatter;
-import org.jnetpcap.util.PcapPacketArrayList;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,6 +28,7 @@ public class help extends AppCompatActivity {
     DBHandler dbHandler;
     String[] pcap = new String[3];
     String[] readPcap = new String[3];
+    String hex, ascii = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +69,16 @@ public class help extends AppCompatActivity {
         }
 
         devList = new ArrayAdapter(this, android.R.layout.simple_list_item_1, devStringList);
-        devSpinner = (Spinner)findViewById(R.id.devSpinner);
+        devSpinner = findViewById(R.id.devSpinner);
         devSpinner.setAdapter(devList);
 
         //For DB Use
         dbHandler = new DBHandler(this, null, null, 1);
 
-        final TextView mainText = (TextView) findViewById(R.id.textView2);
+        final TextView mainText = findViewById(R.id.textView2);
         mainText.setMovementMethod(new ScrollingMovementMethod());
 
-        Button pcapButton = (Button)findViewById(R.id.pcapButton);
+        Button pcapButton = findViewById(R.id.pcapButton);
         pcapButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -105,7 +97,7 @@ public class help extends AppCompatActivity {
 
                         readPcap[0] = "su";
                         readPcap[1] = "cd /system/bin";
-                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvvXX";
+                        readPcap[2] = "tcpdump -r sdcard/whiff.pcap -nttttvvXX | tr \"\n\" \"\n \"";
 
                         try {
                             Runtime rt = Runtime.getRuntime();
@@ -121,31 +113,40 @@ public class help extends AppCompatActivity {
                             int count = 1;
                             while ((temp = stdInput.readLine()) != null) {
                                 boolean isNewRow = newPacket(temp);
-                                if(isNewRow == true){
+                                if(isNewRow){
                                     if(count == 1){
                                         stringToDB = temp;
                                         count++;
+                                        hex = "";
+                                        ascii = "";
                                     }
                                     else{
-                                        parsePacket(stringToDB);
+                                        parsePacket(stringToDB, hex, ascii);
                                         stringToDB = temp;
                                         count++;
+                                        hex = "";
+                                        ascii = "";
                                     }
                                 }
                                 else{
-                                    stringToDB += temp;
+                                    temp = temp.substring(1, temp.length());
+                                    if(isHex(temp)) {
+                                        hex += getHex(temp) + "\n";
+                                        ascii += getAscii(temp) + "\n";
+                                        stringToDB += "\n" + temp;
+                                    } else {
+                                        stringToDB += temp;
+                                    }
                                 }
 
                             }
 
-                            if((temp = stdInput.readLine()) == null){
-                                parsePacket(stringToDB);
-                                count++;
+                            if((stdInput.readLine()) == null){
+                                parsePacket(stringToDB, hex, ascii);
                             }
 
-                            while ((temp = stdError.readLine()) != null) {
+                            if ((temp = stdError.readLine()) != null) {
                                 mainText.setText(temp);
-                                break;
                             }
 
                         } catch (IOException e) {
@@ -156,62 +157,177 @@ public class help extends AppCompatActivity {
                     }
                 });
 
-        Button dropDBButton = (Button)findViewById(R.id.dropDBButton);
+        Button dropDBButton = findViewById(R.id.dropDBButton);
         dropDBButton.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){
                         dbHandler.dropDB();
                         mainText.setText("Database Cleared!");
-
+                        mainText.scrollTo(0,0);
                     }
                 }
         );
     }
 
-    public void parsePacket(String stringToDB){
-
-        String[] ipAdd = getIP(stringToDB);
-        /*ipAdd[0] = "127.0.0.1";
-        ipAdd[1] = "127.0.0.1";*/
-        CapturePackets capturePackets = new CapturePackets(ipAdd[0],ipAdd[1],stringToDB);
-        dbHandler.addPacket(capturePackets);
+    //Parse Packet to DB
+    public void parsePacket(String stringToDB, String hex, String ascii){
+        String[] word = stringToDB.split(" ");
+        if(word.length > 1) {
+            String[] protocolInfo = checkProtocol(word, stringToDB);
+            if ((!(protocolInfo[0].equals("Unsupported Protocol"))) && (protocolInfo[0] != null)) {
+                String[] DateTime = getDateTime(word);
+                String[] ipAdd = getIP(word, protocolInfo);
+                CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii, stringToDB);
+                dbHandler.addPacket(capturePackets);
+            }
+        }
     }
 
-    public String[] getIP(String stringToDB){
-        String[] ipAdd = new String[2];
+    //Get Date and TimeStamp
+    public String[] getDateTime(String[] word){
+        String[] DateTime = new String[2];
+        DateTime[0] = word[0];
+        DateTime[1] = word[1];
+        return DateTime;
+    }
+
+    //Get Hex Values
+    public String getHex(String temp){
+        String output = "";
+        String[] hex = temp.split(" ");
+        for (int i = 0; i < (hex.length-1); i++){
+            output += hex[i] + "\t";
+        }
+        return output;
+    }
+
+    //Get Ascii Values
+    public String getAscii(String temp){
+        String[] hex = temp.split(" ");
+        return hex[hex.length-1];
+    }
+
+    //Check Protocol
+    public String[] checkProtocol(String[] word, String stringToDB){
+        if (stringToDB != null) {
+            String[] protoInfo = checkIfARP(word, stringToDB);
+            if (protoInfo[0].equals("no")) {
+                if (word[2].equals("IP")) {
+                    protoInfo[0] = word[14];
+                    if(protoInfo[0].equals("ICMP")){
+                        protoInfo[1] = "Time To Live: " + word[6].substring(0, word[6].length() - 1) + "\n" + "Identification: " + word[8].substring(0, word[8].length() - 1) +
+                                "\n" + "Offset: " + word[10].substring(0, word[10].length() - 1) + "\n" + "Flags: " + word[12].substring(1, word[12].length() - 2) +
+                                "\n" + "Length: " + word[17].substring(0, word[17].length() - 1) + "\n" + word[23] + " " + word[24] + " " + word[25];
+                    }
+                    else {
+                        String[] ports = getPort(word);
+                        ports[1] = ports[1].substring(0, ports[1].length() - 1);
+                        protoInfo[0] = translatePort(ports, protoInfo[0], word[14]);
+                        protoInfo[1] = "Source Port: " + ports[0] + "\n" + "Destination Port: " + ports[1] + "\n" +
+                                "Time To Live: " + word[6].substring(0, word[6].length() - 1) + "\n" + "Identification: " + word[8].substring(0, word[8].length() - 1) +
+                                "\n" + "Offset: " + word[10].substring(0, word[10].length() - 1) + "\n" + "Flags: " + word[12].substring(1, word[12].length() - 2) +
+                                "\n" + "Length: " + word[17].substring(0, word[17].length() - 1);
+                    }
+                } else {
+                    protoInfo[0] = "Unsupported Protocol";
+                }
+            }
+            return protoInfo;
+        }
+        return null;
+    }
+
+    //Check if protocol is ARP
+    public String[] checkIfARP(String[] word, String stringToDB){
+        String[] ARPinfo = new String[2];
+        if (word[2].equals("ARP,")){
+            ARPinfo[0] = "ARP";
+            ARPinfo[1] = "Hardware Type: " + word[3] + "\n" + "Protocol Type: " + word[6] + "\n" +
+                    "Hardware Size: " + word[5].substring(0,word[5].length()-2) + "\n" + "Hardware Size: " + word[8].substring(0,word[8].length()-2) +
+                    "\n" + "Length: " + getARPLength(word) + "\n" + stringToDB.split(",")[3].substring(1);
+        }
+        else {
+            ARPinfo[0] = "no";
+        }
+        return ARPinfo;
+    }
+
+    public String getARPLength(String[] word){
+        if(word[9].equals("Reply")){
+            return word[14].split("\\n")[0];
+        }
+        else{
+            return word[15].split("\\n")[0];
+        }
+    }
+
+    //Get port number
+    public String[] getPort(String[] word){
+        String[] ipPort = new String[2];
         Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
-        Pattern ipExactPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})");
-        String[] word = stringToDB.split(" ");
-        int dotCount, count = 0;
+        int count = 0;
+
         for(int i=0;i<word.length;i++){
             Matcher ipMatcher = ipPattern.matcher(word[i]);
-            if (ipMatcher.matches() == true){
-                ipAdd[count] = word[i];
+            if (ipMatcher.matches()){
+                ipPort[count] = word[i];
                 count++;
                 if(count > 1){
                     break;
                 }
             }
         }
+        for(int i = 0; i < 2; i++) {
+            String[] temp = ipPort[i].split(Pattern.quote("."));
+            if(temp.length == 5) {
+                ipPort[i] = temp[4];
+            }
+            else {
+                ipPort[i] = "Not Available";
+            }
+        }
+        return ipPort;
+    }
 
-        /*for(int i=0;i<2;i++){
-            boolean ipChecked = false;
-            for(int j=0;j<ipAdd[i].length();j++){
-                if(ipChecked == false) {
-                    String temp = ipAdd[i].substring(0, ipAdd[i].length() - j);
-                    Matcher ipExactMatcher = ipExactPattern.matcher(temp);
-                    if (ipExactMatcher.matches() == true) {
-                        ipAdd[i] = temp;
-                        ipChecked = true;
+    //Get IP Address
+    public String[] getIP(String[] word, String[] ARPinfo){
+        String[] ipAdd = new String[2];
+        Pattern ipPattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3})(\\.)(\\d{1,3}).*");
+        int count = 0;
+
+        if(ARPinfo[0].equals("ARP") && word[9].equals("Reply")){
+            ipAdd[0] = word[10];
+            ipAdd[1] = "Reply";
+        }
+        else {
+            for (int i = 0; i < word.length; i++) {
+                Matcher ipMatcher = ipPattern.matcher(word[i]);
+                if (ipMatcher.matches()) {
+                    ipAdd[count] = word[i];
+                    count++;
+                    if (count > 1) {
+                        break;
                     }
                 }
-                else{
-                    j = ipAdd[i].length();
-                }
             }
-        }*/
-
+            for (int i = 0; i < 2; i++) {
+                ipAdd[i] = convertToIP(ipAdd[i]);
+            }
+            if (ARPinfo[0].equals("ARP") && word[9].equals("Request")) {
+                ipAdd[0] = ipAdd[1].substring(0, ipAdd[1].length() - 1);
+                ipAdd[1] = "Broadcast";
+            }
+        }
         return ipAdd;
+    }
+
+    //Convert string to IP
+    public String convertToIP(String stringToConvert){
+        if (stringToConvert !=null) {
+            String[] temp = stringToConvert.split(Pattern.quote("."));
+            stringToConvert = temp[0] + "." + temp[1] + "." + temp[2] + "." + temp[3];
+        }
+        return stringToConvert;
     }
 
     //Check if line is start of new packet
@@ -219,7 +335,7 @@ public class help extends AppCompatActivity {
         String temp1 = line.split(" ")[0];
         String temp2 = line.split(" ")[1];
 
-        Pattern p1 = Pattern.compile("^(\\d{4})(-)(\\d{2})(-)(\\d{2})");
+        Pattern p1 = Pattern.compile("(\\d{4})(-)(\\d{2})(-)(\\d{2})");
         Pattern p2 = Pattern.compile("(\\d{2})(:)(\\d{2})(:)(\\d{2})(.)(\\d+)");
 
         Matcher m1 = p1.matcher(temp1);
@@ -228,12 +344,94 @@ public class help extends AppCompatActivity {
         boolean b1 = m1.matches();
         boolean b2 = m2.matches();
 
-        if(b1 == true && b2 == true){
-            return true;
+        if(!b1 && !b2){
+            return (line.split(" ")[2]).equals("ARP,");
         }
         else{
-            return false;
+            return true;
         }
+    }
+
+    //Check if new line is packet info in hexadecimal
+    public boolean isHex(String line){
+        String temp = line.split(" ")[0];
+        Pattern p = Pattern.compile("(0x)(\\w{4})(:)");
+        Matcher m = p.matcher(temp);
+        boolean b = m.matches();
+        return b;
+    }
+
+    public String translatePort(String[] ports, String protoInfo, String proto){
+        boolean portChanged = false;
+        if(proto.equals("TCP")) {
+            for (int i = 0; i < 2; i++) {
+                switch (ports[i]) {
+                    case ("20"):
+                        protoInfo = "FTP";
+                        portChanged = true;
+
+                    case ("21"):
+                        protoInfo = "FTP";
+                        portChanged = true;
+
+                    case ("22"):
+                        protoInfo = "SSH";
+                        portChanged = true;
+
+                    case ("23"):
+                        protoInfo = "Telnet";
+                        portChanged = true;
+
+                    case ("25"):
+                        protoInfo = "SMTP";
+                        portChanged = true;
+
+                    case ("53"):
+                        protoInfo = "DNS";
+                        portChanged = true;
+
+                    case ("80"):
+                        protoInfo = "HTTP";
+                        portChanged = true;
+
+                    case ("443"):
+                        protoInfo = "HTTPS";
+                        portChanged = true;
+
+                    default:
+                }
+                if (portChanged) {
+                    break;
+                }
+            }
+        }
+        else if(proto.equals("UDP")) {
+            for (int i = 0; i < 2; i++) {
+                switch (ports[i]) {
+                    case ("53"):
+                        protoInfo = "DNS";
+                        portChanged = true;
+
+                    case ("67"):
+                        protoInfo = "DHCP";
+                        portChanged = true;
+
+                    case ("68"):
+                        protoInfo = "DHCP";
+                        portChanged = true;
+
+                    case ("69"):
+                        protoInfo = "TFTP";
+                        portChanged = true;
+
+                    default:
+                }
+                if (portChanged) {
+                    break;
+                }
+            }
+        }
+        return protoInfo;
     }
 }
 
