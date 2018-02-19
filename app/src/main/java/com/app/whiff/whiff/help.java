@@ -394,6 +394,14 @@ public class help extends AppCompatActivity {
                         protoInfo = "HTTP";
                         portChanged = true;
 
+                    case ("110"):
+                        protoInfo = "POP";
+                        portChanged = true;
+
+                    case ("143"):
+                        protoInfo = "POP";
+                        portChanged = true;
+
                     case ("443"):
                         protoInfo = "HTTPS";
                         portChanged = true;
@@ -422,6 +430,22 @@ public class help extends AppCompatActivity {
 
                     case ("69"):
                         protoInfo = "TFTP";
+                        portChanged = true;
+
+                    case ("123"):
+                        protoInfo = "NTP";
+                        portChanged = true;
+
+                    case ("137"):
+                        protoInfo = "NetBIOS";
+                        portChanged = true;
+
+                    case ("138"):
+                        protoInfo = "NetBIOS";
+                        portChanged = true;
+
+                    case ("139"):
+                        protoInfo = "NetBIOS";
                         portChanged = true;
 
                     default:
