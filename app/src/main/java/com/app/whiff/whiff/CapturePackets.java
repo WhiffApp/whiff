@@ -3,99 +3,119 @@ package com.app.whiff.whiff;
 /**
  * Created by Jon on 18/1/2018.
  */
+/*   public static class CaptureTable implements BaseColumns {
+        public static final String TABLE_NAME               = "capture";
+        public static final String COLUMN_NAME_NAME         = "name";
+        public static final String COLUMN_NAME_DESCRIPTION  = "desc";
+        public static final String COLUMN_NAME_FILENAME     = "file_name";
+        public static final String COLUMN_NAME_FILESIZE     = "file_size";
+        public static final String COLUMN_NAME_STARTTIME    = "start_time";
+        public static final String COLUMN_NAME_ENDTIME      = "end_time";
+    }
 
+    public static class CaptureItemTable implements BaseColumns {
+        public static final String TABLE_NAME               = "capture_data";
+        public static final String COLUMN_NAME_CAPTUREID    = "capture_id";
+        public static final String COLUMN_NAME_TIMESTAMP    = "timestamp";
+        public static final String COLUMN_NAME_SRCADDRESS   = "src_addr";
+        public static final String COLUMN_NAME_SRCPORT      = "src_port";
+        public static final String COLUMN_NAME_DSTADDRESS   = "dst_addr";
+        public static final String COLUMN_NAME_DSTPORT      = "dst_port";
+        public static final String COLUMN_NAME_PROTOCOL     = "protocol";
+        public static final String COLUMN_NAME_LENGTH       = "length";
+        */
 public class CapturePackets {
 
-    private int _id;
-    private String _date;
-    private String _time;
-    private String _source;
-    private String _destination;
-    private String _data;
-    private String _dataAscii;
-    private String _dataHex;
-    private String _protocol;
-    private String _protocolInfo;
+    private int capture_id;
+    private String date;
+    private String timestamp;
+    private String src_addr;
+    private String dst_addr;
+    private String _data; //column to be removed in future
+    private String dataAscii; //data in ascii
+    private String dataHex; //data in hexadecimal
+    private String port; //contains both source and destination port
+    private String protocolInfo; // contains information regarding the packet's protocols
 
-    public CapturePackets(String _date, String _time, String _source, String _destination, String _protocol, String _protocolInfo, String _dataHex, String _dataAscii, String _data) {
-        this._id = _id;
-        this._date = _date;
-        this._time = _time;
-        this._source = _source;
-        this._destination = _destination;
+    public CapturePackets(String date, String timestamp, String src_addr, String dst_addr, String port, String protocolInfo, String dataHex, String dataAscii, String _data) {
+        this.capture_id = capture_id;
+        this.date = date;
+        this.timestamp = timestamp;
+        this.src_addr = src_addr;
+        this.dst_addr = dst_addr;
         this._data = _data;
-        this._dataAscii = _dataAscii;
-        this._dataHex = _dataHex;
-        this._protocol = _protocol;
-        this._protocolInfo = _protocolInfo;
+        this.dataAscii = dataAscii;
+        this.dataHex = dataHex;
+        this.port = port;
+        this.protocolInfo = protocolInfo;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void set_id(int capture_id) {
+        this.capture_id = capture_id;
     }
 
-    public void set_date(String _date) {
-        this._date = _date;
+    public void set_date(String date) {
+        this.date = date;
     }
 
-    public void set_time(String _time) {
-        this._time = _time;
+    public void set_time(String timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void set_source(String _source) {
-        this._source = _source;
+    public void set_source(String src_addr) {
+        this.src_addr = src_addr;
     }
 
-    public void set_destination(String _destination) {
-        this._destination = _destination;
+    public void set_destination(String dst_addr) {
+        this.dst_addr = dst_addr;
     }
 
-    public void set_protocol(String _protocol) {
-        this._protocol = _protocol;
+    public void set_protocol(String port) {
+        this.port = port;
     }
 
-    public void set_protocolInfo(String _protocolInfo) {
-        this._protocolInfo = _protocolInfo;
+    public void set_protocolInfo(String protocolInfo) {
+        this.protocolInfo = protocolInfo;
     }
 
     public void set_data(String _data) {
         this._data = _data;
     }
 
-    public void set_dataAscii(String _dataAscii) {
-        this._dataAscii = _dataAscii;
+    public void set_dataAscii(String dataAscii) {
+        this.dataAscii = dataAscii;
     }
 
-    public void set_dataHex(String _dataHex) {
-        this._dataHex = _dataHex;
+    public void set_dataHex(String dataHex) {
+        this.dataHex = dataHex;
     }
 
     public int get_id() {
-        return _id;
+        return capture_id;
     }
 
     public String get_date() {
-        return _date;
+        return date;
     }
 
     public String get_time() {
-        return _time;
+        return timestamp;
     }
 
     public String get_source() {
-        return _source;
+        return src_addr;
     }
 
     public String get_destination() {
-        return _destination;
+        return dst_addr;
     }
 
     public String get_protocol() {
-        return _protocol;
+        return port;
     }
 
     public String get_protocolInfo() {
-        return _protocolInfo;
+        return protocolInfo;
     }
 
     public String get_data() {
@@ -103,10 +123,10 @@ public class CapturePackets {
     }
 
     public String get_dataAscii() {
-        return _dataAscii;
+        return dataAscii;
     }
 
     public String get_dataHex() {
-        return _dataHex;
+        return dataHex;
     }
 }

@@ -16,16 +16,16 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "packets.db";
     public static final String TABLE_PACKETS = "packets";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_DATE = "_date";
-    public static final String COLUMN_TIME = "_time";
-    public static final String COLUMN_SOURCE = "_source";
-    public static final String COLUMN_DESTINATION = "_destination";
-    public static final String COLUMN_PROTOCOL = "_protocol";
-    public static final String COLUMN_PROTOCOLINFO = "_protocolInfo";
+    public static final String COLUMN_ID = "capture_id";
+    public static final String COLUMN_DATE = "date";
+    public static final String COLUMN_TIME = "timestamp";
+    public static final String COLUMN_SOURCE = "src_addr";
+    public static final String COLUMN_DESTINATION = "dst_addr";
+    public static final String COLUMN_PROTOCOL = "port";
+    public static final String COLUMN_PROTOCOLINFO = "protocolInfo";
     public static final String COLUMN_DATA = "_data";
-    public static final String COLUMN_DATAHEX = "_dataHex";
-    public static final String COLUMN_DATAASCII = "_dataAscii";
+    public static final String COLUMN_DATAHEX = "dataHex";
+    public static final String COLUMN_DATAASCII = "dataAscii";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
