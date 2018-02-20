@@ -8,6 +8,7 @@ import android.util.Log;
 import com.app.whiff.whiff.R;
 import com.stericson.RootShell.exceptions.RootDeniedException;
 import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
 
 import java.io.IOException;
@@ -90,7 +91,7 @@ public class TCPdump extends ContextWrapper {
                 Command command = new Command(0, "killall tcpdump") {
                     @Override
                     public void commandOutput(int id, final String line) {
-                        System.out.println(line);
+                        Log.d("TCPdump", "killall tcpdump");
                         super.commandOutput(id, line);
                     }
 
@@ -107,7 +108,8 @@ public class TCPdump extends ContextWrapper {
                     }
                 };
                 try {
-                    RootTools.getShell(true).add(command);
+                    Shell.startRootShell().add(command);
+                    // RootTools.getShell(true).add(command);
                 } catch (IOException | RootDeniedException | TimeoutException e) {
                     e.printStackTrace();
                 }

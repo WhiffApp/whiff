@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.RootScanner.UI;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -57,11 +58,11 @@ public class RootScanner extends AppCompatActivity
                 String inputText = parameters.getText().toString();
                 System.out.println("inputText = " + inputText);
                 String TCPdumpParams = "-U -w test.pcap";
-                // TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
-                // TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
-                // startService(TCPdumpServiceIntent);
-
                 startTCPdumpService(TCPdumpParams);
+
+//                if (!isServiceRunning(TCPdumpService.class)) {
+//                    startTCPdumpService(TCPdumpParams);
+//                }
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Start Clicked");
@@ -73,6 +74,9 @@ public class RootScanner extends AppCompatActivity
                 presenter.StopClicked();
                 String TCPdumpParams = "stop";
                 stopTCPdumpService();
+//                if (isServiceRunning(TCPdumpService.class)) {
+//                    stopTCPdumpService();
+//                }
                 // stopService(TCPdumpServiceIntent);
                 // TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
                 // TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
@@ -105,8 +109,19 @@ public class RootScanner extends AppCompatActivity
     }
 
     public void stopTCPdumpService() {
+        new TCPdump(getApplicationContext()).stopSniff();
         Intent intent = new Intent(RootScanner.this, TCPdumpService.class);
         stopService(intent);
+    }
+
+    public boolean isServiceRunning(Class s) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (s.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void hideFabStart() {
