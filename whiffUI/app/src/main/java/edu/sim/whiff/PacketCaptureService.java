@@ -135,8 +135,8 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             networkToDeviceQueue    = new ConcurrentLinkedQueue<>();
 
             /*
-            **  Network Activity -> TUN -> in -> tunnel  -> Remote Server
-            **  Network Activity <- TUN <- out <- tunnel <- Remote Server
+            **  Network Activity -> TUN -> UDPOutput/TcpOutput -> tunnel  -> Remote Server
+            **  Network Activity <- TUN <- UDPInput/TcpInput   <- tunnel <- Remote Server
             */
             executorService = Executors.newFixedThreadPool(5);
             executorService.submit(new UDPInput(networkToDeviceQueue, udpSelector));
@@ -145,6 +145,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             executorService.submit(new TCPOutput(deviceToNetworkTCPQueue, networkToDeviceQueue, tcpSelector, this));
             executorService.submit(new VPNRunnable(dao, vpnInterface.getFileDescriptor(),
                     deviceToNetworkUDPQueue, deviceToNetworkTCPQueue, networkToDeviceQueue));
+
             LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(BROADCAST_VPN_STATE).putExtra("running", true));
 
             started = Boolean.TRUE;
@@ -281,7 +282,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             item.protocol = protocol;
             item.length = ipHeader.totalLength;
 
-            mCaptureDAO.addCaptureItem(item);
+            //mCaptureDAO.addCaptureItem(item);
         }
 
         @Override
@@ -289,7 +290,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
         {
             Log.i(TAG, "Started");
 
-            mCaptureDAO.newCapture(createNewCapture());
+            //mCaptureDAO.newCapture(createNewCapture());
 
             /*
             **  Http requests -> vpnInput -> TCPOutput -> Datagram Channel
@@ -378,7 +379,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             }
             finally
             {
-                mCaptureDAO.updateCaptureEndTime(new Date());
+                //mCaptureDAO.updateCaptureEndTime(new Date());
                 Utils.closeResources(vpnInput, vpnOutput, mCaptureDAO);
             }
         }

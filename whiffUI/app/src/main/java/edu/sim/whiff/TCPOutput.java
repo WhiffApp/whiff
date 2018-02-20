@@ -40,8 +40,8 @@ public class TCPOutput implements Runnable
         Log.i(TAG, "Started");
         try
         {
-
             Thread currentThread = Thread.currentThread();
+
             while (true)
             {
                 Packet currentPacket;
@@ -69,6 +69,7 @@ public class TCPOutput implements Runnable
 
                 String ipAndPort = destinationAddress.getHostAddress() + ":" +
                         destinationPort + ":" + sourcePort;
+
                 TCB tcb = TCB.getTCB(ipAndPort);
                 if (tcb == null)
                     initializeConnection(ipAndPort, destinationAddress, destinationPort,
@@ -81,6 +82,9 @@ public class TCPOutput implements Runnable
                     processFIN(tcb, tcpHeader, responseBuffer);
                 else if (tcpHeader.isACK())
                     processACK(tcb, tcpHeader, payloadBuffer, responseBuffer);
+
+                    handleHttp(currentPacket);
+
 
                 // XXX: cleanup later
                 if (responseBuffer.position() == 0)
@@ -252,5 +256,13 @@ public class TCPOutput implements Runnable
     {
         ByteBufferPool.release(buffer);
         TCB.closeTCB(tcb);
+    }
+
+    private void handleHttp(Packet packet) {
+
+        HttpParser parser = null;
+        if (packet.isTCP() && (parser = packet.tcpBody.tryGetHttpParser()) != null) {
+            Log.d(TAG, parser.getVersion());
+        }
     }
 }

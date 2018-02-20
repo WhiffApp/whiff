@@ -36,6 +36,8 @@ public class FileManager {
     }
 
     private static String createNewFileName(){
-        return new SimpleDateFormat("yyyyMMddHHmmss'.pcap'").format(new Date());
+        //return new SimpleDateFormat("yyyyMMddHHmmss'.pcap'").format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd@HH_mm_ss'.pcap'").format(new Date());
+
     }
 }

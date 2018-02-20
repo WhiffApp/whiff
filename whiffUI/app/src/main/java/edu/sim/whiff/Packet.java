@@ -1,7 +1,11 @@
 package edu.sim.whiff;
 
+import android.net.Uri;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
@@ -18,6 +22,7 @@ public class Packet
 
     public IP4Header ip4Header;
     public TCPHeader tcpHeader;
+    public TCPBody tcpBody;
     public UDPHeader udpHeader;
     public ByteBuffer backingBuffer;
 
@@ -28,6 +33,7 @@ public class Packet
         this.ip4Header = new IP4Header(buffer);
         if (this.ip4Header.protocol == IP4Header.TransportProtocol.TCP) {
             this.tcpHeader = new TCPHeader(buffer);
+            this.tcpBody = new TCPBody(buffer);
             this.isTCP = true;
         } else if (ip4Header.protocol == IP4Header.TransportProtocol.UDP) {
             this.udpHeader = new UDPHeader(buffer);
@@ -362,6 +368,7 @@ public class Packet
                 buffer.get(optionsAndPadding, 0, optionsLength);
             }
 
+            /*
             if (buffer.hasRemaining())
             {
                 data = new byte[buffer.remaining()];
@@ -381,6 +388,7 @@ public class Packet
                     Log.d("HTTP Request", str);
                 }
             }
+            */
         }
 
         public boolean isFIN()
@@ -506,6 +514,56 @@ public class Packet
         private static long getUnsignedInt(int value)
         {
             return value & 0xFFFFFFFFL;
+        }
+    }
+
+    public class TCPBody
+    {
+        public byte[] data;
+
+        public TCPBody(ByteBuffer buffer)
+        {
+            if (buffer.hasRemaining())
+            {
+                data = new byte[buffer.remaining()];
+                buffer.get(data, 0, data.length);
+            }
+        }
+
+        public HttpParser tryGetHttpParser()
+        {
+            HttpParser parser = null;
+
+            try {
+                if (data != null && data.length > 0) {
+                    debug();
+                    InputStream is = new ByteArrayInputStream(data);
+                    parser = new HttpParser(is);
+                    parser.parseRequest();
+                    is.close();
+                }
+            } catch (IOException e) {
+                parser = null;
+                e.printStackTrace();
+            }
+            return parser;
+        }
+
+        private void debug()
+        {
+            String str = new String(data);
+            //Log.d("Packet", str);
+            String[] c = str.split(" ");
+            if (c.length < 3) {
+                return; // Can't parse it
+            }
+
+            if (c[0].startsWith("HTTP")) {
+                Log.d("HTTP Response", str);
+            }
+            else {
+                Log.d("HTTP Request", str);
+            }
         }
     }
 }

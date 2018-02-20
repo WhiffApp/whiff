@@ -799,6 +799,7 @@
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="port">Server Port:</string>
     <string name="search_menu_title">Search</string>
+    <string name="secret">Shared Secret:</string>
     <string name="start_vpn">Start Capture</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="stop_vpn">Stop from Notification Bar</string>

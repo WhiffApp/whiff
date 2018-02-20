@@ -18,18 +18,6 @@ public class HomePage extends AppCompatActivity
 
     private boolean waitingForVPNStart;
 
-    private BroadcastReceiver vpnStateReceiver = new BroadcastReceiver()
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            if (PacketCaptureService.BROADCAST_VPN_STATE.equals(intent.getAction()))
-            {
-                if (intent.getBooleanExtra("running", false))
-                    waitingForVPNStart = false;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,8 +34,6 @@ public class HomePage extends AppCompatActivity
             }
         });
         waitingForVPNStart = false;
-        LocalBroadcastManager.getInstance(this).registerReceiver(vpnStateReceiver,
-                new IntentFilter(PacketCaptureService.BROADCAST_VPN_STATE));
 
         FileManager.init();
     }

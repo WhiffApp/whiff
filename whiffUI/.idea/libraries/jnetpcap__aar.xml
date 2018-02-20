@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jnetpcap:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/40ea6214d640893b18163ad0a828759b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/40ea6214d640893b18163ad0a828759b/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

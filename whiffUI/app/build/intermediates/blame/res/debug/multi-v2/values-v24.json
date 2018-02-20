@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\d39846fb217520be51fcd6024871d8af\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\fae6a088d062fbd22ae58030951182f6\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\571865ca3af31d9f1fd507bab9ece578\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
