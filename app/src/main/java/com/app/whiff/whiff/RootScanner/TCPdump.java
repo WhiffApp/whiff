@@ -49,6 +49,33 @@ public class TCPdump extends ContextWrapper {
         }).start();
     }
 
+    public void readPCap(String filename) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump -r " + filename + " -nttttvvXX | tr \"\n\" \"\n \"") {
+                    @Override
+                    public void commandOutput(int id, final String line) {
+                        super.commandOutput(id, line);
+                    }
+                    @Override
+                    public void commandTerminated(int id, String reason) {
+                        super.commandTerminated(id, reason);
+                    }
+                    @Override
+                    public void commandCompleted(int id, int exitcode) {
+                        super.commandCompleted(id, exitcode);
+                    }
+                };
+                try {
+                    Shell.startRootShell().add(command);
+                } catch (IOException | TimeoutException | RootDeniedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     public void doSniff() {
         new Thread(new Runnable() {
             @Override

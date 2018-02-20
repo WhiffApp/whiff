@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.app.whiff.whiff.DBHandler;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.app.whiff.whiff.RootScanner.TCPdump;
@@ -30,7 +31,6 @@ import com.app.whiff.whiff.RootScanner.TCPdumpService;
 public class RootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
 
-    // public static Intent TCPdumpServiceIntent;
 
     // UI elements
     public EditText parameters;
@@ -38,6 +38,12 @@ public class RootScanner extends AppCompatActivity
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
     public RootScannerPresenterInterface presenter;
+
+    // TCPdump helper
+    public TCPdump tcpdump;
+
+    // Database
+    public DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class RootScanner extends AppCompatActivity
         setSupportActionBar(toolbar);
         connectWithPresenter(); // RootScannerPresenter object
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        tcpdump = new TCPdump(getApplicationContext());
 
         parameters = (EditText) findViewById(R.id.parameters);
         TV1 = (TextView) findViewById(R.id.TV1);
@@ -64,7 +71,7 @@ public class RootScanner extends AppCompatActivity
                 presenter.StartClicked();
                 String inputText = parameters.getText().toString();
                 System.out.println("inputText = " + inputText);
-                String TCPdumpParams = "-U -w test.pcap";
+                String TCPdumpParams = "-U -w whiff.pcap";
 
                 if (!isServiceRunning(TCPdumpService.class)) {
                     startTCPdumpService(TCPdumpParams);
@@ -78,13 +85,11 @@ public class RootScanner extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StopClicked();
-                String TCPdumpParams = "stop";
+                String TCPdumpParams;
+                TCPdumpParams = "stop";
                 if (isServiceRunning(TCPdumpService.class)) {
                     stopTCPdumpService();
                 }
-                // stopService(TCPdumpServiceIntent);
-                // TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
-                // TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Stop Clicked");
@@ -100,11 +105,20 @@ public class RootScanner extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        // Database
+        db = new DBHandler(this, null,null,1);
+
         presenter.ActivityStarted();
     }
 
     public void installTCPdump() {
-        new TCPdump(getApplicationContext()).installTCPdump();
+        if (tcpdump != null)
+            tcpdump.installTCPdump();
+        else {
+            tcpdump = new TCPdump(getApplicationContext());
+            tcpdump.installTCPdump();
+        }
     }
 
     public void startTCPdumpService(String params) {
