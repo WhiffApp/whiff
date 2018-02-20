@@ -43,9 +43,11 @@ public class TCPdumpService extends IntentService {
     public boolean result;
     public boolean isShellRunning;
 
+
     public TCPdumpService() {
         super("TCPdumpService");
     }
+
 
     @Override
     public void onDestroy() {
@@ -76,13 +78,19 @@ public class TCPdumpService extends IntentService {
         }
     }
 
-    private void publishResults() {
-        Intent intent = new Intent(NOTIFICATION);
-        sendBroadcast(intent);
-    }
-
     @Override
     protected void onHandleIntent(Intent intent) {
+        // Create notification to show that packets are being captured
+        Notification.Builder builder = new Notification.Builder(getBaseContext())
+                .setSmallIcon(R.drawable.ic_vpn)
+                .setTicker("You are capturing packets.")
+                .setContentTitle("Whiff is running . . .")
+                .setContentText("You are capturing packets.")
+                .setProgress(0, 0, true);
+
+        startForeground(1, builder.build());
+
+
         Handler mHandler = new Handler(getMainLooper());
         mHandler.post(new Runnable() {
             @Override
@@ -103,13 +111,11 @@ public class TCPdumpService extends IntentService {
             }
             @Override
             public void commandTerminated(int id, String reason) {
-                isShellRunning = false;
                 stopSniff();
                 super.commandTerminated(id, reason);
             }
             @Override
             public void commandCompleted(int id, int exitcode) {
-                isShellRunning = false;
                 super.commandCompleted(id, exitcode);
             }
         };
@@ -123,44 +129,12 @@ public class TCPdumpService extends IntentService {
             e.printStackTrace();
         }
 
-        while (isShellRunning) {
+        while (isShellRunning) {    // Prevent service from ending prematurely
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
-
-
-
-//        command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces", "./tcpdump " + TCPdumpParams) {
-//            // Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces") {
-//            // Command command = new Command(0, "tcpdump -i wlan0 -vvv") {
-//            @Override
-//            public void commandOutput(int id, final String line) {
-//                System.out.println(line);
-//                super.commandOutput(id, line);
-//            }
-//
-//            @Override
-//            public void commandTerminated(int id, String reason) {
-//                System.out.println(reason);
-//                super.commandTerminated(id, reason);
-//            }
-//
-//            @Override
-//            public void commandCompleted(int id, int exitcode) {
-//                System.out.println(exitcode);
-//                super.commandCompleted(id, exitcode);
-//            }
-//        };
-//        try {
-//            RootTools.getShell(true).add(command);
-//        } catch (IOException | RootDeniedException | TimeoutException e) {
-//            e.printStackTrace();
-//        }
-
     }
-
 }

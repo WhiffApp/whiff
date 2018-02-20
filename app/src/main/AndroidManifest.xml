@@ -26,6 +26,7 @@
         <activity
             android:name=".RootScanner.UI.RootScanner"
             android:label="RootScanner"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NonRootScanner.UI.NonRootScanner"
