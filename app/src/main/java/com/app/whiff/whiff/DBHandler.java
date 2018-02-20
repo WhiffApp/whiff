@@ -23,7 +23,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_DESTINATION = "dst_addr";
     public static final String COLUMN_PROTOCOL = "port";
     public static final String COLUMN_PROTOCOLINFO = "protocolInfo";
-    public static final String COLUMN_DATA = "_data";
+    //public static final String COLUMN_DATA = "_data";
     public static final String COLUMN_DATAHEX = "dataHex";
     public static final String COLUMN_DATAASCII = "dataAscii";
 
@@ -43,8 +43,8 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOLINFO + " TEXT, " +
                 COLUMN_DATAHEX + " TEXT NOT NULL, " +
-                COLUMN_DATAASCII + " TEXT NOT NULL, " +
-                COLUMN_DATA + " TEXT NOT NULL" +
+                COLUMN_DATAASCII + " TEXT NOT NULL" +
+                //COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
     }
@@ -67,7 +67,7 @@ public class DBHandler extends SQLiteOpenHelper{
         values.put(COLUMN_PROTOCOLINFO, capturePackets.get_protocolInfo());
         values.put(COLUMN_DATAHEX, capturePackets.get_dataHex());
         values.put(COLUMN_DATAASCII, capturePackets.get_dataAscii());
-        values.put(COLUMN_DATA, capturePackets.get_data());
+        //values.put(COLUMN_DATA, capturePackets.get_data());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PACKETS, null, values);
         db.close();
@@ -86,8 +86,8 @@ public class DBHandler extends SQLiteOpenHelper{
                 COLUMN_PROTOCOL + " TEXT NOT NULL, " +
                 COLUMN_PROTOCOLINFO + " TEXT, " +
                 COLUMN_DATAHEX + " TEXT NOT NULL, " +
-                COLUMN_DATAASCII + " TEXT NOT NULL, " +
-                COLUMN_DATA + " TEXT NOT NULL" +
+                COLUMN_DATAASCII + " TEXT NOT NULL" +
+                //COLUMN_DATA + " TEXT NOT NULL" +
                 ");";
         db.execSQL(query);
     }
@@ -100,7 +100,7 @@ public class DBHandler extends SQLiteOpenHelper{
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PACKETS ;
-        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATAHEX, COLUMN_DATAASCII, COLUMN_DATA};
+        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATAHEX, COLUMN_DATAASCII};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
 

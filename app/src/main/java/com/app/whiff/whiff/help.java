@@ -177,7 +177,7 @@ public class help extends AppCompatActivity {
             if ((!(protocolInfo[0].equals("Unsupported Protocol"))) && (protocolInfo[0] != null)) {
                 String[] DateTime = getDateTime(word);
                 String[] ipAdd = getIP(word, protocolInfo);
-                CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii, stringToDB);
+                CapturePackets capturePackets = new CapturePackets(DateTime[0], DateTime[1], ipAdd[0], ipAdd[1], protocolInfo[0], protocolInfo[1], hex, ascii);
                 dbHandler.addPacket(capturePackets);
             }
         }
@@ -361,6 +361,7 @@ public class help extends AppCompatActivity {
         return b;
     }
 
+    //Get port name from port number
     public String translatePort(String[] ports, String protoInfo, String proto){
         boolean portChanged = false;
         if(proto.equals("TCP")) {
@@ -402,8 +403,28 @@ public class help extends AppCompatActivity {
                         protoInfo = "POP";
                         portChanged = true;
 
+                    case ("161"):
+                        protoInfo = "SNMP";
+                        portChanged = true;
+
+                    case ("162"):
+                        protoInfo = "SNMP";
+                        portChanged = true;
+
+                    case ("179"):
+                        protoInfo = "BGP";
+                        portChanged = true;
+
+                    case ("389"):
+                        protoInfo = "LDAP";
+                        portChanged = true;
+
                     case ("443"):
                         protoInfo = "HTTPS";
+                        portChanged = true;
+
+                    case ("636"):
+                        protoInfo = "LDAP over TLS/SSL";
                         portChanged = true;
 
                     default:
@@ -446,6 +467,22 @@ public class help extends AppCompatActivity {
 
                     case ("139"):
                         protoInfo = "NetBIOS";
+                        portChanged = true;
+
+                    case ("161"):
+                        protoInfo = "SNMP";
+                        portChanged = true;
+
+                    case ("162"):
+                        protoInfo = "SNMP";
+                        portChanged = true;
+
+                    case ("389"):
+                        protoInfo = "LDAP";
+                        portChanged = true;
+
+                    case ("636"):
+                        protoInfo = "LDAP over TLS/SSL";
                         portChanged = true;
 
                     default:
