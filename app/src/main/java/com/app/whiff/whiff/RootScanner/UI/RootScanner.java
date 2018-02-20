@@ -28,6 +28,8 @@ import com.app.whiff.whiff.RootScanner.TCPdumpService;
 public class RootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
 
+    public static Intent TCPdumpServiceIntent;
+
     // UI elements
     public EditText parameters;
     public TextView TV1;
@@ -38,14 +40,10 @@ public class RootScanner extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_root_scanner);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         connectWithPresenter(); // RootScannerPresenter object
-
 
         parameters = (EditText) findViewById(R.id.parameters);
         TV1 = (TextView) findViewById(R.id.TV1);
@@ -59,9 +57,11 @@ public class RootScanner extends AppCompatActivity
                 String inputText = parameters.getText().toString();
                 System.out.println("inputText = " + inputText);
                 String TCPdumpParams = "-U -w test.pcap";
-                Intent TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
-                TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
-                startService(TCPdumpServiceIntent);
+                // TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
+                // TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
+                // startService(TCPdumpServiceIntent);
+
+                startTCPdumpService(TCPdumpParams);
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Start Clicked");
@@ -72,8 +72,10 @@ public class RootScanner extends AppCompatActivity
             public void onClick(View view) {
                 presenter.StopClicked();
                 String TCPdumpParams = "stop";
-                Intent TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
-                TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
+                stopTCPdumpService();
+                // stopService(TCPdumpServiceIntent);
+                // TCPdumpServiceIntent = new Intent(RootScanner.this, TCPdumpService.class);
+                // TCPdumpServiceIntent.putExtra(TCPdumpService.ACTION_START, TCPdumpParams);
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Stop Clicked");
@@ -94,6 +96,17 @@ public class RootScanner extends AppCompatActivity
 
     public void installTCPdump() {
         new TCPdump(getApplicationContext()).installTCPdump();
+    }
+
+    public void startTCPdumpService(String params) {
+        Intent intent = new Intent(RootScanner.this, TCPdumpService.class);
+        intent.putExtra(TCPdumpService.ACTION_START,params);
+        startService(intent);
+    }
+
+    public void stopTCPdumpService() {
+        Intent intent = new Intent(RootScanner.this, TCPdumpService.class);
+        stopService(intent);
     }
 
     public void hideFabStart() {
@@ -180,8 +193,8 @@ public class RootScanner extends AppCompatActivity
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String text = intent.getStringExtra(TCPdumpService.PARAM_OUT_MESSAGE);
-            System.out.println(text);
+            // String text = intent.getStringExtra(TCPdumpService.PARAM_OUT_MESSAGE);
+            // System.out.println(text);
         }
     }
 }

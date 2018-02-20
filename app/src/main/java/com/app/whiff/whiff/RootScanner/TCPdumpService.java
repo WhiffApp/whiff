@@ -4,7 +4,10 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Message;
 import android.util.Log;
+import android.os.Handler;
+import android.widget.Toast;
 
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
@@ -17,57 +20,53 @@ import java.util.concurrent.TimeoutException;
 
 import io.reactivex.subjects.BehaviorSubject;
 
+
 public class TCPdumpService extends IntentService {
 
     public static final String ACTION_START = "com.app.whiff.whiff.RootScanner.TCPdumpService.START";
     public static final String ACTION_STOP  = "com.app.whiff.whiff.RootScanner.TCPdumpService.STOP";
 
-    public static final String PARAM_IN_MESSAGE = "imsg";
-    public static final String PARAM_OUT_MESSAGE = "omsg";
+    public static final String PARAM_IN_MESSAGE = "com.app.whiff.whiff.RootScanner.TCPdumpService.IMSG";
+    public static final String PARAM_OUT_MESSAGE = "com.app.whiff.whiff.RootScanner.TCPdumpService.OMSG";
 
     private static final String TAG = TCPdumpService.class.getSimpleName();
 
     public static final String TCPdumpBinaryPath = "/data/data/com.app.whiff.whiff/files/";
-
-    private PendingIntent pendingIntent;
-
-    private Command command;
-
-    private static BehaviorSubject<Boolean> isRunning = BehaviorSubject.create();
-
-    static {
-        isRunning.onNext(Boolean.FALSE);    // Not running initially
-    }
-
-    public static boolean isRunning(){
-        return isRunning.getValue();
-    }
-
-    public static BehaviorSubject<Boolean> getIsRunning(){
-        return isRunning;
-    }
+    public static final String BROADCAST_TCPDUMP_STATE = "com.app.whiff.whiff.RootScanner.TCPdumpService.TCPDUMP_STATE";
 
     public TCPdumpService() {
         super("TCPdumpService");
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        Log.d("TCPdumpService.onHandleIntent", "onHandleIntent started");
-        String TCPdumpParams = intent.getStringExtra(ACTION_START);
-
-        startPacketCapture(intent, TCPdumpParams);
-
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction(RootScanner.ResponseReceiver.ACTION_RESP);
-        broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
-        String result = "OK";
-        broadcastIntent.putExtra(PARAM_OUT_MESSAGE, result);
-        sendBroadcast(broadcastIntent);
+    public int onStartCommand(Intent intent, int flags, int startID) {
+        Handler mHandler = new Handler(getMainLooper());
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), "TCPdumpService Started...", Toast.LENGTH_LONG).show();
+            }
+        });
+        return super.onStartCommand(intent, flags, startID);
     }
 
-    private void startPacketCapture(Intent intent, final String TCPdumpParams) {
-        command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump " + TCPdumpParams + "test.pcap") {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Handler mHandler = new Handler(getMainLooper());
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),"Service stopped...", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        String TCPdumpParams = intent.getStringExtra(ACTION_START);
+        System.out.println("./tcpdump " + TCPdumpParams);
+        Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces", "./tcpdump " + TCPdumpParams) {
             // Command command = new Command(0, "cd " + TCPdumpBinaryPath, "./tcpdump --list-interfaces") {
             // Command command = new Command(0, "tcpdump -i wlan0 -vvv") {
             @Override
@@ -96,16 +95,4 @@ public class TCPdumpService extends IntentService {
 
     }
 
-    private void stopPacketCapture() {
-        stopSelf();
-        command.terminate();
-    }
-
-    private void updateForegroundNotification(final int message) {
-        startForeground(1, new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_vpn)
-                .setContentText(getString(message))
-                .setContentIntent(pendingIntent)
-                .build());
-    }
 }
