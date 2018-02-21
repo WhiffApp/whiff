@@ -1,4 +1,0 @@
-#Fri Feb 09 13:27:35 SGT 2018
-base.0=C\:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Codes\\whiffUI\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
-path.0=classes.dex
-renamed.0=classes.dex
