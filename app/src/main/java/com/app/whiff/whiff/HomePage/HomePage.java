@@ -38,6 +38,7 @@ public class HomePage extends AppCompatActivity
     public Button DisplayButton;
     public Switch NonRootSwitch;
     public Switch RootSwitch;
+    public Switch ARPSpooferSwitch;
 
     // Start/Stop Button
     public FloatingActionButton fabStart;
@@ -58,6 +59,8 @@ public class HomePage extends AppCompatActivity
         connectWithPresenter(); // RootScannerPresenter object
 
         Context context = getApplicationContext();
+
+
 
         /*RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
         RootScannerButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,7 @@ public class HomePage extends AppCompatActivity
             }
         });*/
 
+
         DisplayButton = (Button) findViewById(R.id.DisplayButton);
         DisplayButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +122,36 @@ public class HomePage extends AppCompatActivity
             public void onClick(View v) {
                 if (NonRootSwitch.isChecked()){
                     RootSwitch.setEnabled(false);
+                    ARPSpooferSwitch.setEnabled(false);
+                }
+                else if(RootTools.isRootAvailable()){
+                    RootSwitch.setEnabled(true);
+                    ARPSpooferSwitch.setEnabled(true);
                 }
                 else{
-                    RootSwitch.setEnabled(true);
+                    RootSwitch.setEnabled(false);
+                    ARPSpooferSwitch.setEnabled(false);
                 }
             }
         });
+
+        ARPSpooferSwitch = (Switch) findViewById(R.id.switch3);
+        ARPSpooferSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ARPSpooferSwitch.isChecked()){
+                    NonRootSwitch.setEnabled(false);
+                }
+                else{
+                    NonRootSwitch.setEnabled(true);
+                }
+            }
+        });
+
+        if(!(RootTools.isRootAvailable())){
+            RootSwitch.setEnabled(false);
+            ARPSpooferSwitch.setEnabled(false);
+        }
 
         /*fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
