@@ -110,6 +110,9 @@ public class HomePage extends AppCompatActivity
                 if (RootSwitch.isChecked()){
                     NonRootSwitch.setEnabled(false);
                 }
+                else if (ARPSpooferSwitch.isChecked()){
+                    NonRootSwitch.setEnabled(false);
+                }
                 else{
                     NonRootSwitch.setEnabled(true);
                 }
@@ -140,6 +143,9 @@ public class HomePage extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (ARPSpooferSwitch.isChecked()){
+                    NonRootSwitch.setEnabled(false);
+                }
+                else if (RootSwitch.isChecked()){
                     NonRootSwitch.setEnabled(false);
                 }
                 else{
