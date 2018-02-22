@@ -95,7 +95,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
+        /*fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
         fabStop.hide();
         fabStart.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +118,7 @@ public class HomePage extends AppCompatActivity
                         .setAction("Action", null).show();
                 Log.d("RootScanner MSG","Stop Clicked");
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
