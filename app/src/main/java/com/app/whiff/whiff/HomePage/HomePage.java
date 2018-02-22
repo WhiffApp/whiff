@@ -19,11 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.Switch;
 
 import com.app.whiff.whiff.ARPSpoofer.UI.ARPSpoofer;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.stericson.RootTools.RootTools;
 
 
 public class HomePage extends AppCompatActivity
@@ -34,6 +36,8 @@ public class HomePage extends AppCompatActivity
     public Button NonRootScannerButton;
     public Button ARPSpooferButton;
     public Button DisplayButton;
+    public Switch NonRootSwitch;
+    public Switch RootSwitch;
 
     // Start/Stop Button
     public FloatingActionButton fabStart;
@@ -92,6 +96,32 @@ public class HomePage extends AppCompatActivity
                 presenter.DisplayButtonClicked();
                 Intent DisplayButtonActivity = new Intent(view.getContext(), ARPSpoofer.class);
                 startActivity(DisplayButtonActivity);
+            }
+        });
+
+        RootSwitch = (Switch) findViewById(R.id.switch1);
+        RootSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (RootSwitch.isChecked()){
+                    NonRootSwitch.setEnabled(false);
+                }
+                else{
+                    NonRootSwitch.setEnabled(true);
+                }
+            }
+        });
+
+        NonRootSwitch = (Switch) findViewById(R.id.switch2);
+        NonRootSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (NonRootSwitch.isChecked()){
+                    RootSwitch.setEnabled(false);
+                }
+                else{
+                    RootSwitch.setEnabled(true);
+                }
             }
         });
 
