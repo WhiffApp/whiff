@@ -1,10 +1,13 @@
 package com.app.whiff.whiff.HomePage;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +33,7 @@ public class HomePage extends AppCompatActivity
     public Button RootScannerButton;
     public Button NonRootScannerButton;
     public Button ARPSpooferButton;
+    public Button DisplayButton;
 
     // Start/Stop Button
     public FloatingActionButton fabStart;
@@ -51,7 +55,7 @@ public class HomePage extends AppCompatActivity
 
         Context context = getApplicationContext();
 
-        RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
+        /*RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
         RootScannerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +82,16 @@ public class HomePage extends AppCompatActivity
                 presenter.ARPSpooferButtonClicked();
                 Intent ARPSpooferACtivity = new Intent(view.getContext(), ARPSpoofer.class);
                 startActivity(ARPSpooferACtivity);
+            }
+        });*/
+
+        DisplayButton = (Button) findViewById(R.id.DisplayButton);
+        DisplayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.DisplayButtonClicked();
+                Intent DisplayButtonActivity = new Intent(view.getContext(), ARPSpoofer.class);
+                startActivity(DisplayButtonActivity);
             }
         });
 

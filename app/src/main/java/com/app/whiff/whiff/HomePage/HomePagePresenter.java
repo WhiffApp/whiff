@@ -29,6 +29,10 @@ public class HomePagePresenter implements HomePagePresenterInterface {
         // Start ARPSpoofer Activity
     }
 
+    public void DisplayButtonClicked() {
+        // Start RootScanner Activity
+    }
+
     public void StartClicked() {
         view.hideFabStart();
     }

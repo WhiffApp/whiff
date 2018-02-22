@@ -10,6 +10,7 @@
     <string name="navigation_drawer_wep_crack">WEP Crack</string>
     <string name="navigation_drawer_import">Import Data</string>
     <string name="navigation_drawer_help_faq">Help and FAQ</string>
+    <string name="navigation_drawer_display">Display</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_wepcrack">WEPCrack</string>

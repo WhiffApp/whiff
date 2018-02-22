@@ -10,4 +10,5 @@ package com.app.whiff.whiff.HomePage;
     void ARPSpooferButtonClicked();
     void StartClicked();
     void StopClicked();
+    void DisplayButtonClicked();
 }
