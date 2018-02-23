@@ -1,6 +1,7 @@
 package com.app.whiff.whiff;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -31,7 +32,8 @@ public class PacketCaptureFragment extends Fragment {
     public Switch RootSwitch;
     public Switch ARPSpooferSwitch;
     public Spinner devSpinner;
-
+    public ArrayAdapter devList;
+    public ArrayList<String> devStringList=new ArrayList<String>();
     public PacketCaptureFragment() {
         // Required empty public constructor
     }
@@ -51,54 +53,9 @@ public class PacketCaptureFragment extends Fragment {
         ARPSpooferSwitch = (Switch) psView.findViewById(R.id.switch3);
 
 
-        //Array Adapter for spinner
-        ArrayAdapter devList;
-        ArrayList<String> devStringList=new ArrayList<String>();
-        // Create new Thread for
-        Thread t1 = new Thread() {
+        new MyTask().execute("");
 
-            @Override
-            public void run() {
-                if(RootTools.isRootAvailable()) {
-                    final String[] listDev = new String[3];
-                    listDev[0] = "su";
-                    listDev[1] = "cd /system/bin";
-                    listDev[2] = "tcpdump -D";
-                    try {
-                        Runtime rt = Runtime.getRuntime();
-                        Process proc = rt.exec(listDev);
 
-                        BufferedReader stdInput = new BufferedReader(new
-                                InputStreamReader(proc.getInputStream()));
-
-                        String temp;
-                        while ((temp = stdInput.readLine()) != null) {
-                            int dotPos = temp.indexOf(".");
-                            temp = temp.substring(dotPos + 1, temp.length());
-                            int spacePos = temp.indexOf(" ");
-                            if (spacePos > 0) {
-                                temp = temp.substring(0, spacePos);
-                            }
-                            devStringList.add(temp);
-                        }
-                    } catch (IOException e) {
-                        Log.i("exception", e.toString());
-                    }
-                }
-                else{
-                    devStringList.add("Root Unavailable");
-                    devSpinner.setEnabled(false);
-                }
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-            }
-        };
-        t1.start();
         devList = new ArrayAdapter(psView.getContext(), android.R.layout.simple_list_item_1, devStringList);
         devSpinner.setAdapter(devList);
 
@@ -114,10 +71,10 @@ public class PacketCaptureFragment extends Fragment {
             public void onClick(View v) {
                 if (RootSwitch.isChecked()){
                     NonRootSwitch.setEnabled(false);
-                    ARPSpooferSwitch.setEnabled(false);
+                    ARPSpooferSwitch.setEnabled(true);
 
                     //Replace with sniffing function
-                  /*  selectedDev = devSpinner.getSelectedItem().toString();
+                  /*selectedDev = devSpinner.getSelectedItem().toString();
                     pcap[0] = "su";
                     pcap[1] = "cd /system/bin";
                     pcap[2] = "tcpdump -i " + selectedDev + " -c 5 -w /sdcard/whiff.pcap";
@@ -180,5 +137,50 @@ public class PacketCaptureFragment extends Fragment {
 
         return psView;
     }
+
+    private class MyTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            if(RootTools.isRootAvailable()) {
+                final String[] listDev = new String[3];
+                listDev[0] = "su";
+                listDev[1] = "cd /system/bin";
+                listDev[2] = "tcpdump -D";
+                try {
+                    Runtime rt = Runtime.getRuntime();
+                    Process proc = rt.exec(listDev);
+
+                    BufferedReader stdInput = new BufferedReader(new
+                            InputStreamReader(proc.getInputStream()));
+
+                    String temp;
+                    while ((temp = stdInput.readLine()) != null) {
+                        int dotPos = temp.indexOf(".");
+                        temp = temp.substring(dotPos + 1, temp.length());
+                        int spacePos = temp.indexOf(" ");
+                        if (spacePos > 0) {
+                            temp = temp.substring(0, spacePos);
+                        }
+                        devStringList.add(temp);
+                    }
+                } catch (IOException e) {
+                    Log.i("exception", e.toString());
+                }
+            }
+            else{
+                devStringList.add("Root Unavailable");
+                devSpinner.setEnabled(false);
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            // do something with result
+        }
+    }
+
 
 }
