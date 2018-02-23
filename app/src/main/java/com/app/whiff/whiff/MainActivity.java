@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-      //  setFragment(new settingDataFragment());//init
+        setFragment(new PsFilterFragment());//init
     }
 
     @Override
@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_packet_capture) {
-
+            setFragment(new PsFilterFragment());
         } else if (id == R.id.nav_Import_File) {
-
+            setFragment(new ImportFileFragment());
         }else if (id == R.id.nav_settings) {
-
+            setFragment(new SettingsFragment());
         } else if (id == R.id.nav_help_faq) {
             setFragment(new settingDataFragment());
         }
