@@ -18,7 +18,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.app.whiff.whiff.ARPSpoofer.UI.ARPSpoofer;
@@ -26,6 +28,11 @@ import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.stericson.RootTools.RootTools;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 public class HomePage extends AppCompatActivity
@@ -39,6 +46,7 @@ public class HomePage extends AppCompatActivity
     public Switch NonRootSwitch;
     public Switch RootSwitch;
     public Switch ARPSpooferSwitch;
+    public Spinner devSpinner;
 
     // Start/Stop Button
     public FloatingActionButton fabStart;
@@ -46,6 +54,10 @@ public class HomePage extends AppCompatActivity
 
     // Reference to presenter
     public HomePagePresenterInterface presenter;
+
+    //Declare strings 
+    String selectedDev;
+    String[] pcap = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +72,44 @@ public class HomePage extends AppCompatActivity
 
         Context context = getApplicationContext();
 
+        //Array Adapter for spinner
+        ArrayAdapter devList;
+        ArrayList<String> devStringList=new ArrayList<String>();
+
+        //Create Spinner
+        devSpinner = findViewById(R.id.devSpinner);
+        if(RootTools.isRootAvailable()) {
+            final String[] listDev = new String[3];
+            listDev[0] = "su";
+            listDev[1] = "cd /system/bin";
+            listDev[2] = "tcpdump -D";
+            try {
+                Runtime rt = Runtime.getRuntime();
+                Process proc = rt.exec(listDev);
+
+                BufferedReader stdInput = new BufferedReader(new
+                        InputStreamReader(proc.getInputStream()));
+
+                String temp;
+                while ((temp = stdInput.readLine()) != null) {
+                    int dotPos = temp.indexOf(".");
+                    temp = temp.substring(dotPos + 1, temp.length());
+                    int spacePos = temp.indexOf(" ");
+                    if (spacePos > 0) {
+                        temp = temp.substring(0, spacePos);
+                    }
+                    devStringList.add(temp);
+                }
+            } catch (IOException e) {
+                Log.i("exception", e.toString());
+            }
+        }
+        else{
+            devStringList.add("Root Unavailable");
+            devSpinner.setEnabled(false);
+        }
+        devList = new ArrayAdapter(this, android.R.layout.simple_list_item_1, devStringList);
+        devSpinner.setAdapter(devList);
 
 
         /*RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
@@ -109,12 +159,27 @@ public class HomePage extends AppCompatActivity
             public void onClick(View v) {
                 if (RootSwitch.isChecked()){
                     NonRootSwitch.setEnabled(false);
+                    ARPSpooferSwitch.setEnabled(false);
+
+                    //Replace with sniffing function
+                    selectedDev = devSpinner.getSelectedItem().toString();
+                    pcap[0] = "su";
+                    pcap[1] = "cd /system/bin";
+                    pcap[2] = "tcpdump -i " + selectedDev + " -c 5 -w /sdcard/whiff.pcap";
+
+                    try {
+                        Runtime rt = Runtime.getRuntime();
+                        Process proc = rt.exec(pcap);
+                    } catch (IOException e) {
+                        Log.i("exception", e.toString());
+                    }
                 }
                 else if (ARPSpooferSwitch.isChecked()){
                     NonRootSwitch.setEnabled(false);
                 }
                 else{
                     NonRootSwitch.setEnabled(true);
+                    ARPSpooferSwitch.setEnabled(true);
                 }
             }
         });
