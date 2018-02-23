@@ -55,10 +55,7 @@ public class PacketCaptureFragment extends Fragment {
 
         new MyTask().execute("");
 
-
-        devList = new ArrayAdapter(psView.getContext(), android.R.layout.simple_list_item_1, devStringList);
-        devSpinner.setAdapter(devList);
-
+        
         DisplayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,8 +174,8 @@ public class PacketCaptureFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            // do something with result
+            devList = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, devStringList);
+            devSpinner.setAdapter(devList);
         }
     }
 
