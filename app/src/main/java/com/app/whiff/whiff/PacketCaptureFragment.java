@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 
 /**
@@ -13,6 +16,15 @@ import android.view.ViewGroup;
  */
 public class PacketCaptureFragment extends Fragment {
 
+    // Buttons to launch other activities
+    public Button RootScannerButton;
+    public Button NonRootScannerButton;
+    public Button ARPSpooferButton;
+    public Button DisplayButton;
+    public Switch NonRootSwitch;
+    public Switch RootSwitch;
+    public Switch ARPSpooferSwitch;
+    public Spinner devSpinner;
 
     public PacketCaptureFragment() {
         // Required empty public constructor
