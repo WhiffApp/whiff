@@ -34,6 +34,7 @@ public class PacketCaptureFragment extends Fragment {
     public Spinner devSpinner;
     public ArrayAdapter devList;
     public ArrayList<String> devStringList=new ArrayList<String>();
+
     public PacketCaptureFragment() {
         // Required empty public constructor
     }
@@ -52,8 +53,7 @@ public class PacketCaptureFragment extends Fragment {
         NonRootSwitch = (Switch) psView.findViewById(R.id.switch2);
         ARPSpooferSwitch = (Switch) psView.findViewById(R.id.switch3);
 
-
-        new MyTask().execute("");
+        new findNetworkInterfaces().execute();
 
         
         DisplayButton.setOnClickListener(new View.OnClickListener() {
@@ -135,10 +135,10 @@ public class PacketCaptureFragment extends Fragment {
         return psView;
     }
 
-    private class MyTask extends AsyncTask<String, Void, String> {
+    private class findNetworkInterfaces extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected String doInBackground(String... params) {
+        protected Void doInBackground(Void... params) {
             if(RootTools.isRootAvailable()) {
                 final String[] listDev = new String[3];
                 listDev[0] = "su";
@@ -165,15 +165,16 @@ public class PacketCaptureFragment extends Fragment {
                     Log.i("exception", e.toString());
                 }
             }
-            else{
+            else {
                 devStringList.add("Root Unavailable");
                 devSpinner.setEnabled(false);
             }
-            return "";
+
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Void result) {
             devList = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, devStringList);
             devSpinner.setAdapter(devList);
         }
