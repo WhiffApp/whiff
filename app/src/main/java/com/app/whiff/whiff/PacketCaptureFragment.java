@@ -63,14 +63,18 @@ public class PacketCaptureFragment extends Fragment {
             }
         });
 
-        RootSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (RootSwitch.isChecked()){
-                    NonRootSwitch.setEnabled(false);
-                    ARPSpooferSwitch.setEnabled(true);
+        if(!(RootTools.isAccessGiven())){
+            RootSwitch.setEnabled(false);
+            ARPSpooferSwitch.setEnabled(false);
+        } else{
+            RootSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (RootSwitch.isChecked()){
+                        NonRootSwitch.setEnabled(false);
+                        ARPSpooferSwitch.setEnabled(true);
 
-                    //Replace with sniffing function
+                        //Replace with sniffing function
                   /*selectedDev = devSpinner.getSelectedItem().toString();
                     pcap[0] = "su";
                     pcap[1] = "cd /system/bin";
@@ -82,54 +86,54 @@ public class PacketCaptureFragment extends Fragment {
                     } catch (IOException e) {
                         Log.i("exception", e.toString());
                     }*/
+                    }
+                    else if (ARPSpooferSwitch.isChecked()){
+                        NonRootSwitch.setEnabled(false);
+                    }
+                    else{
+                        NonRootSwitch.setEnabled(true);
+                        ARPSpooferSwitch.setEnabled(true);
+                    }
                 }
-                else if (ARPSpooferSwitch.isChecked()){
-                    NonRootSwitch.setEnabled(false);
-                }
-                else{
-                    NonRootSwitch.setEnabled(true);
-                    ARPSpooferSwitch.setEnabled(true);
-                }
-            }
-        });
+            });
 
-        NonRootSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (NonRootSwitch.isChecked()){
-                    RootSwitch.setEnabled(false);
-                    ARPSpooferSwitch.setEnabled(false);
+            NonRootSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (NonRootSwitch.isChecked()){
+                        RootSwitch.setEnabled(false);
+                        ARPSpooferSwitch.setEnabled(false);
+                    }
+                    else if(RootTools.isRootAvailable()){
+                        RootSwitch.setEnabled(true);
+                        ARPSpooferSwitch.setEnabled(true);
+                    }
+                    else{
+                        RootSwitch.setEnabled(false);
+                        ARPSpooferSwitch.setEnabled(false);
+                    }
                 }
-                else if(RootTools.isRootAvailable()){
-                    RootSwitch.setEnabled(true);
-                    ARPSpooferSwitch.setEnabled(true);
-                }
-                else{
-                    RootSwitch.setEnabled(false);
-                    ARPSpooferSwitch.setEnabled(false);
-                }
-            }
-        });
+            });
 
-         ARPSpooferSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ARPSpooferSwitch.isChecked()){
-                    NonRootSwitch.setEnabled(false);
+            ARPSpooferSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (ARPSpooferSwitch.isChecked()){
+                        NonRootSwitch.setEnabled(false);
+                    }
+                    else if (RootSwitch.isChecked()){
+                        NonRootSwitch.setEnabled(false);
+                    }
+                    else{
+                        NonRootSwitch.setEnabled(true);
+                    }
                 }
-                else if (RootSwitch.isChecked()){
-                    NonRootSwitch.setEnabled(false);
-                }
-                else{
-                    NonRootSwitch.setEnabled(true);
-                }
-            }
-        });
+            });
 
-        if(!(RootTools.isRootAvailable())){
-            RootSwitch.setEnabled(false);
-            ARPSpooferSwitch.setEnabled(false);
+
         }
+
+
 
 
         return psView;
