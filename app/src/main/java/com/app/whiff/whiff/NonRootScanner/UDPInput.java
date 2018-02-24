@@ -11,6 +11,14 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ *
+ *  This class is responsible for handling the incoming UDP packets received
+ *  from the destination server before sending them back to the VPN
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class UDPInput implements Runnable
 {
     private static final String TAG = UDPInput.class.getSimpleName();

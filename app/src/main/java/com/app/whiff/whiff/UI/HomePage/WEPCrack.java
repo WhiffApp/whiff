@@ -1,4 +1,4 @@
-package com.app.whiff.whiff.HomePage;
+package com.app.whiff.whiff.UI.HomePage;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
-import com.app.whiff.whiff.HomePage.WEPCrack;
+import com.app.whiff.whiff.UI.HomePage.WEPCrack;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.Utils;

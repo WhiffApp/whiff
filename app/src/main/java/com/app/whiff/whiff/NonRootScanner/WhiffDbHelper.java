@@ -4,12 +4,19 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ *
+ *  This class creates or upgrades the database used in the application
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class WhiffDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
 
-    public static final String DATABASE_NAME = "com.app.whiff.whiff.NonRootScanner.db";
+    public static final String DATABASE_NAME = "edu.sim.whiff.db";
 
     private static final String SQL_CREATE_TABLE_CAPTURE =
             "CREATE TABLE " + WhiffDbContract.CaptureTable.TABLE_NAME + " (" +
@@ -31,7 +38,9 @@ public class WhiffDbHelper extends SQLiteOpenHelper {
                     WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS + " TEXT," +
                     WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT    + " INTEGER," +
                     WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL   + " TEXT," +
-                    WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH     + " INTEGER)";
+                    WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH     + " INTEGER," +
+                    WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT       + " TEXT," +
+                    WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA       + " TEXT)";
 
     private static final String SQL_DELETE_TABLE_CAPTURE =
             "DROP TABLE IF EXISTS " + WhiffDbContract.CaptureTable.TABLE_NAME;
@@ -40,12 +49,13 @@ public class WhiffDbHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + WhiffDbContract.CaptureItemTable.TABLE_NAME;
 
     public WhiffDbHelper(Context context) {
-        super(context, FileManager.getApplicationFilePath(DATABASE_NAME), null, DATABASE_VERSION);
+        super(context, FileManager.getAppDatabaseFilePath(DATABASE_NAME), null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_CAPTURE);
         db.execSQL(SQL_CREATE_TABLE_CAPTUREDATA);
     }
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over

@@ -2,6 +2,14 @@ package com.app.whiff.whiff.NonRootScanner;
 
 import android.provider.BaseColumns;
 
+/**
+ *
+ *  This class defines the table structure used to store
+ *  the packet captured information in the database
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public final class WhiffDbContract {
 
     private WhiffDbContract() {}
@@ -28,5 +36,7 @@ public final class WhiffDbContract {
         public static final String COLUMN_NAME_DSTPORT      = "dst_port";
         public static final String COLUMN_NAME_PROTOCOL     = "protocol";
         public static final String COLUMN_NAME_LENGTH       = "length";
+        public static final String COLUMN_NAME_TEXT         = "text";
+        public static final String COLUMN_NAME_DATA         = "data";
     }
 }

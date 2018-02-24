@@ -15,6 +15,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import com.app.whiff.whiff.NonRootScanner.Packet.TCPHeader;
 import com.app.whiff.whiff.NonRootScanner.TCB.TCBStatus;
 
+/**
+ *
+ *  This class is responsible for handling the outgoing TCP packets intercepted
+ *  from the VPN before forwarding to the destination server.
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class TCPOutput implements Runnable
 {
     private static final String TAG = TCPOutput.class.getSimpleName();
@@ -40,8 +48,8 @@ public class TCPOutput implements Runnable
         Log.i(TAG, "Started");
         try
         {
-
             Thread currentThread = Thread.currentThread();
+
             while (true)
             {
                 Packet currentPacket;
@@ -69,6 +77,7 @@ public class TCPOutput implements Runnable
 
                 String ipAndPort = destinationAddress.getHostAddress() + ":" +
                         destinationPort + ":" + sourcePort;
+
                 TCB tcb = TCB.getTCB(ipAndPort);
                 if (tcb == null)
                     initializeConnection(ipAndPort, destinationAddress, destinationPort,
@@ -81,6 +90,7 @@ public class TCPOutput implements Runnable
                     processFIN(tcb, tcpHeader, responseBuffer);
                 else if (tcpHeader.isACK())
                     processACK(tcb, tcpHeader, payloadBuffer, responseBuffer);
+
 
                 // XXX: cleanup later
                 if (responseBuffer.position() == 0)

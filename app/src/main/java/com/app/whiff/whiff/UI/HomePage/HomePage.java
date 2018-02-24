@@ -1,4 +1,4 @@
-package com.app.whiff.whiff.HomePage;
+package com.app.whiff.whiff.UI.HomePage;
 
 import android.content.Context;
 import android.os.Bundle;

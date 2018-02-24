@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Provides CRUD data access functions to the tables stored
+ * in the database.
+ *
+ * @author Yeo Pei Xuan
+ */
 
 public class CaptureDAO implements Closeable {
 
@@ -76,6 +82,8 @@ public class CaptureDAO implements Closeable {
         values.put(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT,    item.destinationPort);
         values.put(WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL,   item.protocol);
         values.put(WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH,     item.length);
+        values.put(WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT,       item.text);
+        values.put(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA,       item.data);
 
         long itemIndex = db.insert(WhiffDbContract.CaptureItemTable.TABLE_NAME, null, values);
         return itemIndex;
@@ -90,6 +98,7 @@ public class CaptureDAO implements Closeable {
         String[] projection = {
                 WhiffDbContract.CaptureTable._ID,
                 WhiffDbContract.CaptureTable.COLUMN_NAME_NAME,
+                WhiffDbContract.CaptureTable.COLUMN_NAME_DESCRIPTION,
                 WhiffDbContract.CaptureTable.COLUMN_NAME_STARTTIME,
                 WhiffDbContract.CaptureTable.COLUMN_NAME_ENDTIME
         };
@@ -124,6 +133,9 @@ public class CaptureDAO implements Closeable {
                 item.name = cursor.getString(
                         cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureTable.COLUMN_NAME_NAME));
 
+                item.desc = cursor.getString(
+                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureTable.COLUMN_NAME_DESCRIPTION));
+
                 long start = cursor.getLong(
                         cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureTable.COLUMN_NAME_STARTTIME));
                 item.startTime = new Date(start);
@@ -149,7 +161,7 @@ public class CaptureDAO implements Closeable {
 
     public List<CaptureItem> getCaptureItems(Long captureID) {
 
-        if ( mCaptureID <= 0 )
+        if ( captureID <= 0 )
             throw new IllegalArgumentException("Invalid capture id.");
 
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -163,7 +175,9 @@ public class CaptureDAO implements Closeable {
                 WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS,
                 WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT,
                 WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH
+                WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH,
+                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT,
+                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA
         };
 
         // Returns all rows
@@ -212,6 +226,12 @@ public class CaptureDAO implements Closeable {
 
                 item.length = cursor.getInt(
                         cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH));
+
+                item.text = cursor.getString(
+                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT));
+
+                item.data = cursor.getString(
+                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA));
 
                 items.add(item);
             }
