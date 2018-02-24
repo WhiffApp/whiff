@@ -7,8 +7,13 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Transmission Control Block
+ *
+ *  This class is responsible for managing the TCP handshake and state
+ *  management between the TCPOutput and TCPInput handlers
+ *
+ * @author Yeo Pei Xuan
  */
+
 public class TCB
 {
     public String ipAndPort;

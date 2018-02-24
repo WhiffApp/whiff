@@ -13,6 +13,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ *
+ *  This class is responsible for handling the outgoing UDP packets intercepted
+ *  from the VPN before forwarding to the destination server.
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class UDPOutput implements Runnable
 {
     private static final String TAG = UDPOutput.class.getSimpleName();

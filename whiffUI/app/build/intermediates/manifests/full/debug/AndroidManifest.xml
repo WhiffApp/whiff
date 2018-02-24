@@ -35,9 +35,40 @@
             android:name="edu.sim.whiff.UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.sim.whiff.UI.PacketFile.PacketFilePage"
+            android:label="@string/title_activity_packetfile_page"
+            android:parentActivityName="edu.sim.whiff.UI.HomePage.HomePage"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.sim.whiff.UI.PacketFileContent.PacketFileContentPage"
+            android:label="@string/title_activity_packetfile_page"
+            android:parentActivityName="edu.sim.whiff.UI.PacketFile.PacketFilePage"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.sim.whiff.UI.PacketDb.PacketDbPage"
+            android:label="@string/title_activity_packetdb_page"
+            android:parentActivityName="edu.sim.whiff.UI.HomePage.HomePage"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.sim.whiff.UI.PacketDbContent.PacketDbContentPage"
+            android:label="@string/title_activity_packetdb_page"
+            android:parentActivityName="edu.sim.whiff.UI.PacketDb.PacketDbPage"
+            android:theme="@style/AppTheme" />
 
+        <!-- Packet Capture (All) -->
         <service
             android:name="org.jnetpcap.PcapService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE" >
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+        <!-- Packet Capture (TCP/UDP) -->
+        <service
+            android:name="edu.sim.whiff.PacketCaptureService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE" >

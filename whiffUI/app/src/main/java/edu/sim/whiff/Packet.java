@@ -11,9 +11,12 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 
 /**
- * Representation of an IP Packet
+ *
+ * This class represents the IP Packet and its details
+ *
+ * @author Yeo Pei Xuan
  */
-// TODO: Reduce public mutability
+
 public class Packet
 {
     public static final int IP4_HEADER_SIZE = 20;
@@ -22,7 +25,6 @@ public class Packet
 
     public IP4Header ip4Header;
     public TCPHeader tcpHeader;
-    public TCPBody tcpBody;
     public UDPHeader udpHeader;
     public ByteBuffer backingBuffer;
 
@@ -33,7 +35,6 @@ public class Packet
         this.ip4Header = new IP4Header(buffer);
         if (this.ip4Header.protocol == IP4Header.TransportProtocol.TCP) {
             this.tcpHeader = new TCPHeader(buffer);
-            this.tcpBody = new TCPBody(buffer);
             this.isTCP = true;
         } else if (ip4Header.protocol == IP4Header.TransportProtocol.UDP) {
             this.udpHeader = new UDPHeader(buffer);
@@ -343,7 +344,6 @@ public class Packet
         public int urgentPointer;
 
         public byte[] optionsAndPadding;
-        public byte[] data;
 
         private TCPHeader(ByteBuffer buffer)
         {
@@ -369,9 +369,10 @@ public class Packet
             }
 
             /*
+             *  For experiment only
             if (buffer.hasRemaining())
             {
-                data = new byte[buffer.remaining()];
+                byte[] data = new byte[buffer.remaining()];
                 buffer.get(data, 0, data.length);
 
                 String str = new String(data);
@@ -514,56 +515,6 @@ public class Packet
         private static long getUnsignedInt(int value)
         {
             return value & 0xFFFFFFFFL;
-        }
-    }
-
-    public class TCPBody
-    {
-        public byte[] data;
-
-        public TCPBody(ByteBuffer buffer)
-        {
-            if (buffer.hasRemaining())
-            {
-                data = new byte[buffer.remaining()];
-                buffer.get(data, 0, data.length);
-            }
-        }
-
-        public HttpParser tryGetHttpParser()
-        {
-            HttpParser parser = null;
-
-            try {
-                if (data != null && data.length > 0) {
-                    debug();
-                    InputStream is = new ByteArrayInputStream(data);
-                    parser = new HttpParser(is);
-                    parser.parseRequest();
-                    is.close();
-                }
-            } catch (IOException e) {
-                parser = null;
-                e.printStackTrace();
-            }
-            return parser;
-        }
-
-        private void debug()
-        {
-            String str = new String(data);
-            //Log.d("Packet", str);
-            String[] c = str.split(" ");
-            if (c.length < 3) {
-                return; // Can't parse it
-            }
-
-            if (c[0].startsWith("HTTP")) {
-                Log.d("HTTP Response", str);
-            }
-            else {
-                Log.d("HTTP Request", str);
-            }
         }
     }
 }

@@ -3,6 +3,12 @@ package edu.sim.whiff;
 import java.util.Date;
 
 
+/**
+ * Class for holding the information stored in the 'capture_data' Table
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class CaptureItem {
 
     public Long     ID;
@@ -14,4 +20,6 @@ public class CaptureItem {
     public Integer  destinationPort;
     public String   protocol;
     public Integer  length;
+    public String   text;
+    public String   data;
 }

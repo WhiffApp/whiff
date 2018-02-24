@@ -112,6 +112,8 @@
     <color name="background_holo_light">#f3f3f3</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">#f6f6e5</color>
+    <color name="blue">#2196F3</color>
+    <color name="blue900">#0D47A1</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -123,6 +125,7 @@
     <color name="colorAccent">#ff4081</color>
     <color name="colorPrimary">#a5d6d3</color>
     <color name="colorPrimaryDark">#303f9f</color>
+    <color name="cyan">#00BCD4</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_fab_shadow_end_color">@android:color/transparent</color>
     <color name="design_fab_shadow_mid_color">#14000000</color>
@@ -139,8 +142,12 @@
     <color name="error_color_material">#F4511E</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="gray">#888888</color>
+    <color name="gray100">#dddddd</color>
+    <color name="gray600">#999999</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
+    <color name="indigo">#3F51B5</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -156,6 +163,8 @@
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
     <color name="notification_material_background_media_default_color">#ff424242</color>
+    <color name="orange">#ff5722</color>
+    <color name="pink">#E91E63</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -164,6 +173,7 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <color name="purple">#9C27B0</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
@@ -174,8 +184,10 @@
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+    <color name="teal">#009688</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
+    <color name="white">#fff</color>
     <color name="ww">#84c9c6</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode">
             
@@ -803,6 +815,9 @@
     <string name="start_vpn">Start Capture</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="stop_vpn">Stop from Notification Bar</string>
+    <string name="title_activity_packet_file_content_page">Packet File Detail</string>
+    <string name="title_activity_packetdb_page">Packet Capture (TCP/UDP)</string>
+    <string name="title_activity_packetfile_page">Packet Capture (All)</string>
     <string name="title_activity_wepcrack">WEPCrack</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

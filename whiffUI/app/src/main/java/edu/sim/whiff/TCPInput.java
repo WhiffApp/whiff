@@ -10,8 +10,15 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
 import edu.sim.whiff.TCB.TCBStatus;
+
+/**
+ *
+ *  This class is responsible for handling the incoming TCP packets received
+ *  from the destination server before sending them back to the VPN
+ *
+ * @author Yeo Pei Xuan
+ */
 
 public class TCPInput implements Runnable
 {

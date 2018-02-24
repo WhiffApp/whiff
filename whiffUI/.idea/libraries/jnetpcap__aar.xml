@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="jnetpcap:@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/40ea6214d640893b18163ad0a828759b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/40ea6214d640893b18163ad0a828759b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/3bd3bba7fb0683ff8feed17266ea19a1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jnetpcap.aar/3bd3bba7fb0683ff8feed17266ea19a1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

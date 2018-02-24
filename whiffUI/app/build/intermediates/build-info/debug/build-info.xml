@@ -6,22 +6,22 @@
     density="560dpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1519136548824"
+    timestamp="1519490084965"
     token="2384538939252844665"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="12464" />
+        duration="20373" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="878" />
+        duration="789" />
     <task
         name="verifier"
-        duration="992" />
+        duration="1368" />
 
     <artifact
         location="C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
@@ -62,7 +62,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1519136548824"
+        timestamp="1519490084965"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\build\intermediates\split-apk\debug\dep\dependencies.apk"

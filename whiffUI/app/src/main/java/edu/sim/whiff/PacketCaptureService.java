@@ -11,7 +11,6 @@ import android.util.Log;
 import android.os.Message;
 import android.widget.Toast;
 
-import java.io.Closeable;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import edu.sim.whiff.Common.Utils;
 import io.reactivex.subjects.BehaviorSubject;
 
 /**
@@ -32,7 +32,9 @@ import io.reactivex.subjects.BehaviorSubject;
  *  It uses the VpnService provided by Android to capture the data/control packets
  *  flowing in and out of the Android device without the need of device rooting.
  *
+ * @author Yeo Pei Xuan
  */
+
 public class PacketCaptureService extends VpnService implements Handler.Callback
 {
     //  The following are the commands to start/stop the PacketCaptureService
@@ -48,7 +50,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
     public static final String PCF_DST_PORT     = "edu.sim.whiff.PacketCaptureService.PCF_DST_PORT";
 
     private static final String TAG = PacketCaptureService.class.getSimpleName();
-    private static final String VPN_ADDRESS = "10.0.0.5";   // Only IPv4 support for now
+    private static final String VPN_ADDRESS = "10.5.0.1";   // Only IPv4 support for now
     private static final String VPN_ROUTE   = "0.0.0.0";    // Intercept everything
 
     public static final String BROADCAST_VPN_STATE = "edu.sim.whiff.VPN_STATE";
@@ -261,8 +263,9 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
 
             Capture c = new Capture();
 
-            c.name = Utils.getUniqueTimestampName();
-            c.desc = "Whiff Capture";
+            String filename = FileManager.generateNewFileName();
+            c.name = FileManager.getFileNameWithoutExtension(filename);
+            c.desc = FileManager.getFormattedTimestampFromFileName(filename);
             c.fileName = "";
             c.fileSize = 0;
             c.startTime = new Date();
@@ -270,19 +273,21 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             return c;
         }
 
-        private void addPacket(Packet.IP4Header ipHeader, String protocol, int sourcePort, int destinationPort) {
+        private void addPacket(Packet p, String protocol, int sourcePort, int destinationPort) {
 
             CaptureItem item = new CaptureItem();
 
             item.timestamp = new Date();
-            item.sourceAddress = ipHeader.sourceAddress.getHostAddress();
+            item.sourceAddress = p.ip4Header.sourceAddress.getHostAddress();
             item.sourcePort = sourcePort;
-            item.destinationAddress = ipHeader.destinationAddress.getHostAddress();
+            item.destinationAddress = p.ip4Header.destinationAddress.getHostAddress();
             item.destinationPort = destinationPort;
             item.protocol = protocol;
-            item.length = ipHeader.totalLength;
+            item.length = p.ip4Header.totalLength;
+            item.text = p.toString();
+            item.data = Utils.hexdump(p.backingBuffer.array());
 
-            //mCaptureDAO.addCaptureItem(item);
+            mCaptureDAO.addCaptureItem(item);
         }
 
         @Override
@@ -290,11 +295,16 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
         {
             Log.i(TAG, "Started");
 
-            //mCaptureDAO.newCapture(createNewCapture());
+            mCaptureDAO.newCapture(createNewCapture());
 
             /*
+            **  << TCP >>
             **  Http requests -> vpnInput -> TCPOutput -> Datagram Channel
             **  Http reponses -> Datagram Channel -> TCPInput -> vpnOutput
+            **
+            **  << UDP >>
+            **  Http requests -> vpnInput -> UDPOutput -> Datagram Channel
+            **  Http reponses -> Datagram Channel -> UDPInput -> vpnOutput
             */
             FileChannel vpnInput  = new FileInputStream(vpnFileDescriptor).getChannel();
             FileChannel vpnOutput = new FileOutputStream(vpnFileDescriptor).getChannel();
@@ -311,27 +321,27 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
                     else
                         bufferToNetwork.clear();
 
-                    // TODO: Block when not connected
                     int readBytes = vpnInput.read(bufferToNetwork);
                     if (readBytes > 0)
                     {
-                        //Log.d("VPNInput -> Outgoing", Utils.formatHexDump(bufferToNetwork.array(), 0, readBytes));
                         dataSent = true;
+
                         bufferToNetwork.flip();
                         Packet packet = new Packet(bufferToNetwork);
 
-                        Log.d("Outgoing", packet.toString());
+                        //Log.d("Outgoing", packet.toString());
+                        //Log.d("VPNInput -> Outgoing", Utils.formatHexDump(bufferToNetwork.array(), 0, readBytes));
 
                         if (packet.isUDP())
                         {
-                            addPacket(packet.ip4Header, "UDP",
+                            addPacket(packet, Protocols.Udp,
                                     packet.udpHeader.sourcePort, packet.udpHeader.destinationPort);
 
                             deviceToNetworkUDPQueue.offer(packet);
                         }
                         else if (packet.isTCP())
                         {
-                            addPacket(packet.ip4Header, "TCP",
+                            addPacket(packet, Protocols.Tcp,
                                     packet.tcpHeader.sourcePort, packet.tcpHeader.destinationPort);
 
                             deviceToNetworkTCPQueue.offer(packet);
@@ -363,8 +373,6 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
                         dataReceived = false;
                     }
 
-                    // TODO: Sleep-looping is not very battery-friendly, consider blocking instead
-                    // Confirm if throughput with ConcurrentQueue is really higher compared to BlockingQueue
                     if (!dataSent && !dataReceived)
                         Thread.sleep(10);
                 }
@@ -379,7 +387,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             }
             finally
             {
-                //mCaptureDAO.updateCaptureEndTime(new Date());
+                mCaptureDAO.updateCaptureEndTime(new Date());
                 Utils.closeResources(vpnInput, vpnOutput, mCaptureDAO);
             }
         }

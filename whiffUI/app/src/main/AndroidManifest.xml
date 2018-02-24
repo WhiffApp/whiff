@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.sim.whiff">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,17 +27,48 @@
             android:name=".UI.HomePage.WEPCrack"
             android:label="@string/title_activity_wepcrack"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketFile.PacketFilePage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketFileContent.PacketFileContentPage"
+            android:parentActivityName=".UI.PacketFile.PacketFilePage"
+            android:label="@string/title_activity_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketDb.PacketDbPage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_packetdb_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketDbContent.PacketDbContentPage"
+            android:parentActivityName=".UI.PacketDb.PacketDbPage"
+            android:label="@string/title_activity_packetdb_page"
+            android:theme="@style/AppTheme" />
 
+        <!-- Packet Capture (All) -->
         <service
             android:name="org.jnetpcap.PcapService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE">
-
             <intent-filter>
-                <action android:name="android.net.VpnService"/>
+                <action android:name="android.net.VpnService" />
             </intent-filter>
         </service>
+        <!-- Packet Capture (TCP/UDP) -->
+        <service
+            android:name=".PacketCaptureService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

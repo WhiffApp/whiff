@@ -56,6 +56,10 @@
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-xhdpi-v4\\abc_popup_background_mtrl_mult.9.png"
     },
     {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_packetfile_page.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\activity_packetfile_page.xml"
+    },
+    {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\color-v11_abc_background_cache_hint_selector_material_dark.xml.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
@@ -77,7 +81,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_play.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable\\play.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable\\play.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
@@ -89,7 +93,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xhdpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xhdpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
@@ -141,7 +145,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xhdpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xhdpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_layout.xml.flat",
@@ -201,7 +205,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-mdpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-mdpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_vector_test.xml.flat",
@@ -218,10 +222,6 @@
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_longpressed_holo.9.png.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-mdpi-v4\\abc_list_longpressed_holo.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_local_vpn.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\activity_local_vpn.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
@@ -388,6 +388,10 @@
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_packetdb_page_drawer.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\menu\\activity_packetdb_page_drawer.xml"
+    },
+    {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_help_outline_black_24dp.xml.flat",
         "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\drawable\\ic_help_outline_black_24dp.xml"
     },
@@ -448,6 +452,10 @@
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_packetdb_page.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\activity_packetdb_page.xml"
+    },
+    {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-ldrtl-hdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -485,7 +493,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-hdpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-hdpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_btn_colored_material.xml.flat",
@@ -509,7 +517,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xxhdpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xxhdpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
@@ -597,7 +605,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xxxhdpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xxxhdpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_btn_colored_text_material.xml.flat",
@@ -645,7 +653,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\layout\\activity_main.xml"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_file_upload_black_24dp.xml.flat",
@@ -661,7 +669,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xxxhdpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xxxhdpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -741,7 +749,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-anydpi-v21\\ic_launcher_background.xml"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-anydpi-v21\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
@@ -833,7 +841,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-mdpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-mdpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_spinner_textfield_background_material.xml.flat",
@@ -861,7 +869,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-xxhdpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-xxhdpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_home_page.xml.flat",
@@ -945,7 +953,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_main.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\menu\\menu_main.xml"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\menu\\menu_main.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_close_item_material.xml.flat",
@@ -985,7 +993,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_ic_launcher_background.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-ldpi-v4\\ic_launcher_background.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-ldpi-v4\\ic_launcher_background.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_home_page.xml.flat",
@@ -997,7 +1005,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-hdpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-hdpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -1010,6 +1018,10 @@
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-xxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_packet_file_page.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\content_packet_file_page.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\menu_home_page.xml.flat",
@@ -1113,7 +1125,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_stop.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable\\stop.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable\\stop.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -1146,6 +1158,10 @@
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_packetfile_page_drawer.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\menu\\activity_packetfile_page_drawer.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
@@ -1245,7 +1261,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_ic_vpn.png.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-ldpi-v4\\ic_vpn.png"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-ldpi-v4\\ic_vpn.png"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -1278,6 +1294,10 @@
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_clear_material.xml.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_packet_file_content_page.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\activity_packet_file_content_page.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -1393,7 +1413,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_vpn.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\drawable-anydpi-v21\\ic_vpn.xml"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\drawable-anydpi-v21\\ic_vpn.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_tooltip.xml.flat",
@@ -1530,6 +1550,10 @@
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\drawable-xhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_packet_file_content.xml.flat",
+        "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\layout\\item_packet_file_content.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -1841,7 +1865,7 @@
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_main.xml.flat",
-        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\40ea6214d640893b18163ad0a828759b\\res\\layout\\content_main.xml"
+        "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\jnetpcap.aar\\3bd3bba7fb0683ff8feed17266ea19a1\\res\\layout\\content_main.xml"
     },
     {
         "merged": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",

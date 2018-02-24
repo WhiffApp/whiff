@@ -1,11 +1,11 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\4658307e25bec6f29ec2e095e1340501\AndroidManifest.xml:15:1-21:12
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:2:1-31:12
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:2:1-31:12
 MERGED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\f44476f18c46f4b276886f2d2d3db25a\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\6f692eafa90bc99633eda1e794a7df06\AndroidManifest.xml:17:1-28:12
@@ -20,45 +20,45 @@ MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Pei xuan\
 MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\8a2fe1f6f8e35efd2e21b89a470e1527\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\78cb2cd714591af59d16b17d09ad2491\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\f24c74bd7d42e11a558ad03bb90f1ba9\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
-INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
+INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
 	package
 		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:3:5-28
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-41:12
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:1-74:12
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:4:5-66
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:13:5-67
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:13:5-67
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:13:5-67
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:13:5-67
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:5:5-80
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:11:5-80
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:11:5-80
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:6:5-80
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:11:5-80
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:11:5-80
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:5:22-77
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:6:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:6:5-81
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:12:5-81
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:12:5-81
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:7:5-81
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:12:5-81
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:12:5-81
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:6:22-78
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:7:22-78
 application
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:7:5-39:19
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:15:5-29:19
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:15:5-29:19
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:9:5-72:19
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:15:5-29:19
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:15:5-29:19
 MERGED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\f44476f18c46f4b276886f2d2d3db25a\AndroidManifest.xml:25:5-29:19
@@ -88,67 +88,117 @@ MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Pei xuan\.gradl
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\f24c74bd7d42e11a558ad03bb90f1ba9\AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\f24c74bd7d42e11a558ad03bb90f1ba9\AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:12:9-41
 	android:roundIcon
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:13:9-54
 	android:icon
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:13:9-40
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:15:9-40
 activity#edu.sim.whiff.UI.HomePage.HomePage
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:14:9-23:20
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:16:9-25:20
 	android:label
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:16:13-45
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:18:13-45
 	android:theme
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:17:13-56
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:19:13-56
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:15:13-49
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:17:13-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:18:13-22:29
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:20:13-24:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:19:17-69
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:19:25-66
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:23:17-77
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:23:27-74
 activity#edu.sim.whiff.UI.HomePage.WEPCrack
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:24:9-27:47
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:26:9-29:47
 	android:label
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:26:13-60
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:28:13-60
 	android:theme
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:27:13-44
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:29:13-44
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:25:13-49
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:27:13-49
+activity#edu.sim.whiff.UI.PacketFile.PacketFilePage
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:30:9-34:47
+	android:parentActivityName
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:32:13-63
+	android:label
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:33:13-67
+	android:theme
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:34:13-44
+	android:name
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:31:13-57
+activity#edu.sim.whiff.UI.PacketFileContent.PacketFileContentPage
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:35:9-39:47
+	android:parentActivityName
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:37:13-71
+	android:label
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:38:13-67
+	android:theme
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:39:13-44
+	android:name
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:36:13-71
+activity#edu.sim.whiff.UI.PacketDb.PacketDbPage
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:40:9-44:47
+	android:parentActivityName
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:42:13-63
+	android:label
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:43:13-65
+	android:theme
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:44:13-44
+	android:name
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:41:13-53
+activity#edu.sim.whiff.UI.PacketDbContent.PacketDbContentPage
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:45:9-49:47
+	android:parentActivityName
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:47:13-67
+	android:label
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:48:13-65
+	android:theme
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:49:13-44
+	android:name
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:46:13-67
 service#org.jnetpcap.PcapService
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:29:9-38:19
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:52:9-60:19
 	android:enabled
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:31:13-35
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:54:13-35
 	android:exported
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:32:13-36
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:55:13-36
 	android:permission
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:33:13-69
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:56:13-69
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:30:13-52
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:53:13-52
 intent-filter#android.net.VpnService
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:35:13-37:29
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:57:13-59:29
 action#android.net.VpnService
-ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:36:17-64
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:58:17-65
 	android:name
-		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:36:25-62
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:58:25-62
+service#edu.sim.whiff.PacketCaptureService
+ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:62:9-70:19
+	android:enabled
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:64:13-35
+	android:exported
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:65:13-36
+	android:permission
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:66:13-69
+	android:name
+		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml:63:13-49
 uses-sdk
 INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\4658307e25bec6f29ec2e095e1340501\AndroidManifest.xml:19:5-43
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\4658307e25bec6f29ec2e095e1340501\AndroidManifest.xml:19:5-43
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:7:5-9:41
-MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:7:5-9:41
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:7:5-9:41
+MERGED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:21:5-23:62
 MERGED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:21:5-23:62
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\f44476f18c46f4b276886f2d2d3db25a\AndroidManifest.xml:21:5-23:78
@@ -190,11 +240,11 @@ INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\
 		ADDED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Pei xuan\Documents\Peixuan\SIM\CSCI321\Codes\whiffUI\app\src\main\AndroidManifest.xml
 service#jp.co.taosoftware.android.packetcapture.PacketCaptureService
-ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:22:9-28:19
+ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:22:9-28:19
 	android:permission
-		ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:24:13-69
+		ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:24:13-69
 	android:name
-		ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\40ea6214d640893b18163ad0a828759b\AndroidManifest.xml:23:13-88
+		ADDED from [:jnetpcap:] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\jnetpcap.aar\3bd3bba7fb0683ff8feed17266ea19a1\AndroidManifest.xml:23:13-88
 meta-data#android.support.VERSION
 ADDED from [com.android.support:design:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\82e82e0f39c34f9f44b57ba5441a44ae\AndroidManifest.xml:26:9-28:38
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Pei xuan\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\f44476f18c46f4b276886f2d2d3db25a\AndroidManifest.xml:26:9-28:38

@@ -15,6 +15,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import edu.sim.whiff.Packet.TCPHeader;
 import edu.sim.whiff.TCB.TCBStatus;
 
+/**
+ *
+ *  This class is responsible for handling the outgoing TCP packets intercepted
+ *  from the VPN before forwarding to the destination server.
+ *
+ * @author Yeo Pei Xuan
+ */
+
 public class TCPOutput implements Runnable
 {
     private static final String TAG = TCPOutput.class.getSimpleName();
@@ -82,8 +90,6 @@ public class TCPOutput implements Runnable
                     processFIN(tcb, tcpHeader, responseBuffer);
                 else if (tcpHeader.isACK())
                     processACK(tcb, tcpHeader, payloadBuffer, responseBuffer);
-
-                    handleHttp(currentPacket);
 
 
                 // XXX: cleanup later
@@ -256,13 +262,5 @@ public class TCPOutput implements Runnable
     {
         ByteBufferPool.release(buffer);
         TCB.closeTCB(tcb);
-    }
-
-    private void handleHttp(Packet packet) {
-
-        HttpParser parser = null;
-        if (packet.isTCP() && (parser = packet.tcpBody.tryGetHttpParser()) != null) {
-            Log.d(TAG, parser.getVersion());
-        }
     }
 }

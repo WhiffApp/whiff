@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Feb 20 22:24:08 SGT 2018
+#Sun Feb 25 00:36:27 SGT 2018
 7.path=classes.dex
 2.base=C\:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\transforms\\mergeJniLibs\\debug\\0
 5.set=DEX

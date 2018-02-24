@@ -5,9 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_Packet_Capture"
+            android:id="@+id/nav_Packet_Capture_File"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
-            android:title="Packet capture" />
+            android:title="@string/title_activity_packetfile_page" />
+        <item
+            android:id="@+id/nav_Packet_Capture_Db"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="@string/title_activity_packetdb_page" />
         <item
             android:id="@+id/nav_wep_crack"
             android:icon="@drawable/ic_lock_open_black_24dp"
