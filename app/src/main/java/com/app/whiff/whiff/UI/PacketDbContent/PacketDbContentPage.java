@@ -1,6 +1,7 @@
 package com.app.whiff.whiff.UI.PacketDbContent;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
@@ -23,44 +27,60 @@ public class PacketDbContentPage extends AppCompatActivity implements
     private static final String TAG = PacketDbContentPage.class.getSimpleName();
     private RecyclerView mRecyclerView;
     private PacketDbContentRecyclerViewAdapter mAdapter;
-    private PacketDbContentPagePresenterInterface presenter;
+    private PacketDbContentPagePresenterInterface mPresenter;
+    private LinearLayout mProgressBar;
     private long mCaptureID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packet_file_content_page);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        connectWithPresenter();
 
-        Intent intent = getIntent();
-        mCaptureID = intent.getLongExtra("CaptureID", 0);
-        String captureDesc = intent.getStringExtra("CaptureDesc");
-
-        setTitle(captureDesc);
+        mProgressBar = (LinearLayout) findViewById(R.id.progressLayout);
 
         // set up the RecyclerView
         mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        refreshList();
+
+        connectWithPresenter();
+
+        Intent intent = getIntent();
+        String captureDesc = intent.getStringExtra("CaptureDesc");
+        setTitle(captureDesc);
+
+        mCaptureID = intent.getLongExtra("CaptureID", 0);
+        LoadCaptureItemsTask aTask = new LoadCaptureItemsTask();
+        aTask.execute(mCaptureID);
     }
 
     public void connectWithPresenter()
     {
-        presenter = new PacketDbContentPresenter(this,
+        mPresenter = new PacketDbContentPresenter(this,
                 new CaptureDAO(this.getApplicationContext()));
     }
 
-    private void refreshList() {
+    private void ShowProgressBar(boolean visibility) {
+
+        setProgressBarIndeterminateVisibility(visibility);
+        if (visibility) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            mProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    private void refreshList(List<CaptureItem> items) {
 
         if (mAdapter != null) {
             mAdapter.setClickListener(null);
             mAdapter = null;
         }
 
-        List<CaptureItem> items = presenter.getCaptureItems(mCaptureID);
         if (items.size() > 0) {
             mAdapter = new PacketDbContentRecyclerViewAdapter(this, items);
             mAdapter.setClickListener(this);
@@ -76,5 +96,47 @@ public class PacketDbContentPage extends AppCompatActivity implements
         new AlertDialog.Builder(this)
                 .setTitle(item.timestamp.toString())
                 .setMessage(item.text).show();
+    }
+
+    private class LoadCaptureItemsTask extends AsyncTask<Long, Void, List<CaptureItem>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ShowProgressBar(true);
+        }
+
+        @Override
+        protected void onPostExecute(List<CaptureItem> items) {
+            super.onPostExecute(items);
+
+            try {
+
+                if(items != null){
+                    refreshList(items);
+                }
+
+            } catch(Exception e) {
+
+            }
+            ShowProgressBar(false);
+        }
+
+        @Override
+        protected List<CaptureItem> doInBackground(Long... IDs) {
+
+            List<CaptureItem> items = new ArrayList<CaptureItem>(0);
+
+            try {
+
+                if (IDs != null && IDs.length > 0) {
+                    Long filename = IDs[0];
+                    items = mPresenter.getCaptureItems(mCaptureID);
+                }
+            } catch(Exception e) {
+
+            }
+            return items;
+        }
     }
 }

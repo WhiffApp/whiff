@@ -15,7 +15,7 @@ public class Capture {
     public String name;
     public String desc;
     public String fileName;
-    public Integer fileSize;
+    public Long fileSize;
     public Date startTime;
     public Date endTime;
 }

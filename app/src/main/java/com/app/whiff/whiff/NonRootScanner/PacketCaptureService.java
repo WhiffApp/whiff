@@ -268,7 +268,7 @@ public class PacketCaptureService extends VpnService implements Handler.Callback
             c.name = FileManager.getFileNameWithoutExtension(filename);
             c.desc = FileManager.getFormattedTimestampFromFileName(filename);
             c.fileName = "";
-            c.fileSize = 0;
+            c.fileSize = 0L;
             c.startTime = new Date();
 
             return c;

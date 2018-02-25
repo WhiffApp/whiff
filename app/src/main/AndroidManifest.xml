@@ -70,6 +70,54 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		
+		<activity
+            android:name=".UI.ImportPacketFile.ImportPacketFilePage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_import_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketFile.PacketFilePage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketFileContent.PacketFileContentPage"
+            android:parentActivityName=".UI.PacketFile.PacketFilePage"
+            android:label="@string/title_activity_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketDb.PacketDbPage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_packetdb_page"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.PacketDbContent.PacketDbContentPage"
+            android:parentActivityName=".UI.PacketDb.PacketDbPage"
+            android:label="@string/title_activity_packetdb_page"
+            android:theme="@style/AppTheme" />
+
+        <!-- Packet Capture (All) -->
+        <service
+            android:name="org.jnetpcap.PcapService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+        <!-- Packet Capture (TCP/UDP) -->
+        <service
+            android:name=".NonRootScanner.PacketCaptureService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+		
     </application>
 
 </manifest>

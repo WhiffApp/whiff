@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.sim.whiff.UI.HomePage.HomePage">
+    tools:context="com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,18 +22,4 @@
 
     <include layout="@layout/content_home_page" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_play_arrow_white_24px" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_stop_white_24px" />
 </android.support.design.widget.CoordinatorLayout>

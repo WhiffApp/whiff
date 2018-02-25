@@ -187,6 +187,8 @@ public class HomePage extends AppCompatActivity
             Intent WEPActivity = new Intent (this, WEPCrack.class);
             startActivity(WEPActivity);
         } else if (id == R.id.nav_Import_File) {
+            Intent i = new Intent (this, NonRootScanner.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_help_faq) {
             Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
