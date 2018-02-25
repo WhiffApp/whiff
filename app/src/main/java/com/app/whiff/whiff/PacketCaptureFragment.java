@@ -1,6 +1,7 @@
 package com.app.whiff.whiff;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import com.app.whiff.whiff.RootScanner.TCPdump;
+import com.app.whiff.whiff.RootScanner.TCPdumpService;
+import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedReader;
@@ -34,6 +38,9 @@ public class PacketCaptureFragment extends Fragment {
     public Spinner devSpinner;
     public ArrayAdapter devList;
     public ArrayList<String> devStringList=new ArrayList<String>();
+
+    public TCPdump tcpdump;
+    public TCPdumpService tcpDumpService;
 
     public PacketCaptureFragment() {
         // Required empty public constructor
@@ -63,6 +70,9 @@ public class PacketCaptureFragment extends Fragment {
             }
         });
 
+        tcpdump = new TCPdump(getActivity().getApplicationContext());
+        tcpdump.installTCPdump();
+
         if(!(RootTools.isAccessGiven())){
             RootSwitch.setEnabled(false);
             ARPSpooferSwitch.setEnabled(false);
@@ -70,9 +80,16 @@ public class PacketCaptureFragment extends Fragment {
             RootSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (RootSwitch.isChecked()){
+                    if (RootSwitch.isChecked()) {
                         NonRootSwitch.setEnabled(false);
                         ARPSpooferSwitch.setEnabled(true);
+
+                        // Start Root Sniffer Activity
+                        String TCPdumpParams = "-U -w whiff.pcap";
+                        startTCPdumpService(TCPdumpParams);
+                    } else if (!RootSwitch.isChecked()) {
+                        stopTCPdumpService();
+                    }
 
                         //Replace with sniffing function
                   /*selectedDev = devSpinner.getSelectedItem().toString();
@@ -86,7 +103,6 @@ public class PacketCaptureFragment extends Fragment {
                     } catch (IOException e) {
                         Log.i("exception", e.toString());
                     }*/
-                    }
                     else if (ARPSpooferSwitch.isChecked()){
                         NonRootSwitch.setEnabled(false);
                     }
@@ -137,6 +153,17 @@ public class PacketCaptureFragment extends Fragment {
 
 
         return psView;
+    }
+
+    public void startTCPdumpService(String params) {
+        Intent intent = new Intent(getActivity(), TCPdumpService.class);
+        intent.putExtra(TCPdumpService.ACTION_START,params);
+        getActivity().startService(intent);
+    }
+    public void stopTCPdumpService() {
+        new TCPdump(getActivity()).stopSniff();
+        Intent intent = new Intent(getActivity(), TCPdumpService.class);
+        getActivity().stopService(intent);
     }
 
     private class findNetworkInterfaces extends AsyncTask<Void, Void, Void> {
