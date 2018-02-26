@@ -438,7 +438,7 @@ public class help extends AppCompatActivity {
                         break;
 
                     case ("636"):
-                        protoInfo = "LDAP over TLS/SSL";
+                        protoInfo = "LDAP TLS/SSL";
                         portChanged = true;
                         break;
 
@@ -508,7 +508,7 @@ public class help extends AppCompatActivity {
                         break;
 
                     case ("636"):
-                        protoInfo = "LDAP over TLS/SSL";
+                        protoInfo = "LDAP TLS/SSL";
                         portChanged = true;
                         break;
 
