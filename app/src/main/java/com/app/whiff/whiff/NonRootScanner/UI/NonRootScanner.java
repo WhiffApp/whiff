@@ -64,7 +64,7 @@ public class NonRootScanner extends AppCompatActivity
                 //TODO call packet listener here
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                startOrStopCapture();
+                //startOrStopCapture();
             }
         });
         fabStop.setOnClickListener(new View.OnClickListener() {
@@ -74,9 +74,7 @@ public class NonRootScanner extends AppCompatActivity
                 //TODO stop listening here
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                startOrStopCapture();
-                Log.e("NonRootScanner MSG","Start Clicked");
-            }
+        }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -87,56 +85,6 @@ public class NonRootScanner extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        PacketCaptureService.getIsRunning().subscribe(isRunning -> {
-            if (isRunning) {
-                Log.e(TAG,"Packet Capture Service - Started");
-            } else {
-                Log.e(TAG,"Packet Capture Service - Stopped");
-            }
-        });
-    }
-
-    private void startOrStopCapture()
-    {
-        Intent vpnIntent = VpnService.prepare(this);
-        if (vpnIntent != null)
-            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
-        else
-            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
-    }
-
-    @Override
-    protected void onActivityResult(int request, int result, Intent data) {
-
-        if (result == RESULT_OK) {
-
-            Boolean isRunning = PacketCaptureService.isRunning();
-            Intent i = isRunning
-                    ? getServiceIntent(PacketCaptureService.ACTION_STOP)
-                    : getServiceIntent(PacketCaptureService.ACTION_START);
-
-            if (isRunning == Boolean.FALSE) {
-                //  We can show UI here to allow user to specify filter criteria for the
-                //  packet capturing
-                //  TODO
-                i.putExtra(PacketCaptureService.CAPTURE_NAME,   Utils.getUniqueTimestampName());
-                i.putExtra(PacketCaptureService.PCF_PROTO_TYPE, "TCP/UDP/ICMP/HTTP/HTTPS");
-                i.putExtra(PacketCaptureService.PCF_SRC_IP,     "");
-                i.putExtra(PacketCaptureService.PCF_SRC_PORT,   "");
-                i.putExtra(PacketCaptureService.PCF_DST_IP,     "");
-                i.putExtra(PacketCaptureService.PCF_DST_PORT,   "");
-            }
-
-            startService(i);
-        }
-    }
-
-    private Intent getServiceIntent(String action) {
-        Intent i = new Intent( this, PacketCaptureService.class);
-        i.setAction(action);
-
-        return i;
     }
 
     public void hideFabStart()
@@ -197,10 +145,16 @@ public class NonRootScanner extends AppCompatActivity
 
         if (id == R.id.nav_non_root_packet_capture) {
             //TODO Create new activity
+            Intent i = new Intent (this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+            startActivity(i);
+
         } else if (id == R.id.nav_wep_crack) {
             Intent WEPActivity = new Intent (this, WEPCrack.class);
             startActivity(WEPActivity);
+
         } else if (id == R.id.nav_Import_File) {
+            Intent i = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_help_faq) {
 
