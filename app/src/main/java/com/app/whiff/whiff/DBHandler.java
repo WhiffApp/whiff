@@ -100,18 +100,19 @@ public class DBHandler extends SQLiteOpenHelper{
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PACKETS ;
-        String[] columns = {COLUMN_ID, COLUMN_DATE, COLUMN_TIME, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL, COLUMN_PROTOCOLINFO, COLUMN_DATAHEX, COLUMN_DATAASCII};
+        String[] columns = {COLUMN_ID, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
 
         if (c.moveToFirst() ){
-            String[] columnNames = c.getColumnNames();
+            String[] columnNames = columns;
             do {
                 for (String name: columnNames) {
-                    dbString += String.format("%s \n",
+                    dbString += String.format("%s | ",
                             c.getString(c.getColumnIndex(name)));
                 }
-                dbString += "\n\n";
+                dbString = dbString.substring(0,dbString.length()-2);
+                dbString += "\n";
 
             } while (c.moveToNext());
         }

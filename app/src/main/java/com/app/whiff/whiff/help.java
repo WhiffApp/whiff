@@ -370,62 +370,77 @@ public class help extends AppCompatActivity {
                     case ("20"):
                         protoInfo = "FTP";
                         portChanged = true;
+                        break;
 
                     case ("21"):
                         protoInfo = "FTP";
                         portChanged = true;
+                        break;
 
                     case ("22"):
                         protoInfo = "SSH";
                         portChanged = true;
+                        break;
 
                     case ("23"):
                         protoInfo = "Telnet";
                         portChanged = true;
+                        break;
 
                     case ("25"):
                         protoInfo = "SMTP";
                         portChanged = true;
+                        break;
 
                     case ("53"):
                         protoInfo = "DNS";
                         portChanged = true;
+                        break;
 
                     case ("80"):
                         protoInfo = "HTTP";
                         portChanged = true;
+                        break;
 
                     case ("110"):
                         protoInfo = "POP";
                         portChanged = true;
+                        break;
 
                     case ("143"):
                         protoInfo = "POP";
                         portChanged = true;
+                        break;
 
                     case ("161"):
                         protoInfo = "SNMP";
                         portChanged = true;
+                        break;
 
                     case ("162"):
                         protoInfo = "SNMP";
                         portChanged = true;
+                        break;
 
                     case ("179"):
                         protoInfo = "BGP";
                         portChanged = true;
+                        break;
 
                     case ("389"):
                         protoInfo = "LDAP";
                         portChanged = true;
+                        break;
 
                     case ("443"):
                         protoInfo = "HTTPS";
                         portChanged = true;
+                        break;
 
                     case ("636"):
                         protoInfo = "LDAP over TLS/SSL";
                         portChanged = true;
+                        break;
 
                     default:
                 }
@@ -440,50 +455,62 @@ public class help extends AppCompatActivity {
                     case ("53"):
                         protoInfo = "DNS";
                         portChanged = true;
+                        break;
 
                     case ("67"):
                         protoInfo = "DHCP";
                         portChanged = true;
+                        break;
 
                     case ("68"):
                         protoInfo = "DHCP";
                         portChanged = true;
+                        break;
 
                     case ("69"):
                         protoInfo = "TFTP";
                         portChanged = true;
+                        break;
 
                     case ("123"):
                         protoInfo = "NTP";
                         portChanged = true;
+                        break;
 
                     case ("137"):
                         protoInfo = "NetBIOS";
                         portChanged = true;
+                        break;
 
                     case ("138"):
                         protoInfo = "NetBIOS";
                         portChanged = true;
+                        break;
 
                     case ("139"):
                         protoInfo = "NetBIOS";
                         portChanged = true;
+                        break;
 
                     case ("161"):
                         protoInfo = "SNMP";
                         portChanged = true;
+                        break;
 
                     case ("162"):
                         protoInfo = "SNMP";
                         portChanged = true;
+                        break;
 
                     case ("389"):
                         protoInfo = "LDAP";
                         portChanged = true;
+                        break;
 
                     case ("636"):
                         protoInfo = "LDAP over TLS/SSL";
                         portChanged = true;
+                        break;
 
                     default:
                 }
