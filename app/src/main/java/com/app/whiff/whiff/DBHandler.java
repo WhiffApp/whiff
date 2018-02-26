@@ -99,7 +99,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_PACKETS ;
         String[] columns = {COLUMN_ID, COLUMN_SOURCE, COLUMN_DESTINATION, COLUMN_PROTOCOL};
 
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PACKETS, null);
