@@ -2,6 +2,7 @@ package com.app.whiff.whiff;
 
 
 import android.content.Intent;
+import android.net.VpnService;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,15 +15,24 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.app.whiff.whiff.NonRootScanner.Utils;
 import com.app.whiff.whiff.RootScanner.TCPdump;
 import com.app.whiff.whiff.RootScanner.TCPdumpService;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
+import com.app.whiff.whiff.UI.PacketFile.PacketFilePage;
 import com.stericson.RootTools.RootTools;
+
+import org.jnetpcap.PcapService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import jp.co.taosoftware.android.packetcapture.PacketCaptureService;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -45,6 +55,10 @@ public class PacketCaptureFragment extends Fragment {
     public PacketCaptureFragment() {
         // Required empty public constructor
     }
+
+    private static final int VPN_REQUEST_CODE = 0x0F;
+
+    private boolean waitingForVPNStart;
 
 
     @Override
@@ -119,6 +133,10 @@ public class PacketCaptureFragment extends Fragment {
                     if (NonRootSwitch.isChecked()){
                         RootSwitch.setEnabled(false);
                         ARPSpooferSwitch.setEnabled(false);
+
+                        // Start non-root sniffer service
+                        startVPN();
+
                     }
                     else if(RootTools.isRootAvailable()){
                         RootSwitch.setEnabled(true);
@@ -153,6 +171,65 @@ public class PacketCaptureFragment extends Fragment {
 
 
         return psView;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    private void startVPN()
+    {
+        Intent vpnIntent = VpnService.prepare(getActivity());
+        if (vpnIntent != null)
+            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+        else
+            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == VPN_REQUEST_CODE && resultCode == RESULT_OK)
+        {
+            waitingForVPNStart = true;
+            Intent i = new Intent(getActivity(), PacketCaptureService.class);
+            i.putExtra("CaptureName", Utils.getUniqueTimestampName());
+            getActivity().startService(i);
+            // enableButton(false);
+        }
+    }
+
+    private void startOrStopCapture()
+    {
+        Intent vpnIntent = VpnService.prepare(getActivity());
+        if (vpnIntent != null)
+            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+        else
+            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+    }
+
+    private void stopCapture() {
+
+        boolean isRunning = PcapService.isRunning();
+        if (isRunning) {
+            Intent i = getServiceIntent(PcapService.ACTION_STOP);
+            getActivity().startService(i);
+        }
+    }
+
+    private Intent getServiceIntent(String action) {
+        Intent i = new Intent(getActivity(), PcapService.class);
+        i.setAction(action);
+
+        return i;
     }
 
     public void startTCPdumpService(String params) {
