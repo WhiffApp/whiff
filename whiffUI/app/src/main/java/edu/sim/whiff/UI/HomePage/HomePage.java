@@ -27,6 +27,7 @@ import java.util.List;
 
 import edu.sim.whiff.FileManager;
 import edu.sim.whiff.R;
+import edu.sim.whiff.UI.ImportPacketFile.ImportPacketFilePage;
 import edu.sim.whiff.UI.PacketDb.PacketDbPage;
 import edu.sim.whiff.UI.PacketFile.PacketFilePage;
 import edu.sim.whiff.UI.PacketFileContent.PacketFileContentPage;
@@ -151,6 +152,8 @@ public class HomePage extends AppCompatActivity
             startActivity(WEPActivity);
 
         } else if (id == R.id.nav_Import_File) {
+            Intent i = new Intent (this, ImportPacketFilePage.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_help_faq) {
 

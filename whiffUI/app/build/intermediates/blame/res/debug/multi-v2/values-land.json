@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\571865ca3af31d9f1fd507bab9ece578\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\82e82e0f39c34f9f44b57ba5441a44ae\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\19a5c848e2c9e39455b86ea010e722f5\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -11,9 +11,10 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_wepcrack">WEPCrack</string>
+    <string name="title_activity_packetfile_page">Packet Capture (ALL)</string>
     <string name="title_activity_packetdb_page">Packet Capture (TCP/UDP)</string>
-    <string name="title_activity_packetfile_page">Packet Capture (All)</string>
-
+    <string name="title_activity_import_packetfile_page">Import Packet File</string>
+    <string name="title_activity_packet_file_content_page">Packet File Detail</string>
 
     <string name="filter">Filter</string>
     <string name="export">Export</string>
@@ -27,6 +28,9 @@
     <string name="connected">Network Sniffer is started.</string>
     <string name="disconnecting">Network Sniffer is stopping...</string>
     <string name="disconnected">Network Sniffer is stopped.</string>
-    <string name="title_activity_packet_file_content_page">Packet File Detail</string>
+    <string name="importFile">Imports file \'%s\' to DB?</string>
+    <string name="dialogYesButton">Yes</string>
+    <string name="dialogNoButton">No</string>
+    <string name="dialogOkButton">Ok</string>
 
 </resources>

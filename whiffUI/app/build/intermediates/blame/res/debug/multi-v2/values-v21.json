@@ -1,48 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Codes\\whiffUI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\82e82e0f39c34f9f44b57ba5441a44ae\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,266",
-                        "endLines": "4,5",
-                        "endColumns": "12,96",
-                        "endOffsets": "261,358"
-                    },
-                    "to": {
-                        "startLines": "169,233",
-                        "startColumns": "4,4",
-                        "startOffsets": "12805,17355",
-                        "endLines": "171,233",
-                        "endColumns": "12,96",
-                        "endOffsets": "13011,17447"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\fae6a088d062fbd22ae58030951182f6\\res\\values-v21\\values-v21.xml",
-                    "from": {
-                        "startLines": "2,5,8,11",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,223,386,554",
-                        "endLines": "4,7,10,13",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "218,381,549,716"
-                    },
-                    "to": {
-                        "startLines": "290,293,297,301",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "21229,21397,21686,21982",
-                        "endLines": "292,295,299,303",
-                        "endColumns": "12,12,12,12",
-                        "endOffsets": "21392,21555,21849,22144"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\78cb2cd714591af59d16b17d09ad2491\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\4ba925177736c08ba534c52ebe1c0834\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -61,7 +23,26 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pei xuan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f44476f18c46f4b276886f2d2d3db25a\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\d39846fb217520be51fcd6024871d8af\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5,8,11",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,223,386,554",
+                        "endLines": "4,7,10,13",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "218,381,549,716"
+                    },
+                    "to": {
+                        "startLines": "290,293,297,301",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "21229,21397,21686,21982",
+                        "endLines": "292,295,299,303",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "21392,21555,21849,22144"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\571865ca3af31d9f1fd507bab9ece578\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,19,20,21,22,24,26,27,28,29,30,32,34,36,38,40,42,43,48,50,52,53,54,56,58,59,60,61,62,63,107,110,154,157,160,162,164,166,169,171,174,175,176,179,180,181,182,183,184,187,188,190,192,194,196,200,202,203,204,205,207,211,213,215,216,217,218,219,221,222,223,233,234,235,247,259,260,261,264,267,268,271,272",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -80,7 +61,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pei xuan\\Documents\\Peixuan\\SIM\\CSCI321\\Codes\\whiffUI\\app\\src\\main\\res\\values-v21\\styles.xml",
+                    "source": "C:\\Users\\yukig\\Documents\\PeiXuan\\SIM\\School\\321\\Codes\\whiffUI\\app\\src\\main\\res\\values-v21\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -96,6 +77,25 @@
                         "endLines": "10",
                         "endColumns": "12",
                         "endOffsets": "577"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\yukig\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\19a5c848e2c9e39455b86ea010e722f5\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,266",
+                        "endLines": "4,5",
+                        "endColumns": "12,96",
+                        "endOffsets": "261,358"
+                    },
+                    "to": {
+                        "startLines": "169,233",
+                        "startColumns": "4,4",
+                        "startOffsets": "12805,17355",
+                        "endLines": "171,233",
+                        "endColumns": "12,96",
+                        "endOffsets": "13011,17447"
                     }
                 }
             ]

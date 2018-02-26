@@ -19,11 +19,7 @@ public class HomePagePresenter implements HomePagePresenterInterface {
     public void StartClicked(){
         view.hideFabStart();
     }
-    public void StopClicked(){
-        view.hideFabStop();
-    }
+    public void StopClicked(){view.hideFabStop(); }
 
-    public List<File> listPacketFiles() {
-        return Arrays.asList(FileManager.listPacketFiles());
-    }
+    public List<File> listPacketFiles() {return Arrays.asList(FileManager.listPacketFiles()); }
 }

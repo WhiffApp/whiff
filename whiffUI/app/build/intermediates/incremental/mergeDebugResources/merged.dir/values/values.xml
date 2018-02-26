@@ -793,11 +793,15 @@
     <string name="connect">Connect!</string>
     <string name="connected">Network Sniffer is started.</string>
     <string name="connecting">Network Sniffer is starting...</string>
+    <string name="dialogNoButton">No</string>
+    <string name="dialogOkButton">Ok</string>
+    <string name="dialogYesButton">Yes</string>
     <string name="disconnect">Disconnect!</string>
     <string name="disconnected">Network Sniffer is stopped.</string>
     <string name="disconnecting">Network Sniffer is stopping...</string>
     <string name="export">Export</string>
     <string name="filter">Filter</string>
+    <string name="importFile">Imports file \'%s\' to DB?</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_help_faq">Help and FAQ</string>
     <string name="navigation_drawer_import">Import Data</string>
@@ -815,9 +819,10 @@
     <string name="start_vpn">Start Capture</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="stop_vpn">Stop from Notification Bar</string>
+    <string name="title_activity_import_packetfile_page">Import Packet File</string>
     <string name="title_activity_packet_file_content_page">Packet File Detail</string>
     <string name="title_activity_packetdb_page">Packet Capture (TCP/UDP)</string>
-    <string name="title_activity_packetfile_page">Packet Capture (All)</string>
+    <string name="title_activity_packetfile_page">Packet Capture (ALL)</string>
     <string name="title_activity_wepcrack">WEPCrack</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

@@ -28,6 +28,11 @@
             android:label="@string/title_activity_wepcrack"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".UI.ImportPacketFile.ImportPacketFilePage"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:label="@string/title_activity_import_packetfile_page"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".UI.PacketFile.PacketFilePage"
             android:parentActivityName=".UI.HomePage.HomePage"
             android:label="@string/title_activity_packetfile_page"
