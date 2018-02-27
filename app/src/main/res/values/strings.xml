@@ -26,24 +26,24 @@
     <string name="filter">Filter</string>
     <string name="export">Export</string>
 
-    <string name="title_activity_root_scanner">Rooted Scanner</string>
+    <string name="title_activity_root_scanner">Rooted Packet Capture</string>
     <string name="tcpdump_params">Parameters</string>
 
-    <string name="title_activity_non_root_scanner">Non-Root Scanner</string>
+    <string name="title_activity_non_root_scanner">Non-Rooted Packet Capture</string>
     <string name="start_vpn">Start Capture</string>
     <string name="stop_vpn">Stop from Notification Bar</string>
     <string name="address">Server Address:</string>
     <string name="port">Server Port:</string>
     <string name="connect">Connect!</string>
     <string name="disconnect">Disconnect!</string>
-    <string name="connecting">Network Sniffer is starting...</string>
+    <string name="connecting">Network Sniffer is starting…</string>
     <string name="connected">Network Sniffer is started.</string>
-    <string name="disconnecting">Network Sniffer is stopping...</string>
+    <string name="disconnecting">Network Sniffer is stopping…</string>
     <string name="disconnected">Network Sniffer is stopped.</string>
     <string name="importFile">Imports file \'%s\' to DB?</string>
     <string name="dialogYesButton">Yes</string>
     <string name="dialogNoButton">No</string>
-    <string name="dialogOkButton">Ok</string>
+    <string name="dialogOkButton">OK</string>
     <string name="title_activity_pkts_test">pktsTest</string>
     <string name="title_activity_main">Whiff</string>
 

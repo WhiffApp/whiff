@@ -4,6 +4,7 @@ import com.app.whiff.whiff.NonRootScanner.FileManager;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -24,6 +25,11 @@ public class PacketFilePagePresenter implements PacketFilePagePresenterInterface
     }
 
     public List<File> listPacketFiles() {
-        return Arrays.asList(FileManager.listPacketFiles());
+        try {
+            return Arrays.asList(FileManager.listPacketFiles());
+        } catch (NullPointerException e) {
+            System.out.println("Directory is empty.");
+        }
+        return Collections.EMPTY_LIST;
     }
 }

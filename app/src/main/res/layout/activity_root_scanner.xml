@@ -9,9 +9,25 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_root_scanner"
+        layout="@layout/app_bar_non_root_scanner_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pbProgress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
