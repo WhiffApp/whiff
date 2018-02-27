@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.FileManager;
+import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.UI.PacketFileContent.PacketFileContentPage;
 
@@ -220,8 +221,12 @@ public class PacketFilePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Home) {
+            Intent i = new Intent(this, com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_Import_File) {
+            Intent i = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            startActivity(i);
 
         }
 

@@ -77,8 +77,8 @@ public class HomePage extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.ARPSpooferButtonClicked();
-                Intent ARPSpooferACtivity = new Intent(view.getContext(), ARPSpoofer.class);
-                startActivity(ARPSpooferACtivity);
+                Intent ARPSpooferActivity = new Intent(view.getContext(), ARPSpoofer.class);
+                startActivity(ARPSpooferActivity);
             }
         });
 

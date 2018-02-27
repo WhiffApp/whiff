@@ -39,7 +39,10 @@
 
         <service
             android:name=".ARPSpoofer.ARPSpoofService"
-            android:exported="false" />
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_vpn"
+            android:label="@string/navigation_drawer_root_packet_capture" />
 
         <activity
             android:name=".UI.HomePage.WEPCrack"
