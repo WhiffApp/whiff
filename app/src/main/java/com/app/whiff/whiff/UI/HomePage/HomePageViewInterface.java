@@ -7,4 +7,5 @@ package com.app.whiff.whiff.UI.HomePage;
 public interface HomePageViewInterface {
     void hideFabStart();
     void hideFabStop();
+    void showMessage(String message);
 }

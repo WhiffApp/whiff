@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_Packet_Capture"
+            android:id="@+id/nav_root_packet_capture"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
-            android:title="Packet capture" />
+            android:title="@string/navigation_drawer_root_packet_capture" />
+        <item
+            android:id="@+id/nav_non_root_packet_capture"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="@string/navigation_drawer_non_root_packet_capture" />
         <item
             android:id="@+id/nav_wep_crack"
             android:icon="@drawable/ic_lock_open_black_24dp"
-            android:title="@string/navigation_drawer_wep_crack" />
+            android:title="@string/navigation_drawer_arp_spoofer" />
         <item
             android:id="@+id/nav_Import_File"
             android:icon="@drawable/ic_file_upload_black_24dp"
