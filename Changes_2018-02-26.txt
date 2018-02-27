@@ -1,0 +1,13 @@
+AndroidManifest.xml
+NonRootScanner.java
+activity_non_root_scanner_drawer.xml
+app_bar_non_root_scanner.xml
+
+Code changes:
+com/app/whiff/whiff/UI/HomePage/HomePage.java
+build.gradle
+
+New
+====
+layout/app_bar_non_root_scanner_page.xml
+layout/content_non_root_scanner_page.xml

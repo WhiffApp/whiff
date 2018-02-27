@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\nWhat is Whiff?
+\nWhiff is a packet sniffer application based on the Android Operating System, which capture records of packets within the network.
+
+\n\nWho is it for?
+\nIt is for users that comes from different spectrums of experiences, from beginners who are curious about how packet sniffing works to people who are fluent in the domain of packet capturing and network administration.
+
+\n\nWhy doesn’t it run for me?
+\nWhiff can only work if the operating system running it is on Android 5.1, Lollipop and above.
+
+\n\nWhy am I unable to scan for any packets?
+\nCheck that you are connected to a network as network sniffing is not possible without the device being connected to a network.
+
+\n\nHow do I install the apk file?
+\nGo to Settings on your phone and switch to the “general” tab, if needed.
+\nTick the checkbox next to the “Unknown Sources” option.
+\nConfirm the warning message by tapping on “OK”.
+\nGo to the directory where the whiff.apk file is downloaded and install it."/>
+    </ScrollView>
+</LinearLayout>

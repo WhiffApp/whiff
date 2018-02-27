@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Packet_Capture_File"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="@string/title_activity_packetfile_page" />
+        <item
+            android:id="@+id/nav_Packet_Capture_Db"
+            android:icon="@drawable/ic_speaker_phone_black_24dp"
+            android:title="@string/title_activity_packetdb_page" />
+        <item
+            android:id="@+id/nav_Import_File"
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:title="Import File" />
+    </group>
+
+</menu>
