@@ -30,11 +30,9 @@ public class HomePagePresenter implements HomePagePresenterInterface {
     }
 
     public void StartClicked() {
-        view.hideFabStart();
     }
 
     public void StopClicked() {
-        view.hideFabStop();
     }
 
 }

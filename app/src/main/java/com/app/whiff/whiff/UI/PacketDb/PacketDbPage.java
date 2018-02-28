@@ -204,11 +204,8 @@ public class PacketDbPage extends AppCompatActivity
         int id = item.getItemId();
 
         // if (id == R.id.nav_Packet_Capture_Db) {
-            if (id == R.id.nav_wep_crack) {
-            //TODO Create new activity
-        } else if (id == R.id.nav_wep_crack) {
 
-        } else if (id == R.id.nav_Import_File) {
+        if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {
 

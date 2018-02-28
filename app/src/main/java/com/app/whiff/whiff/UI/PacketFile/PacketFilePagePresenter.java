@@ -25,11 +25,6 @@ public class PacketFilePagePresenter implements PacketFilePagePresenterInterface
     }
 
     public List<File> listPacketFiles() {
-        try {
-            return Arrays.asList(FileManager.listPacketFiles());
-        } catch (NullPointerException e) {
-            System.out.println("Directory is empty.");
-        }
-        return Collections.EMPTY_LIST;
+        return Arrays.asList(FileManager.listPacketFiles());
     }
 }

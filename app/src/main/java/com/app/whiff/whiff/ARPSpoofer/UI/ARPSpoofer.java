@@ -211,7 +211,7 @@ public class ARPSpoofer extends AppCompatActivity
         } else if (id == R.id.nav_non_root_packet_capture) {
             Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
             startActivity(RootScannerActivity);
-        } else if (id == R.id.nav_wep_crack) {
+        // } else if (id == R.id.nav_wep_crack) {
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {

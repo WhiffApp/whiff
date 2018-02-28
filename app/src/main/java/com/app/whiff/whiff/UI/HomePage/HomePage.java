@@ -30,11 +30,10 @@ public class HomePage extends AppCompatActivity
     // Buttons to launch other activities
     public Button RootScannerButton;
     public Button NonRootScannerButton;
+    public Button TransportProtocolButton;
+    public Button ImportButton;
     public Button ARPSpooferButton;
-
-    // Start/Stop Button
-    public FloatingActionButton fabStart;
-    public FloatingActionButton fabStop;
+    public Button HelpFaqButton;
 
     // Reference to presenter
     public HomePagePresenterInterface presenter;
@@ -67,45 +66,37 @@ public class HomePage extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.NonRootScannerButtonClicked();
-                Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
+                // Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
+                Intent NonRootScannerActivity = new Intent(view.getContext(), com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
                 startActivity(NonRootScannerActivity);
             }
         });
 
-        ARPSpooferButton = (Button) findViewById(R.id.ARPSpooferButton);
-        ARPSpooferButton.setOnClickListener(new View.OnClickListener() {
+        TransportProtocolButton = (Button) findViewById(R.id.NonRootScannerTransportButton);
+        TransportProtocolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.ARPSpooferButtonClicked();
-                Intent ARPSpooferActivity = new Intent(view.getContext(), ARPSpoofer.class);
-                startActivity(ARPSpooferActivity);
+                Intent TransportProtocolActivity = new Intent(view.getContext(), com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+                startActivity(TransportProtocolActivity);
             }
         });
 
-        fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
-        fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
-        fabStop.hide();
-        fabStart.setOnClickListener(new View.OnClickListener() {
+        ImportButton = (Button) findViewById(R.id.ImportButton);
+        ImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.StartClicked();
-                //TODO call packet listener here
-                Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Log.d("RootScanner MSG","Start Clicked");
+                Intent ImportIntent = new Intent (view.getContext(), com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+                startActivity(ImportIntent);
             }
         });
 
-        fabStop.setOnClickListener(new View.OnClickListener() {
+        HelpFaqButton = (Button) findViewById(R.id.HelpButton);
+        HelpFaqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.StopClicked();
-                //TODO stop listening here
-                Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Log.d("RootScanner MSG","Stop Clicked");
             }
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,16 +106,6 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    public void hideFabStart() {
-        fabStart.hide();
-        fabStop.show();
-    }
-
-    public void hideFabStop() {
-        fabStop.hide();
-        fabStart.show();
     }
 
     public void showMessage(String message) {
@@ -182,18 +163,17 @@ public class HomePage extends AppCompatActivity
             Intent RootScannerActivity = new Intent(this, RootScanner.class);
             startActivity(RootScannerActivity);
         } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, NonRootScanner.class);
+            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
             startActivity(NonRootScannerActivity);
-        } else if (id == R.id.nav_wep_crack) {
-            Intent WEPActivity = new Intent (this, WEPCrack.class);
-            startActivity(WEPActivity);
+        } else if (id == R.id.nav_non_root_sniffer_transport) {
+            Intent NonRootTransportActivity = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+            startActivity(NonRootTransportActivity);
         } else if (id == R.id.nav_Import_File) {
-            Intent i = new Intent (this, NonRootScanner.class);
-            startActivity(i);
-
+            Intent ImportActivity = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            startActivity(ImportActivity);
         } else if (id == R.id.nav_help_faq) {
-            Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
-            startActivity(helpActivity);
+            // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
+            // startActivity(helpActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
