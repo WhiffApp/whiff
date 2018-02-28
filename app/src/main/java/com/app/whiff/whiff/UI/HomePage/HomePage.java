@@ -68,7 +68,7 @@ public class HomePage extends AppCompatActivity
             public void onClick(View view) {
                 presenter.NonRootScannerButtonClicked();
                 // Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
-                Intent NonRootScannerActivity = new Intent(view.getContext(), com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+                Intent NonRootScannerActivity = new Intent(view.getContext(), com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner.class);
                 startActivity(NonRootScannerActivity);
             }
         });
@@ -168,7 +168,7 @@ public class HomePage extends AppCompatActivity
             startActivity(RootScannerActivity);
 
         } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner.class);
             startActivity(NonRootScannerActivity);
 
         } else if (id == R.id.nav_non_root_sniffer_transport) {

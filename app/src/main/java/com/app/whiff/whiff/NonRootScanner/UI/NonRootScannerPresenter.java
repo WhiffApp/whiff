@@ -16,12 +16,8 @@ public class NonRootScannerPresenter implements NonRootScannerPresenterInterface
     {
         view = homepage;
     }
-    public void StartClicked(){
-        view.hideFabStart();
-    }
-    public void StopClicked(){
-        view.hideFabStop();
-    }
+    public void StopClicked() {}
+    public void StartClicked() {}
 
     public List<File> listPacketFiles() {return Arrays.asList(FileManager.listPacketFiles()); }
 }
