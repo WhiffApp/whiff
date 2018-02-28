@@ -197,25 +197,6 @@ public class PacketDbPage extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        // if (id == R.id.nav_Packet_Capture_Db) {
-
-        if (id == R.id.nav_Import_File) {
-
-        } else if (id == R.id.nav_help_faq) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
     private void refreshList() {
 
         if (mAdapter != null) {
@@ -239,5 +220,37 @@ public class PacketDbPage extends AppCompatActivity
         i.putExtra("CaptureName", c.name);
         i.putExtra("CaptureDesc", c.desc);
         startActivity(i);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_root_packet_capture) {
+            Intent RootScannerActivity = new Intent(this, com.app.whiff.whiff.RootScanner.UI.RootScanner.class);
+            startActivity(RootScannerActivity);
+
+        } else if (id == R.id.nav_non_root_packet_capture) {
+            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+            startActivity(NonRootScannerActivity);
+
+        } else if (id == R.id.nav_non_root_sniffer_transport) {
+            Intent NonRootTransportActivity = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+            startActivity(NonRootTransportActivity);
+
+        } else if (id == R.id.nav_Import_File) {
+            Intent ImportActivity = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            startActivity(ImportActivity);
+
+        } else if (id == R.id.nav_help_faq) {
+            // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
+            // startActivity(helpActivity);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

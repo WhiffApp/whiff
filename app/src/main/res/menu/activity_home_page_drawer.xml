@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nav_Import_File"
             android:icon="@drawable/ic_file_upload_black_24dp"
-            android:title="Import File" />
+            android:title="@string/navigation_drawer_import" />
         <item
             android:id="@+id/nav_help_faq"
             android:icon="@drawable/ic_help_outline_black_24dp"

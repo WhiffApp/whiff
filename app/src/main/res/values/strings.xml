@@ -11,7 +11,7 @@
     <string name="navigation_drawer_packet_capture">Packet Capture</string>
     <string name="navigation_drawer_arp_spoofer">ARP Spoofer</string>
     <string name="navigation_drawer_wep_crack">WEP Crack</string>
-    <string name="navigation_drawer_import">Import Data</string>
+    <string name="navigation_drawer_import">View / Import File</string>
     <string name="navigation_drawer_help_faq">Help and FAQ</string>
     <string name="navigation_drawer_settings">Settings</string>
     <string name="navigation_filter">Filter</string>

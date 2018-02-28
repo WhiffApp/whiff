@@ -221,29 +221,6 @@ public class RootScanner extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_root_packet_capture) {
-            //TODO Create new activity
-        } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
-            startActivity(RootScannerActivity);
-        } else if (id == R.id.nav_Import_File) {
-
-        } else if (id == R.id.nav_help_faq) {
-            Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
-            startActivity(helpActivity);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
     public class ResponseReceiver extends BroadcastReceiver {
         public static final String ACTION_RESP =
                 "com.app.whiff.whiff.intent.action.MESSAGE_PROCESSED";
@@ -288,5 +265,37 @@ public class RootScanner extends AppCompatActivity
         Intent i = new Intent(this, PacketFileContentPage.class);
         i.putExtra("CaptureFile", f.getAbsolutePath());
         startActivity(i);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_root_packet_capture) {
+            Intent RootScannerActivity = new Intent(this, com.app.whiff.whiff.RootScanner.UI.RootScanner.class);
+            startActivity(RootScannerActivity);
+
+        } else if (id == R.id.nav_non_root_packet_capture) {
+            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+            startActivity(NonRootScannerActivity);
+
+        } else if (id == R.id.nav_non_root_sniffer_transport) {
+            Intent NonRootTransportActivity = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+            startActivity(NonRootTransportActivity);
+
+        } else if (id == R.id.nav_Import_File) {
+            Intent ImportActivity = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            startActivity(ImportActivity);
+
+        } else if (id == R.id.nav_help_faq) {
+            // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
+            // startActivity(helpActivity);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
