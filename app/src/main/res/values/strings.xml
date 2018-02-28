@@ -26,6 +26,14 @@
     <string name="title_activity_packet_file_content_page">Packet File Detail</string>
 
     <string name="filter">Filter</string>
+    <string name="title_packet_filter">Packet Filter</string>
+    <string name="hint_packet_filter_protocol">E.g. TCP/UDP</string>
+    <string name="hint_packet_filter_sip">E.g. 10.5.0.1</string>
+    <string name="hint_packet_filter_dip">E.g. 8.8.8.8</string>
+    <string name="hint_packet_filter_length"></string>
+    <string name="dialog_apply_button">Apply</string>
+    <string name="dialog_clear_button">Clear</string>
+    <string name="dialog_cancel_button">Cancel</string>
     <string name="export">Export</string>
 
     <string name="title_activity_root_scanner">Rooted Packet Capture</string>
@@ -53,5 +61,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_packetdata_list">PacketDatas</string>
     <string name="title_packetdata_detail">PacketData Detail</string>
+    <string name="title_activity_filter">FilterActivity</string>
 
 </resources>
