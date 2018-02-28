@@ -88,7 +88,10 @@ public class RootScanner extends AppCompatActivity
             public void onClick(View view) {
                 presenter.StartClicked();
                 String dir = Environment.getExternalStorageDirectory().toString() + "/Whiff/" + FileManager.generateNewFileName();
-                String TCPdumpParams = "-i any -U -w " + dir;
+                EditText edit = (EditText)findViewById(R.id.rootParameters);
+                String parameters = (String) edit.getText().toString();
+                String TCPdumpParams = "-U -w " + dir + " " + parameters;
+                edit.setText("",TextView.BufferType.EDITABLE);
 
                 if (!isServiceRunning(TCPdumpService.class)) {
                     startTCPdumpService(TCPdumpParams);
@@ -131,9 +134,9 @@ public class RootScanner extends AppCompatActivity
 
 
         // set up the RecyclerView
-        mRecyclerView = findViewById(R.id.recycler);
+        /*mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        refreshList();
+        refreshList();*/
     }
 
     public void installTCPdump() {
@@ -241,12 +244,12 @@ public class RootScanner extends AppCompatActivity
         }
         List<File> files = presenter.listPacketFiles();
         //sortFilesInDescOrder(files);
-        if (files.size() > 0) {
+        /*if (files.size() > 0) {
             mAdapter = new PacketFileRecyclerViewAdapter(this, files);
             mAdapter.setClickListener(this);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
-        }
+        }*/
     }
 
     private void sortFilesInDescOrder(List<File> files) {
