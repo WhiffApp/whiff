@@ -90,7 +90,8 @@ public class RootScanner extends AppCompatActivity
                 String dir = Environment.getExternalStorageDirectory().toString() + "/Whiff/" + FileManager.generateNewFileName();
                 EditText edit = (EditText)findViewById(R.id.rootParameters);
                 String parameters = (String) edit.getText().toString();
-                String TCPdumpParams = parameters + " -U -w " + dir;
+                String TCPdumpParams = "-U -w " + dir + " " + parameters;
+                edit.setText("",TextView.BufferType.EDITABLE);
 
                 if (!isServiceRunning(TCPdumpService.class)) {
                     startTCPdumpService(TCPdumpParams);
