@@ -66,33 +66,4 @@ public class WhiffDbHelper extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-
-    public void clearDatabase(){
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + WhiffDbContract.CaptureTable.TABLE_NAME);
-        String query1 = "CREATE TABLE " + WhiffDbContract.CaptureTable.TABLE_NAME + " (" +
-                WhiffDbContract.CaptureTable._ID                        + " INTEGER PRIMARY KEY," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_NAME           + " TEXT," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_DESCRIPTION    + " TEXT," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_FILENAME       + " TEXT," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_FILESIZE       + " INTEGER," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_STARTTIME      + " DATETIME," +
-                WhiffDbContract.CaptureTable.COLUMN_NAME_ENDTIME        + " DATETIME)";
-        db.execSQL(query1);
-
-        db.execSQL("DROP TABLE IF EXISTS " + WhiffDbContract.CaptureItemTable.TABLE_NAME);
-        String query2 = "CREATE TABLE " + WhiffDbContract.CaptureItemTable.TABLE_NAME + " (" +
-                WhiffDbContract.CaptureItemTable._ID                    + " INTEGER PRIMARY KEY," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID  + " INTEGER," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TIMESTAMP  + " DATETIME," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS + " TEXT," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCPORT    + " INTEGER," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS + " TEXT," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT    + " INTEGER," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL   + " TEXT," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH     + " INTEGER," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT       + " TEXT," +
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA       + " TEXT)";
-        db.execSQL(query2);
-    }
 }

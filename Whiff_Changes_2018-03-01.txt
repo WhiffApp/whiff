@@ -1,0 +1,10 @@
+com/app/whiff/whiff/NonRootScanner/UI/NonRootScanner.java
+com/app/whiff/whiff/NonRootScanner/UI/NonRootScannerViewInterface.java
+com/app/whiff/whiff/NonRootScanner/UI/NonRootScannerPresenterInterface.java
+com/app/whiff/whiff/NonRootScanner/UI/NonRootScannerPresenter.java
+com/app/whiff/whiff/NonRootScanner/FileManager.java
+layout/app_bar_non_root_scanner.xml
+com/app/whiff/whiff/UI/PacketDb/PacketDbPage.java
+com/app/whiff/whiff/NonRootScanner/CaptureDAO.java
+com/app/whiff/whiff/UI/PacketFile/PacketFileRecyclerViewAdapter.java
+com/app/whiff/whiff/UI/PacketFileContent/PacketFileContentPresenter.java

@@ -95,7 +95,7 @@ public class TCPdumpService extends IntentService {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getApplicationContext(), "TCPdumpService started...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "TCPdumpService started...", Toast.LENGTH_LONG).show();
             }
         });
 

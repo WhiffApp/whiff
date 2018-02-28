@@ -45,7 +45,7 @@ public class PacketFileRecyclerViewAdapter extends RecyclerView.Adapter<PacketFi
     private void setData(ViewHolder holder, File f) {
 
         String time = f.getName().substring(0, f.getName().length() - 5);
-        String name = new JDateTimeTransform().parse("yyyyMMdd_hhmmss", time).toString("yyyy-MM-dd hh:mm:ss");
+        String name = new JDateTimeTransform().parse("yyyyMMdd_hhmmss", time).toString("yyyy-MM-dd HH:mm:ss");
         holder.nameTextView.setText(name);
 
         String size = SizeFormatter.convertToStringRepresentation(f.length());

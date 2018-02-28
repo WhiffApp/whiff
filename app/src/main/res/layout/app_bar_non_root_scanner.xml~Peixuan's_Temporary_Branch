@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.whiff.whiff.UI.PacketFileContent.PacketFileContentPage">
+    tools:context="com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_packet_file_page" />
+    <include layout="@layout/content_non_root_scanner" />
 
 </android.support.design.widget.CoordinatorLayout>
