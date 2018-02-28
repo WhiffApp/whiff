@@ -1,5 +1,7 @@
 package com.app.whiff.whiff.NonRootScanner.UI;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.net.VpnService;
@@ -17,8 +19,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.app.whiff.whiff.NonRootScanner.FileManager;
+import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
 import com.app.whiff.whiff.UI.HomePage.WEPCrack;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.R;
@@ -26,25 +32,9 @@ import com.app.whiff.whiff.NonRootScanner.Utils;
 
 public class NonRootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
-    public FloatingActionButton fabStart;
-    public FloatingActionButton fabStop;
-    public NonRootScannerPresenterInterface presenter;
+
     private static final String TAG = NonRootScanner.class.getSimpleName();
-
-    private boolean waitingForVPNStart;
-
-    private BroadcastReceiver vpnStateReceiver = new BroadcastReceiver()
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            if (PacketCaptureService.BROADCAST_VPN_STATE.equals(intent.getAction()))
-            {
-                if (intent.getBooleanExtra("running", false))
-                    waitingForVPNStart = false;
-            }
-        }
-    };
+    public NonRootScannerPresenterInterface mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +43,6 @@ public class NonRootScanner extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         connectWithPresenter();
-
-        fabStart    = (FloatingActionButton) findViewById(R.id.fab_start);
-        fabStop     = (FloatingActionButton) findViewById(R.id.fab_stop);
-        fabStop.hide();
-        fabStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.StartClicked();
-                //TODO call packet listener here
-                Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        fabStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.StopClicked();
-                //TODO stop listening here
-                Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-        }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,20 +54,11 @@ public class NonRootScanner extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void hideFabStart()
-    {
-        fabStart.hide();
-        fabStop.show();
-    }
-    public void hideFabStop()
-    {
-        fabStop.hide();
-        fabStart.show();
-    }
     public void connectWithPresenter()
     {
-        presenter = new NonRootScannerPresenter(this);
+        mPresenter = new NonRootScannerPresenter(this);
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -143,15 +102,20 @@ public class NonRootScanner extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Packet_Capture_File) {
-            Intent i = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+
+            Intent i = new Intent(this,
+                    com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
             startActivity(i);
 
         } else if (id == R.id.nav_Packet_Capture_Db) {
-            Intent i = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+
+            Intent i = new Intent(this,
+                    com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
             startActivity(i);
 
         } else if (id == R.id.nav_Import_File) {
-            Intent i = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+            Intent i = new Intent (this,
+                    com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
             startActivity(i);
 
         }

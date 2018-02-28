@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,8 +12,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,35 +22,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.whiff.whiff.DBHandler;
-import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.app.whiff.whiff.RootScanner.TCPdump;
 import com.app.whiff.whiff.RootScanner.TCPdumpService;
-import com.app.whiff.whiff.UI.PacketFile.PacketFileRecyclerViewAdapter;
-import com.app.whiff.whiff.UI.PacketFileContent.PacketFileContentPage;
-
-import java.io.File;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 
 public class RootScanner extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface,
-        PacketFileRecyclerViewAdapter.ItemClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RootScannerViewInterface {
+
 
     // UI elements
+    public EditText parameters;
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-
-    // Presenter
     public RootScannerPresenterInterface presenter;
-
-    // Display elements
-    RecyclerView mRecyclerView;
-    PacketFileRecyclerViewAdapter mAdapter;
 
     // TCPdump helper
     public TCPdump tcpdump;
@@ -70,10 +54,8 @@ public class RootScanner extends AppCompatActivity
         connectWithPresenter(); // RootScannerPresenter object
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         tcpdump = new TCPdump(getApplicationContext());
-        tcpdump.installTCPdump();
-        // File Manager
-        FileManager.init();
 
+        parameters = (EditText) findViewById(R.id.parameters);
         TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
         fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
@@ -87,11 +69,9 @@ public class RootScanner extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StartClicked();
-                String dir = Environment.getExternalStorageDirectory().toString() + "/Whiff/" + FileManager.generateNewFileName();
-                EditText edit = (EditText)findViewById(R.id.rootParameters);
-                String parameters = (String) edit.getText().toString();
-                String TCPdumpParams = "-U -w " + dir + " " + parameters;
-                edit.setText("",TextView.BufferType.EDITABLE);
+                String inputText = parameters.getText().toString();
+                System.out.println("inputText = " + inputText);
+                String TCPdumpParams = "-U -w whiff.pcap";
 
                 if (!isServiceRunning(TCPdumpService.class)) {
                     startTCPdumpService(TCPdumpParams);
@@ -109,7 +89,6 @@ public class RootScanner extends AppCompatActivity
                 TCPdumpParams = "stop";
                 if (isServiceRunning(TCPdumpService.class)) {
                     stopTCPdumpService();
-                    refreshList();
                 }
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -131,12 +110,6 @@ public class RootScanner extends AppCompatActivity
         db = new DBHandler(this, null,null,1);
 
         presenter.ActivityStarted();
-
-
-        // set up the RecyclerView
-        /*mRecyclerView = findViewById(R.id.recycler);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        refreshList();*/
     }
 
     public void installTCPdump() {
@@ -224,6 +197,30 @@ public class RootScanner extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_root_packet_capture) {
+            //TODO Create new activity
+        } else if (id == R.id.nav_non_root_packet_capture) {
+            Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
+            startActivity(RootScannerActivity);
+        } else if (id == R.id.nav_wep_crack) {
+        } else if (id == R.id.nav_Import_File) {
+
+        } else if (id == R.id.nav_help_faq) {
+            Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
+            startActivity(helpActivity);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     public class ResponseReceiver extends BroadcastReceiver {
         public static final String ACTION_RESP =
                 "com.app.whiff.whiff.intent.action.MESSAGE_PROCESSED";
@@ -233,72 +230,5 @@ public class RootScanner extends AppCompatActivity
             // String text = intent.getStringExtra(TCPdumpService.PARAM_OUT_MESSAGE);
             // System.out.println(text);
         }
-    }
-
-    // Display elements
-    private void refreshList() {
-
-        if (mAdapter != null) {
-            mAdapter.setClickListener(null);
-            mAdapter = null;
-        }
-        List<File> files = presenter.listPacketFiles();
-        //sortFilesInDescOrder(files);
-        /*if (files.size() > 0) {
-            mAdapter = new PacketFileRecyclerViewAdapter(this, files);
-            mAdapter.setClickListener(this);
-            mRecyclerView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-        }*/
-    }
-
-    private void sortFilesInDescOrder(List<File> files) {
-        Collections.sort(files, new Comparator<File>() {
-            @Override
-            public int compare(File f1, File f2) {
-                return f1.lastModified() > f2.lastModified() ? 1 : 0;
-            }
-        });
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        File f = mAdapter.getItem(position);
-        //Toast.makeText(this, f.getAbsolutePath(), Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, PacketFileContentPage.class);
-        i.putExtra("CaptureFile", f.getAbsolutePath());
-        startActivity(i);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_root_packet_capture) {
-            Intent RootScannerActivity = new Intent(this, com.app.whiff.whiff.RootScanner.UI.RootScanner.class);
-            startActivity(RootScannerActivity);
-
-        } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
-            startActivity(NonRootScannerActivity);
-
-        } else if (id == R.id.nav_non_root_sniffer_transport) {
-            Intent NonRootTransportActivity = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
-            startActivity(NonRootTransportActivity);
-
-        } else if (id == R.id.nav_Import_File) {
-            Intent ImportActivity = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
-            startActivity(ImportActivity);
-
-        } else if (id == R.id.nav_help_faq) {
-            // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
-            // startActivity(helpActivity);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

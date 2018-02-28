@@ -3,9 +3,6 @@ package com.app.whiff.whiff.NonRootScanner;
 import android.os.Environment;
 
 import java.io.File;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,9 +45,7 @@ public class FileManager {
     }
 
     public static String generateNewFileName(){
-        //return new SimpleDateFormat("yyyyMMddHHmmss'.pcap'").format(new Date());
-        //return new SimpleDateFormat("yyyy-MM-dd@HH_mm_ss'.pcap'").format(new Date());
-        return new SimpleDateFormat("yyyyMMdd_hhmmss'.pcap'").format(new Date());
+        return new SimpleDateFormat("yyyyMMdd_HHmmss'.pcap'").format(new Date());
     }
 
     public static File createNewPacketFile() {
@@ -70,7 +65,7 @@ public class FileManager {
         try {
 
             String time = filename.substring(0, filename.length() - FileExtensionLength);
-            String name = new JDateTimeTransform().parse("yyyyMMdd_hhmmss", time).toString("yyyy-MM-dd hh:mm:ss");
+            String name = new JDateTimeTransform().parse("yyyyMMdd_hhmmss", time).toString("yyyy-MM-dd HH:mm:ss");
             fn = name;
 
         } catch(Exception e) {
