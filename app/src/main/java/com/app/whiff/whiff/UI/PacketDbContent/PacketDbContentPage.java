@@ -8,9 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -20,8 +17,6 @@ import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
 import com.app.whiff.whiff.NonRootScanner.CaptureItem;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilterQuery;
 import com.app.whiff.whiff.R;
 
 
@@ -35,7 +30,6 @@ public class PacketDbContentPage extends AppCompatActivity implements
     private PacketDbContentPagePresenterInterface mPresenter;
     private LinearLayout mProgressBar;
     private long mCaptureID;
-    private PacketContentFilter mFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,40 +54,8 @@ public class PacketDbContentPage extends AppCompatActivity implements
         setTitle(captureDesc);
 
         mCaptureID = intent.getLongExtra("CaptureID", 0);
-        PacketContentFilter contentFilter = intent.getParcelableExtra("PACKET_CONTENT_FILTER");
-
-        PacketContentFilterQuery aQuery = new PacketContentFilterQuery();
-        aQuery.captureID = mCaptureID;
-        aQuery.contentFilter = contentFilter;
-
         LoadCaptureItemsTask aTask = new LoadCaptureItemsTask();
-        aTask.execute(aQuery);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.filter_settings) {
-            return true;
-        }
-
-        if (id == R.id.export_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        aTask.execute(mCaptureID);
     }
 
     public void connectWithPresenter()
@@ -136,7 +98,7 @@ public class PacketDbContentPage extends AppCompatActivity implements
                 .setMessage(item.text).show();
     }
 
-    private class LoadCaptureItemsTask extends AsyncTask<PacketContentFilterQuery, Void, List<CaptureItem>> {
+    private class LoadCaptureItemsTask extends AsyncTask<Long, Void, List<CaptureItem>> {
 
         @Override
         protected void onPreExecute() {
@@ -161,18 +123,18 @@ public class PacketDbContentPage extends AppCompatActivity implements
         }
 
         @Override
-        protected List<CaptureItem> doInBackground(PacketContentFilterQuery... queries) {
+        protected List<CaptureItem> doInBackground(Long... IDs) {
 
             List<CaptureItem> items = new ArrayList<CaptureItem>(0);
 
             try {
 
-                if (queries != null && queries.length > 0) {
-                    PacketContentFilterQuery query = queries[0];
-                    items = mPresenter.getCaptureItems(query);
+                if (IDs != null && IDs.length > 0) {
+                    Long filename = IDs[0];
+                    items = mPresenter.getCaptureItems(mCaptureID);
                 }
             } catch(Exception e) {
-                Log.e(TAG, e.getMessage(), e);
+
             }
             return items;
         }

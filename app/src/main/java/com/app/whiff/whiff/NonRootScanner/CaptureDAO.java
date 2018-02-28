@@ -3,14 +3,11 @@ package com.app.whiff.whiff.NonRootScanner;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +20,6 @@ import java.util.List;
 
 public class CaptureDAO implements Closeable {
 
-    private static final String TAG = CaptureDAO.class.getSimpleName();
     private WhiffDbHelper mDbHelper;
     private Long mCaptureID = -1L;
 
@@ -242,157 +238,6 @@ public class CaptureDAO implements Closeable {
         }
         catch(Exception e) {
 
-        }
-        finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        return items;
-    }
-
-    public List<CaptureItem> getCaptureItems(Long captureID, PacketContentFilter filter) {
-
-        if ( captureID <= 0 )
-            throw new IllegalArgumentException("Invalid capture id.");
-
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
-        String[] projection = {
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TIMESTAMP,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCPORT,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT,
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA
-        };
-
-        // Returns all rows
-        String selection = WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID + " = ?";
-        String[] selectionArgs = null;
-
-        if (filter != null) {
-            ArrayList<String> args = new ArrayList<>(5);
-            final StringBuilder sb = new StringBuilder();
-
-            sb.append(WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID + " = ")
-                    .append(captureID);
-
-            if (filter.protocol != null && filter.protocol != "") {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL);
-                sb.append(" = \'" + filter.protocol + "\'");
-            }
-
-            if (filter.sourceIP != null && filter.sourceIP != "") {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS);
-                sb.append(" = \'" + filter.sourceIP + "\'");
-            }
-
-            if (filter.destinationIP != null && filter.destinationIP != "") {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS);
-                sb.append(" = \'" + filter.destinationIP + "\'");
-            }
-
-            if (filter.length > 0) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH);
-                sb.append(" <= " + filter.length);
-            }
-            selection = sb.toString();
-            selectionArgs = null;
-
-            /*
-            sb.append(selection);
-            args.add(captureID.toString());
-
-            if (filter.protocol != null && filter.protocol.length() >= 2) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL + " = ?");
-                args.add(filter.protocol);
-            }
-
-            if (filter.sourceIP != null && filter.sourceIP.length() >= 8) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS + " = ?");
-                args.add(filter.sourceIP);
-            }
-
-            if (filter.destinationIP != null && filter.destinationIP.length() >= 8) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS + " = ?");
-                args.add(filter.destinationIP);
-            }
-
-            if (filter.length > 0) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH + " <= ?");
-                args.add(filter.length.toString());
-            }
-            selection = sb.toString();
-            selectionArgs = new String[args.size()];
-            selectionArgs = args.toArray(selectionArgs);
-            */
-
-        } else {
-            selection = WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID + " = ?";
-            selectionArgs = new String[] { captureID.toString() };
-        }
-
-        // How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                WhiffDbContract.CaptureItemTable.COLUMN_NAME_TIMESTAMP + " ASC";
-
-        List<CaptureItem> items = new ArrayList<>();
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    WhiffDbContract.CaptureItemTable.TABLE_NAME,// The table to query
-                    projection,                                 // The columns to return
-                    selection,                                  // The columns for the WHERE clause
-                    selectionArgs,                              // The values for the WHERE clause
-                    null,                               // don't group the rows
-                    null,                                // don't filter by row groups
-                    sortOrder                                  // The sort order
-            );
-
-            while (cursor.moveToNext()) {
-
-                CaptureItem item = new CaptureItem();
-
-                long date = cursor.getLong(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_TIMESTAMP));
-                item.timestamp = new Date(date);
-
-                item.sourceAddress = cursor.getString(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS));
-
-                item.sourcePort = cursor.getInt(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCPORT));
-
-                item.destinationAddress = cursor.getString(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS));
-
-                item.destinationPort = cursor.getInt(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTPORT));
-
-                item.protocol = cursor.getString(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL));
-
-                item.length = cursor.getInt(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH));
-
-                item.text = cursor.getString(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_TEXT));
-
-                item.data = cursor.getString(
-                        cursor.getColumnIndexOrThrow(WhiffDbContract.CaptureItemTable.COLUMN_NAME_DATA));
-
-                items.add(item);
-            }
-        }
-        catch(Exception e) {
-            Log.e(TAG, e.getMessage(), e);
         }
         finally {
             if (cursor != null) {

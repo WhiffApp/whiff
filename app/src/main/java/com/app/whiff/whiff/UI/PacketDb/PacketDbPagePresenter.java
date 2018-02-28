@@ -5,13 +5,11 @@ import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.Capture;
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
 
 public class PacketDbPagePresenter implements PacketDbPagePresenterInterface {
 
     public PacketDbPageViewInterface view;
     private CaptureDAO mDataAccess;
-    private PacketContentFilter mFilter = new PacketContentFilter();
 
     public PacketDbPagePresenter(PacketDbPage page, CaptureDAO dataAccess)
     {
@@ -29,9 +27,5 @@ public class PacketDbPagePresenter implements PacketDbPagePresenterInterface {
 
     public List<Capture> getCaptureList() {
         return mDataAccess.getAllCapture();
-    }
-
-    public PacketContentFilter getPacketContentFilter() {
-        return mFilter;
     }
 }

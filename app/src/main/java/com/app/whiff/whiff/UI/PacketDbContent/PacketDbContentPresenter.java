@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
 import com.app.whiff.whiff.NonRootScanner.CaptureItem;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilterQuery;
 
 
 public class PacketDbContentPresenter implements PacketDbContentPagePresenterInterface {
@@ -22,10 +20,5 @@ public class PacketDbContentPresenter implements PacketDbContentPagePresenterInt
     public List<CaptureItem> getCaptureItems(long captureID) {
 
         return mDataAccess.getCaptureItems(captureID);
-    }
-
-    public List<CaptureItem> getCaptureItems(PacketContentFilterQuery query) {
-
-        return mDataAccess.getCaptureItems(query.captureID, query.contentFilter);
     }
 }

@@ -5,5 +5,6 @@ package com.app.whiff.whiff.NonRootScanner.UI;
  */
 
 public interface NonRootScannerViewInterface {
-
+    void hideFabStart();
+    void hideFabStop();
 }

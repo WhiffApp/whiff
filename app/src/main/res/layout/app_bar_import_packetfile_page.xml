@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_non_root_scanner_page" />
+    <include layout="@layout/content_home_page" />
 
 </android.support.design.widget.CoordinatorLayout>

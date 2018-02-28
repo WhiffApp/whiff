@@ -1,8 +1,10 @@
 package com.app.whiff.whiff.ARPSpoofer.UI;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -17,8 +19,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.app.whiff.whiff.ARPSpoofer.ARPSpoofService;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.app.whiff.whiff.R;
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.RootTools;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 
 public class ARPSpoofer extends AppCompatActivity
@@ -27,7 +38,10 @@ public class ARPSpoofer extends AppCompatActivity
     public TextView TV1;
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
+    public Context context;
     public ARPSpooferPresenterInterface presenter;
+
+    public ARPSpoofService arpSpoofService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +54,9 @@ public class ARPSpoofer extends AppCompatActivity
 
         connectWithPresenter(); // ARPSpooferPresenter object
 
-        Context context = getApplicationContext();
+        context = getApplicationContext();
+
+        installARPSpoof();
 
         TV1 = (TextView) findViewById(R.id.TV1);
         fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
@@ -50,6 +66,10 @@ public class ARPSpoofer extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StartClicked();
+                String ARPSpooferParams = "192.168.1.254";
+                if (!isServiceRunning(ARPSpoofService.class)) {
+                    startARPSpoofService(ARPSpooferParams);
+                }
                 //TODO call packet listener here
                 Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -60,6 +80,9 @@ public class ARPSpoofer extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 presenter.StopClicked();
+                if (isServiceRunning(ARPSpoofService.class)) {
+                    stopARPSpoofService();
+                }
                 //TODO stop listening here
                 Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -77,6 +100,49 @@ public class ARPSpoofer extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         presenter.ActivityStarted();
+    }
+
+    public void getRouterIPAddress() {
+
+    }
+
+    public void installARPSpoof() {
+        new Thread(new Runnable() { // So that UI thread is not blocked by su calls.
+            @Override
+            public void run() {
+                if (Looper.myLooper() == Looper.getMainLooper()) {
+                    Log.d("ARPSpoofer", "Running on main thread");
+                } else {
+                    Log.d("ARPSpoofer", "Not running on main thread");
+
+                    // Install arpspoof if not already installed
+                    if (RootTools.isAccessGiven()) {
+                        RootTools.installBinary(context, R.raw.arpspoof, "arpspoof");
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void startARPSpoofService(String params) {
+        Intent intent = new Intent(ARPSpoofer.this, ARPSpoofService.class);
+        intent.putExtra(ARPSpoofService.ACTION_START,params);
+        startService(intent);
+    }
+
+    public void stopARPSpoofService() {
+        Intent intent = new Intent(ARPSpoofer.this, ARPSpoofService.class);
+        stopService(intent);
+    }
+
+    public boolean isServiceRunning(Class s) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (s.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void hideFabStart() {
@@ -145,7 +211,7 @@ public class ARPSpoofer extends AppCompatActivity
         } else if (id == R.id.nav_non_root_packet_capture) {
             Intent RootScannerActivity = new Intent(this, NonRootScanner.class);
             startActivity(RootScannerActivity);
-        } else if (id == R.id.nav_wep_crack) {
+        // } else if (id == R.id.nav_wep_crack) {
         } else if (id == R.id.nav_Import_File) {
 
         } else if (id == R.id.nav_help_faq) {

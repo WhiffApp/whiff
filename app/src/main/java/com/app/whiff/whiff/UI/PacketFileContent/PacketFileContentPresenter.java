@@ -74,7 +74,7 @@ public class PacketFileContentPresenter implements PacketFileContentPagePresente
             item.length = detailsPacket.getTotalSize();
 
             //time
-            long timestampInMillis = detailsPacket.getCaptureHeader().timestampInMillis();
+            long timestampInMillis = detailsPacket.getCaptureHeader().timestampInMillis()/1000;
             item.timestamp = new Date(timestampInMillis);
 
             try {

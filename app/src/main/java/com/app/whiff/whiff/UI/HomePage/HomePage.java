@@ -1,10 +1,7 @@
 package com.app.whiff.whiff.UI.HomePage;
 
 import android.content.Context;
-<<<<<<< HEAD
 import android.net.Uri;
-=======
->>>>>>> Peixuan's_Temporary_Branch
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -34,18 +31,10 @@ public class HomePage extends AppCompatActivity
     // Buttons to launch other activities
     public Button RootScannerButton;
     public Button NonRootScannerButton;
-<<<<<<< HEAD
     public Button TransportProtocolButton;
     public Button ImportButton;
     public Button ARPSpooferButton;
     public Button HelpFaqButton;
-=======
-    public Button ARPSpooferButton;
-
-    // Start/Stop Button
-    public FloatingActionButton fabStart;
-    public FloatingActionButton fabStop;
->>>>>>> Peixuan's_Temporary_Branch
 
     // Reference to presenter
     public HomePagePresenterInterface presenter;
@@ -65,7 +54,6 @@ public class HomePage extends AppCompatActivity
 
         RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
         RootScannerButton.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
             @Override
             public void onClick(View view) {
                 presenter.RootScannerButtonClicked();
@@ -82,58 +70,6 @@ public class HomePage extends AppCompatActivity
                 // Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
                 Intent NonRootScannerActivity = new Intent(view.getContext(), com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
                 startActivity(NonRootScannerActivity);
-=======
-            @Override
-            public void onClick(View view) {
-                presenter.RootScannerButtonClicked();
-                Intent RootScannerActivity = new Intent(view.getContext(), RootScanner.class);
-                startActivity(RootScannerActivity);
-            }
-        });
-
-        NonRootScannerButton = (Button) findViewById(R.id.NonRootScannerButton);
-        NonRootScannerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.NonRootScannerButtonClicked();
-                Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
-                startActivity(NonRootScannerActivity);
-            }
-        });
-
-        ARPSpooferButton = (Button) findViewById(R.id.ARPSpooferButton);
-        ARPSpooferButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.ARPSpooferButtonClicked();
-                Intent ARPSpooferACtivity = new Intent(view.getContext(), ARPSpoofer.class);
-                startActivity(ARPSpooferACtivity);
-            }
-        });
-
-        fabStart = (FloatingActionButton) findViewById(R.id.fab_start);
-        fabStop = (FloatingActionButton) findViewById(R.id.fab_stop);
-        fabStop.hide();
-        fabStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.StartClicked();
-                //TODO call packet listener here
-                Snackbar.make(view, "Start clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Log.d("RootScanner MSG","Start Clicked");
-            }
-        });
-
-        fabStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.StopClicked();
-                //TODO stop listening here
-                Snackbar.make(view, "Stop clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Log.d("RootScanner MSG","Stop Clicked");
->>>>>>> Peixuan's_Temporary_Branch
             }
         });
 
@@ -177,25 +113,9 @@ public class HomePage extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-<<<<<<< HEAD
     public void showMessage(String message) {
     }
 
-=======
-    public void hideFabStart() {
-        fabStart.hide();
-        fabStop.show();
-    }
-
-    public void hideFabStop() {
-        fabStop.hide();
-        fabStart.show();
-    }
-
-    public void showMessage(String message) {
-    }
-
->>>>>>> Peixuan's_Temporary_Branch
     public void connectWithPresenter() {
         // presenter = new RootScannerPresenter(this, handler);
         presenter = new HomePagePresenter(this);
@@ -244,7 +164,6 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_root_packet_capture) {
-<<<<<<< HEAD
             Intent RootScannerActivity = new Intent(this, RootScanner.class);
             startActivity(RootScannerActivity);
 
@@ -263,24 +182,6 @@ public class HomePage extends AppCompatActivity
         } else if (id == R.id.nav_help_faq) {
             // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
             // startActivity(helpActivity);
-=======
-            //TODO Create new activity
-            Intent RootScannerActivity = new Intent(this, RootScanner.class);
-            startActivity(RootScannerActivity);
-        } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, NonRootScanner.class);
-            startActivity(NonRootScannerActivity);
-        } else if (id == R.id.nav_wep_crack) {
-            Intent WEPActivity = new Intent (this, WEPCrack.class);
-            startActivity(WEPActivity);
-        } else if (id == R.id.nav_Import_File) {
-            Intent i = new Intent (this, NonRootScanner.class);
-            startActivity(i);
-
-        } else if (id == R.id.nav_help_faq) {
-            Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
-            startActivity(helpActivity);
->>>>>>> Peixuan's_Temporary_Branch
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

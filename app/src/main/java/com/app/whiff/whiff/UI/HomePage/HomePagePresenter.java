@@ -19,7 +19,6 @@ public class HomePagePresenter implements HomePagePresenterInterface {
 
     public void RootScannerButtonClicked() {
         // Start RootScanner Activity
-<<<<<<< HEAD
     }
 
     public void NonRootScannerButtonClicked() {
@@ -36,24 +35,4 @@ public class HomePagePresenter implements HomePagePresenterInterface {
     public void StopClicked() {
     }
 
-=======
-    }
-
-    public void NonRootScannerButtonClicked() {
-        // Start NonRootScanner Activity
-    }
-
-    public void ARPSpooferButtonClicked() {
-        // Start ARPSpoofer Activity
-    }
-
-    public void StartClicked() {
-        view.hideFabStart();
-    }
-
-    public void StopClicked() {
-        view.hideFabStop();
-    }
-
->>>>>>> Peixuan's_Temporary_Branch
 }

@@ -5,10 +5,5 @@ package com.app.whiff.whiff.UI.HomePage;
  */
 
 public interface HomePageViewInterface {
-<<<<<<< HEAD
-=======
-    void hideFabStart();
-    void hideFabStop();
->>>>>>> Peixuan's_Temporary_Branch
     void showMessage(String message);
 }

@@ -5,28 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.app.whiff.whiff.NonRootScanner.FileManager;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
 
 /**
- *
- * This class manages the state between UI and Data Model for Packet Content Filtering
- *
- * @author Yeo Pei Xuan
+ * Created by gyych on 1/1/2018.
  */
 
 public class NonRootScannerPresenter implements NonRootScannerPresenterInterface {
-
     public NonRootScannerViewInterface view;
-    private PacketContentFilter mFilter;
-
     public NonRootScannerPresenter(NonRootScanner homepage)
     {
         view = homepage;
-        mFilter = new PacketContentFilter();
+    }
+    public void StartClicked(){
+        view.hideFabStart();
+    }
+    public void StopClicked(){
+        view.hideFabStop();
     }
 
-    public PacketContentFilter getPacketContentFilter() {
-        return mFilter;
-    }
-
+    public List<File> listPacketFiles() {return Arrays.asList(FileManager.listPacketFiles()); }
 }
