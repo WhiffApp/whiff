@@ -5,4 +5,5 @@ package com.app.whiff.whiff.NonRootScanner.UI;
  */
 
 public interface NonRootScannerViewInterface {
+
 }

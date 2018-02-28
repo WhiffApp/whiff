@@ -1,6 +1,9 @@
 package com.app.whiff.whiff.UI.PacketDb;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.VpnService;
 import android.os.Bundle;
@@ -14,9 +17,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -24,6 +31,8 @@ import com.app.whiff.whiff.NonRootScanner.Capture;
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
 import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
+import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
+import com.app.whiff.whiff.NonRootScanner.UI.NonRootScannerPresenterInterface;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.UI.PacketDbContent.PacketDbContentPage;
 
@@ -34,12 +43,14 @@ public class PacketDbPage extends AppCompatActivity
 
     public FloatingActionButton fabStart;
     public FloatingActionButton fabStop;
-    public PacketDbPagePresenterInterface presenter;
+    public PacketDbPagePresenterInterface mPresenter;
     private static final int VPN_REQUEST_CODE = 0x0F;
     private static final String TAG = PacketDbPage.class.getSimpleName();
 
     RecyclerView mRecyclerView;
     PacketDbRecyclerViewAdapter mAdapter;
+
+    private Dialog mFilterDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +68,7 @@ public class PacketDbPage extends AppCompatActivity
         fabStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.StartClicked();
+                mPresenter.StartClicked();
 
                 startOrStopCapture();
             }
@@ -65,7 +76,7 @@ public class PacketDbPage extends AppCompatActivity
         fabStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.StopClicked();
+                mPresenter.StopClicked();
 
                 startOrStopCapture();
                 refreshList();
@@ -84,11 +95,11 @@ public class PacketDbPage extends AppCompatActivity
         PacketCaptureService.getIsRunning().subscribe(isRunning -> {
             if (isRunning) {
                 Log.e(TAG,"Packet Capture Service - Started");
-                presenter.StartClicked();
+                mPresenter.StartClicked();
 
             } else {
                 Log.e(TAG,"Packet Capture Service - Stopped");
-                presenter.StopClicked();
+                mPresenter.StopClicked();
             }
         });
 
@@ -98,11 +109,18 @@ public class PacketDbPage extends AppCompatActivity
         mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         refreshList();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        mFilterDialog = builder.setTitle(R.string.title_packet_filter)
+                .setView(R.layout.dialog_packet_filter)
+                .setPositiveButton(R.string.dialog_apply_button,  applyButtonOnClickListener)
+                .setNegativeButton(R.string.dialog_cancel_button, cancelButtonOnClickListener)
+                .create();
     }
 
     public void connectWithPresenter()
     {
-        presenter = new PacketDbPagePresenter(this,
+        mPresenter = new PacketDbPagePresenter(this,
                 new CaptureDAO(this.getApplicationContext()));
     }
 
@@ -187,6 +205,7 @@ public class PacketDbPage extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.filter_settings) {
+            onOptionItemFilterClicked();
             return true;
         }
 
@@ -197,6 +216,25 @@ public class PacketDbPage extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        // if (id == R.id.nav_Packet_Capture_Db) {
+
+        if (id == R.id.nav_Import_File) {
+
+        } else if (id == R.id.nav_help_faq) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     private void refreshList() {
 
         if (mAdapter != null) {
@@ -204,7 +242,7 @@ public class PacketDbPage extends AppCompatActivity
             mAdapter = null;
         }
 
-        List<Capture> files = presenter.getCaptureList();
+        List<Capture> files = mPresenter.getCaptureList();
         mAdapter = new PacketDbRecyclerViewAdapter(this, files);
         mAdapter.setClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
@@ -219,38 +257,144 @@ public class PacketDbPage extends AppCompatActivity
         i.putExtra("CaptureID", c.ID);
         i.putExtra("CaptureName", c.name);
         i.putExtra("CaptureDesc", c.desc);
+
+        Bundle extras = new Bundle();
+        extras.putParcelable("PACKET_CONTENT_FILTER", mPresenter.getPacketContentFilter());
+        i.putExtras(extras);
+
         startActivity(i);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    private DialogInterface.OnClickListener applyButtonOnClickListener = new DialogInterface.OnClickListener() {
 
-        if (id == R.id.nav_root_packet_capture) {
-            Intent RootScannerActivity = new Intent(this, com.app.whiff.whiff.RootScanner.UI.RootScanner.class);
-            startActivity(RootScannerActivity);
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
 
-        } else if (id == R.id.nav_non_root_packet_capture) {
-            Intent NonRootScannerActivity = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
-            startActivity(NonRootScannerActivity);
+            PacketContentFilter filter = mPresenter.getPacketContentFilter();
 
-        } else if (id == R.id.nav_non_root_sniffer_transport) {
-            Intent NonRootTransportActivity = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
-            startActivity(NonRootTransportActivity);
+            //  Protocol
+            CheckBox check_protocol = mFilterDialog.findViewById(R.id.check_protocol);
+            if (check_protocol.isChecked()) {
+                EditText edit_protocol = mFilterDialog.findViewById(R.id.edit_protocol);
+                String protocol = edit_protocol.getText().toString();
+                if (protocol != null && protocol != "") {
+                    filter.protocol = protocol;
+                }
+                else {
+                    check_protocol.setChecked(Boolean.FALSE);
+                }
+            } else {
+                filter.protocol = null;
+            }
 
-        } else if (id == R.id.nav_Import_File) {
-            Intent ImportActivity = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
-            startActivity(ImportActivity);
+            //  Source IP
+            CheckBox check_sip = mFilterDialog.findViewById(R.id.check_sip);
+            if (check_sip.isChecked()) {
+                EditText edit_sip = mFilterDialog.findViewById(R.id.edit_sip);
+                String sip = edit_sip.getText().toString();
+                if (sip != null && sip != "") {
+                    filter.sourceIP = sip;
+                }
+                else {
+                    check_sip.setChecked(Boolean.FALSE);
+                }
+            } else {
+                filter.sourceIP = null;
+            }
 
-        } else if (id == R.id.nav_help_faq) {
-            // Intent helpActivity = new Intent (this, com.app.whiff.whiff.help.class);
-            // startActivity(helpActivity);
+            //  Destination IP
+            CheckBox check_dip = mFilterDialog.findViewById(R.id.check_dip);
+            if (check_dip.isChecked()) {
+                EditText edit_dip = mFilterDialog.findViewById(R.id.edit_dip);
+                String dip = edit_dip.getText().toString();
+                if (dip != null && dip != "") {
+                    filter.destinationIP = dip;
+                }
+                else {
+                    check_dip.setChecked(Boolean.FALSE);
+                }
+            } else {
+                filter.destinationIP = null;
+            }
+
+            //  Length
+            CheckBox check_length = mFilterDialog.findViewById(R.id.check_length);
+            if (check_length.isChecked()) {
+                EditText edit_length = mFilterDialog.findViewById(R.id.edit_length);
+                String length = edit_length.getText().toString();
+
+                try {
+                    if (length != null && length != "" && Long.valueOf(length) > 0) {
+                        filter.length = Long.valueOf(length);
+                    }
+                    else {
+                        edit_length.setText("");
+                        check_length.setChecked(Boolean.FALSE);
+                    }
+                } catch(Exception e) {
+                    edit_length.setText("");
+                    check_length.setChecked(Boolean.FALSE);
+                }
+            } else {
+                filter.length = 0L;
+            }
+
+            mFilterDialog.dismiss();
+        }
+    };
+
+    private DialogInterface.OnClickListener cancelButtonOnClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.cancel();
+        }
+    };
+
+    private void onOptionItemFilterClicked() {
+
+        initPacketContentFilterDialog(mFilterDialog, mPresenter.getPacketContentFilter());
+        mFilterDialog.show();
+    }
+
+    private void initPacketContentFilterDialog(Dialog dialog, PacketContentFilter filter) {
+
+        if (filter.protocol != null && filter.protocol != "") {
+
+            EditText edit_protocol = dialog.findViewById(R.id.edit_protocol);
+            edit_protocol.setText(filter.protocol);
+
+            CheckBox check_protocol = dialog.findViewById(R.id.check_protocol);
+            check_protocol.setChecked(Boolean.TRUE);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        //  Source IP
+        if (filter.sourceIP != null && filter.sourceIP != "") {
+
+            EditText edit_sip = dialog.findViewById(R.id.edit_sip);
+            edit_sip.setText(filter.sourceIP);
+
+            CheckBox check_sip = dialog.findViewById(R.id.check_sip);
+            check_sip.setChecked(Boolean.TRUE);
+        }
+
+        //  Destination IP
+        if (filter.destinationIP != null && filter.destinationIP != "") {
+
+            EditText edit_dip = dialog.findViewById(R.id.edit_dip);
+            edit_dip.setText(filter.destinationIP);
+
+            CheckBox check_dip = dialog.findViewById(R.id.check_dip);
+            check_dip.setChecked(Boolean.TRUE);
+        }
+
+        //  Length
+        if (filter.length > 0L) {
+            EditText edit_length = dialog.findViewById(R.id.edit_length);
+            edit_length.setText(filter.length.toString());
+
+            CheckBox check_length = dialog.findViewById(R.id.check_length);
+            check_length.setChecked(Boolean.TRUE);
+        }
     }
+
 }
