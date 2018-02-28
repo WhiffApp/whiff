@@ -1,12 +1,8 @@
-package com.app.whiff.whiff.NonRootScanner.UI;
+package com.app.whiff.whiff;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.net.VpnService;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,27 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 
-import com.app.whiff.whiff.NonRootScanner.FileManager;
-import com.app.whiff.whiff.UI.HomePage.WEPCrack;
-import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
-import com.app.whiff.whiff.R;
-import com.app.whiff.whiff.NonRootScanner.Utils;
-
-public class NonRootScanner extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
-
-    public NonRootScannerPresenterInterface presenter;
-    private static final String TAG = NonRootScanner.class.getSimpleName();
+public class FilterActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_non_root_scanner);
+        setContentView(R.layout.activity_filter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        connectWithPresenter();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,10 +42,6 @@ public class NonRootScanner extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void connectWithPresenter()
-    {
-        presenter = new NonRootScannerPresenter(this);
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,7 +55,7 @@ public class NonRootScanner extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
+        getMenuInflater().inflate(R.menu.filter, menu);
         return true;
     }
 
@@ -77,11 +67,7 @@ public class NonRootScanner extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.filter_settings) {
-            return true;
-        }
-
-        if (id == R.id.export_settings) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
@@ -94,17 +80,17 @@ public class NonRootScanner extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_Packet_Capture_File) {
-            Intent i = new Intent(this, com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
-            startActivity(i);
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_Packet_Capture_Db) {
-            Intent i = new Intent(this, com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
-            startActivity(i);
+        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_Import_File) {
-            Intent i = new Intent (this, com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
-            startActivity(i);
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
 
         }
 
