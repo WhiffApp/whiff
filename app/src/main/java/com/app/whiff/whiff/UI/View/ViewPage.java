@@ -29,6 +29,7 @@ import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
 import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
+import com.app.whiff.whiff.NonRootScanner.Protocols;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.UI.PacketDbContent.PacketDbContentPage;
 
@@ -217,18 +218,22 @@ public class ViewPage extends AppCompatActivity
             PacketContentFilter filter = mPresenter.getPacketContentFilter();
 
             //  Protocol
-            CheckBox check_protocol = mFilterDialog.findViewById(R.id.check_protocol);
-            if (check_protocol.isChecked()) {
-                EditText edit_protocol = mFilterDialog.findViewById(R.id.edit_protocol);
-                String protocol = edit_protocol.getText().toString();
-                if (protocol != null && protocol != "") {
-                    filter.protocol = protocol;
-                }
-                else {
-                    check_protocol.setChecked(Boolean.FALSE);
-                }
-            } else {
-                filter.protocol = null;
+            CheckBox check_tcp = mFilterDialog.findViewById(R.id.check_tcp);
+            filter.protocols.remove(Protocols.Tcp);
+            if (check_tcp.isChecked()) {
+                filter.protocols.add(Protocols.Tcp);
+            }
+
+            CheckBox check_udp = mFilterDialog.findViewById(R.id.check_udp);
+            filter.protocols.remove(Protocols.Udp);
+            if (check_udp.isChecked()) {
+                filter.protocols.add(Protocols.Udp);
+            }
+
+            CheckBox check_http = mFilterDialog.findViewById(R.id.check_http);
+            filter.protocols.remove(Protocols.Http);
+            if (check_http.isChecked()) {
+                filter.protocols.add(Protocols.Http);
             }
 
             //  Source IP
@@ -302,13 +307,25 @@ public class ViewPage extends AppCompatActivity
 
     private void initPacketContentFilterDialog(Dialog dialog, PacketContentFilter filter) {
 
-        if (filter.protocol != null && filter.protocol != "") {
+        if (filter.protocols != null && filter.protocols.size() > 0) {
 
-            EditText edit_protocol = dialog.findViewById(R.id.edit_protocol);
-            edit_protocol.setText(filter.protocol);
+            for(String protocol : filter.protocols) {
 
-            CheckBox check_protocol = dialog.findViewById(R.id.check_protocol);
-            check_protocol.setChecked(Boolean.TRUE);
+                if (protocol == Protocols.Tcp) {
+                    CheckBox check_tcp = dialog.findViewById(R.id.check_tcp);
+                    check_tcp.setChecked(Boolean.TRUE);
+                }
+
+                if (protocol == Protocols.Udp) {
+                    CheckBox check_udp = dialog.findViewById(R.id.check_udp);
+                    check_udp.setChecked(Boolean.TRUE);
+                }
+
+                if (protocol == Protocols.Http) {
+                    CheckBox check_http = dialog.findViewById(R.id.check_http);
+                    check_http.setChecked(Boolean.TRUE);
+                }
+            }
         }
 
         //  Source IP

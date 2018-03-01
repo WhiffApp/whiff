@@ -24,6 +24,12 @@ import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
 import com.app.whiff.whiff.NonRootScanner.PacketContentFilterQuery;
 import com.app.whiff.whiff.R;
 
+/**
+ * Provides CRUD data access functions to the tables stored
+ * in the database.
+ *
+ * @author Yeo Pei Xuan
+ */
 
 public class PacketDbContentPage extends AppCompatActivity implements
         PacketDbContentPageViewInterface,

@@ -284,9 +284,21 @@ public class CaptureDAO implements Closeable {
             sb.append(WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID + " = ")
                     .append(captureID);
 
-            if (filter.protocol != null && filter.protocol != "") {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL);
-                sb.append(" = \'" + filter.protocol + "\'");
+            if (filter.protocols != null && filter.protocols.size() > 0) {
+                sb.append(" AND ( ");
+
+                String protocol = "";
+                for(int index = 0; index < filter.protocols.size(); ++index) {
+
+                    protocol = filter.protocols.get(index);
+
+                    if (index > 0) {
+                        sb.append(" OR ");
+                    }
+                    sb.append(WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL);
+                    sb.append(" = \'" + protocol + "\'");
+                }
+                sb.append(" )");
             }
 
             if (filter.sourceIP != null && filter.sourceIP != "") {
@@ -305,34 +317,6 @@ public class CaptureDAO implements Closeable {
             }
             selection = sb.toString();
             selectionArgs = null;
-
-            /*
-            sb.append(selection);
-            args.add(captureID.toString());
-
-            if (filter.protocol != null && filter.protocol.length() >= 2) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_PROTOCOL + " = ?");
-                args.add(filter.protocol);
-            }
-
-            if (filter.sourceIP != null && filter.sourceIP.length() >= 8) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_SRCADDRESS + " = ?");
-                args.add(filter.sourceIP);
-            }
-
-            if (filter.destinationIP != null && filter.destinationIP.length() >= 8) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_DSTADDRESS + " = ?");
-                args.add(filter.destinationIP);
-            }
-
-            if (filter.length > 0) {
-                sb.append(" AND " + WhiffDbContract.CaptureItemTable.COLUMN_NAME_LENGTH + " <= ?");
-                args.add(filter.length.toString());
-            }
-            selection = sb.toString();
-            selectionArgs = new String[args.size()];
-            selectionArgs = args.toArray(selectionArgs);
-            */
 
         } else {
             selection = WhiffDbContract.CaptureItemTable.COLUMN_NAME_CAPTUREID + " = ?";

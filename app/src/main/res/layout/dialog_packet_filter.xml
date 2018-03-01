@@ -30,46 +30,27 @@
                 android:gravity="center"
                 android:text="Protocol" />
 
-            <EditText
-                android:id="@+id/edit_protocol"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="@string/hint_packet_filter_protocol"
-                android:visibility="gone" />
-
             <CheckBox
+                android:id="@+id/check_tcp"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:text="TCP" />
 
             <CheckBox
+                android:id="@+id/check_udp"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:text="UDP" />
 
             <CheckBox
+                android:id="@+id/check_http"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:text="HTTP" />
 
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight=".20"
-                android:gravity="center">
-
-                <CheckBox
-                    android:id="@+id/check_protocol"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="Packet Length" />
+                android:text="Packet Length (B)" />
 
             <EditText
                 android:id="@+id/edit_length"

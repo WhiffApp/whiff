@@ -3,6 +3,9 @@ package com.app.whiff.whiff.NonRootScanner;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  *  This class is used for packet filter for displaying
@@ -11,7 +14,7 @@ import android.os.Parcelable;
  */
 
 public class PacketContentFilter implements Parcelable {
-    public String protocol;
+    public List<String> protocols;
     public String sourceIP;
     public String destinationIP;
     public Long length;
@@ -19,8 +22,10 @@ public class PacketContentFilter implements Parcelable {
     public static final Parcelable.Creator<PacketContentFilter> CREATOR = new Creator<PacketContentFilter>() {
 
         public PacketContentFilter createFromParcel(Parcel source) {
+
             PacketContentFilter filter = new PacketContentFilter();
-            filter.protocol = source.readString();
+            filter.protocols = new ArrayList<String>(3);
+            source.readStringList(filter.protocols);
             filter.sourceIP = source.readString();
             filter.destinationIP = source.readString();
             filter.length = source.readLong();
@@ -36,6 +41,7 @@ public class PacketContentFilter implements Parcelable {
 
     public PacketContentFilter() {
         this.length = 0L;
+        this.protocols = new ArrayList<String>(3);
     }
 
     @Override
@@ -45,7 +51,7 @@ public class PacketContentFilter implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(protocol);
+        parcel.writeStringList(protocols);
         parcel.writeString(sourceIP);
         parcel.writeString(destinationIP);
         parcel.writeLong(length);
