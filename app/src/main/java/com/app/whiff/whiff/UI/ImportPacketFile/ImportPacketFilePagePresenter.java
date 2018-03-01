@@ -14,6 +14,9 @@ import org.jnetpcap.protocol.tcpip.Tcp;
 import org.jnetpcap.protocol.tcpip.Udp;
 
 import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +25,7 @@ import com.app.whiff.whiff.NonRootScanner.Capture;
 import com.app.whiff.whiff.NonRootScanner.CaptureDAO;
 import com.app.whiff.whiff.NonRootScanner.CaptureItem;
 import com.app.whiff.whiff.NonRootScanner.FileManager;
+import com.app.whiff.whiff.NonRootScanner.Packet;
 import com.app.whiff.whiff.NonRootScanner.Protocols;
 
 /**
@@ -76,7 +80,6 @@ public class ImportPacketFilePagePresenter implements ImportPacketFilePagePresen
                     item.protocol = Protocols.Tcp;
                     item.sourcePort = tcp.source();
                     item.destinationPort = tcp.destination();
-                    //Log.d("TCP", tcp.toHexdump());
 
                 } else if (detailsPacket.hasHeader(udp)) {
                     udp = detailsPacket.getHeader(udp);
@@ -97,7 +100,9 @@ public class ImportPacketFilePagePresenter implements ImportPacketFilePagePresen
                 if (detailsPacket.hasHeader(ip)) {
                     sip = FormatUtils.ip(ip.source());
                     dip = FormatUtils.ip(ip.destination());
+
                 } else if (detailsPacket.hasHeader(ip6)) {
+
                     sip = FormatUtils.ip(ip6.source());
                     dip = FormatUtils.ip(ip6.destination());
                 }
@@ -108,11 +113,11 @@ public class ImportPacketFilePagePresenter implements ImportPacketFilePagePresen
                 item.length = detailsPacket.getTotalSize();
 
                 //time
-                long timestampInMillis = detailsPacket.getCaptureHeader().timestampInMillis() / 1000;
+                long timestampInMillis = detailsPacket.getCaptureHeader().timestampInMillis();
                 item.timestamp = new Date(timestampInMillis);
 
                 try {
-                    item.text = detailsPacket.toHexdump(item.length, false, true, false);
+                    item.text = getPacketDetailsText(detailsPacket);
 
                 } catch (Exception e) {
                 }
@@ -151,4 +156,89 @@ public class ImportPacketFilePagePresenter implements ImportPacketFilePagePresen
         return c;
     }
 
+    private String getPacketDetailsText(PcapPacket packet) {
+
+        final StringBuilder sb = new StringBuilder();
+
+        sb.append("Packet { ");
+        buildIPHeader(sb, packet);
+
+        Tcp tcp = new Tcp();
+        Udp udp = new Udp();
+
+        if (packet.hasHeader(tcp)) {
+            tcp = packet.getHeader(tcp);
+            buildTcpHeader(sb, tcp);
+
+        } else if (packet.hasHeader(udp)) {
+            udp = packet.getHeader(udp);
+            buildUdpHeader(sb, udp);
+        }
+        sb.append(", Payload Size = ").append(packet.getTotalSize());
+        sb.append(" }");
+
+        return sb.toString();
+    }
+
+    private void buildIPHeader(StringBuilder sb, PcapPacket packet) {
+
+        Ip4 ip4 = new Ip4();
+        Ip6 ip6 = new Ip6();
+
+        if (packet.hasHeader(ip4)) {
+            buildIPv4Header(sb, ip4);
+
+        } else if (packet.hasHeader(ip6)) {
+            buildIPv6Header(sb, ip6);
+        }
+    }
+
+    private void buildIPv4Header(StringBuilder sb, Ip4 ip4) {
+
+        sb.append("IP Header [ ");
+        sb.append("Version = ").append(ip4.version());
+        sb.append(", Total Length = ").append(ip4.length());
+        sb.append(", Source IP = ").append(FormatUtils.ip(ip4.source()));
+        sb.append(", Destination IP = ").append(FormatUtils.ip(ip4.destination()));
+        sb.append(" ], ");
+    }
+
+    private void buildIPv6Header(StringBuilder sb, Ip6 ip6) {
+
+        sb.append("IP Header [ ");
+        sb.append("Version = ").append(ip6.version());
+        sb.append(", Total Length = ").append(ip6.length());
+        sb.append(", Source IP = ").append(FormatUtils.ip(ip6.source()));
+        sb.append(", Destination IP = ").append(FormatUtils.ip(ip6.destination()));
+        sb.append(" ], ");
+    }
+
+    private void buildTcpHeader(StringBuilder sb, Tcp tcp) {
+
+        sb.append("TCP Header [ ");
+        sb.append("Source Port = ").append(tcp.source());
+        sb.append(", Destination Port = ").append(tcp.destination());
+        sb.append(", Sequence Number = ").append(tcp.seq());
+        sb.append(", Acknowledgement Number = ").append(tcp.ack());
+        sb.append(", Flags =");
+        if (tcp.flags_FIN()) sb.append(" FIN");
+        if (tcp.flags_SYN()) sb.append(" SYN");
+        if (tcp.flags_RST()) sb.append(" RST");
+        if (tcp.flags_PSH()) sb.append(" PSH");
+        if (tcp.flags_ACK()) sb.append(" ACK");
+        if (tcp.flags_URG()) sb.append(" URG");
+        sb.append(", Window Size = ").append(tcp.window());
+        sb.append(", Checksum = ").append(tcp.checksum());
+        sb.append(" ]");
+    }
+
+    private void buildUdpHeader(StringBuilder sb, Udp udp) {
+
+        sb.append("UDP Header [ ");
+        sb.append("Source Port = ").append(udp.source());
+        sb.append(", Destination Port = ").append(udp.destination());
+        sb.append(", Length = ").append(udp.length());
+        sb.append(", Checksum = ").append(udp.checksum());
+        sb.append(" ]");
+    }
 }

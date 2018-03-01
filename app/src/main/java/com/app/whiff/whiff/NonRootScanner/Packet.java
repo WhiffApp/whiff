@@ -39,13 +39,19 @@ public class Packet
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("Packet{");
-        sb.append("ip4Header=").append(ip4Header);
-        if (isTCP) sb.append(", tcpHeader=").append(tcpHeader);
-        else if (isUDP) sb.append(", udpHeader=").append(udpHeader);
-        sb.append(", payloadSize=").append(backingBuffer.limit() - backingBuffer.position());
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder("Packet { ");
+
+        sb.append(ip4Header);
+        if (isTCP) {
+            sb.append(tcpHeader);
+        }
+        else if (isUDP) {
+            sb.append(udpHeader);
+        }
+        sb.append(", Payload Size = ").append(backingBuffer.limit() - backingBuffer.position());
+        sb.append(" }");
         return sb.toString();
+
     }
 
     public boolean isTCP()
@@ -297,18 +303,15 @@ public class Packet
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("IP4Header{");
-            sb.append("version=").append(version);
-            sb.append(", IHL=").append(IHL);
-            sb.append(", typeOfService=").append(typeOfService);
-            sb.append(", totalLength=").append(totalLength);
-            sb.append(", identificationAndFlagsAndFragmentOffset=").append(identificationAndFlagsAndFragmentOffset);
-            sb.append(", TTL=").append(TTL);
-            sb.append(", protocol=").append(protocolNum).append(":").append(protocol);
-            sb.append(", headerChecksum=").append(headerChecksum);
-            sb.append(", sourceAddress=").append(sourceAddress.getHostAddress());
-            sb.append(", destinationAddress=").append(destinationAddress.getHostAddress());
-            sb.append('}');
+            final StringBuilder sb = new StringBuilder(255);
+
+            sb.append("IP Header [ ");
+            sb.append("Version = ").append(version);
+            sb.append(", Total Length = ").append(totalLength);
+            sb.append(", Source IP = ").append(sourceAddress.getHostAddress());
+            sb.append(", Destination IP = ").append(destinationAddress.getHostAddress());
+            sb.append(" ], ");
+
             return sb.toString();
         }
     }
@@ -432,22 +435,24 @@ public class Packet
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("TCPHeader{");
-            sb.append("sourcePort=").append(sourcePort);
-            sb.append(", destinationPort=").append(destinationPort);
-            sb.append(", sequenceNumber=").append(sequenceNumber);
-            sb.append(", acknowledgementNumber=").append(acknowledgementNumber);
-            sb.append(", headerLength=").append(headerLength);
-            sb.append(", window=").append(window);
-            sb.append(", checksum=").append(checksum);
-            sb.append(", flags=");
+            final StringBuilder sb = new StringBuilder(255);
+
+            sb.append("TCP Header [ ");
+            sb.append("Source Port = ").append(sourcePort);
+            sb.append(", Destination Port = ").append(destinationPort);
+            sb.append(", Sequence Number = ").append(sequenceNumber);
+            sb.append(", Acknowledgement Number = ").append(acknowledgementNumber);
+            sb.append(", Flags =");
             if (isFIN()) sb.append(" FIN");
             if (isSYN()) sb.append(" SYN");
             if (isRST()) sb.append(" RST");
             if (isPSH()) sb.append(" PSH");
             if (isACK()) sb.append(" ACK");
             if (isURG()) sb.append(" URG");
-            sb.append('}');
+            sb.append(", Window = ").append(window);
+            sb.append(", Checksum = ").append(checksum);
+            sb.append(" ]");
+
             return sb.toString();
         }
     }
@@ -481,12 +486,15 @@ public class Packet
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("UDPHeader{");
-            sb.append("sourcePort=").append(sourcePort);
-            sb.append(", destinationPort=").append(destinationPort);
-            sb.append(", length=").append(length);
-            sb.append(", checksum=").append(checksum);
-            sb.append('}');
+            final StringBuilder sb = new StringBuilder(255);
+
+            sb.append("UDP Header [ ");
+            sb.append("Source Port = ").append(sourcePort);
+            sb.append(", Destination Port = ").append(destinationPort);
+            sb.append(", Length = ").append(length);
+            sb.append(", Checksum = ").append(checksum);
+            sb.append(" ]");
+
             return sb.toString();
         }
     }

@@ -1,5 +1,6 @@
 package com.app.whiff.whiff.UI.HomePage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class HomePage extends AppCompatActivity
     // Reference to presenter
     public HomePagePresenterInterface presenter;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,10 @@ public class HomePage extends AppCompatActivity
 
         Context context = getApplicationContext();
 
+
         Button rootScannerButton = (Button) findViewById(R.id.RootScannerButton);
         if (!RootTools.isAccessGiven()) {
-            rootScannerButton.setActivated(false);
+            rootScannerButton.setVisibility(View.GONE);
         } else{
             rootScannerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +87,8 @@ public class HomePage extends AppCompatActivity
         importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ImportIntent = new Intent (view.getContext(), com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+                Intent ImportIntent = new Intent (view.getContext(),
+                        com.app.whiff.whiff.UI.View.ViewPage.class);
                 startActivity(ImportIntent);
             }
         });
@@ -108,6 +112,10 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu nav_Menu = navigationView.getMenu();
+        if (!RootTools.isAccessGiven()) {
+            nav_Menu.findItem(R.id.nav_root_packet_capture).setVisible(false);
+        }
     }
 
     public void showMessage(String message) {
