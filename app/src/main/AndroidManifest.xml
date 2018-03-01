@@ -86,6 +86,11 @@
             android:label="@string/title_activity_import_packetfile_page"
             android:parentActivityName=".NonRootScanner.UI.NonRootScanner"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UI.View.ViewPage"
+            android:label="View"
+            android:parentActivityName=".UI.HomePage.HomePage"
+            android:theme="@style/AppTheme" />
 
         <!-- Packet Capture (All) -->
         <service

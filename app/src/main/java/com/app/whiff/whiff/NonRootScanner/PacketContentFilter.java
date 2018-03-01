@@ -16,7 +16,7 @@ public class PacketContentFilter implements Parcelable {
     public String destinationIP;
     public Long length;
 
-    public static final Creator<PacketContentFilter> CREATOR = new Creator<PacketContentFilter>() {
+    public static final Parcelable.Creator<PacketContentFilter> CREATOR = new Creator<PacketContentFilter>() {
 
         public PacketContentFilter createFromParcel(Parcel source) {
             PacketContentFilter filter = new PacketContentFilter();
