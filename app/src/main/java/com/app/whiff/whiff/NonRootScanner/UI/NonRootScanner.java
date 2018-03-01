@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.net.Uri;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,16 +26,21 @@ import android.widget.EditText;
 
 import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
+import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.app.whiff.whiff.UI.HomePage.WEPCrack;
 import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.NonRootScanner.Utils;
+import com.app.whiff.whiff.UI.PacketDb.PacketDbPage;
 
 public class NonRootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
 
     private static final String TAG = NonRootScanner.class.getSimpleName();
     public NonRootScannerPresenterInterface mPresenter;
+
+    private Button PacketFileButton;
+    private Button PacketDbButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,26 @@ public class NonRootScanner extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         connectWithPresenter();
+
+        PacketFileButton = (Button) findViewById(R.id.non_root_scanner_file_button);
+        PacketFileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent PacketFileActivity = new Intent(view.getContext(),
+                        com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+                startActivity(PacketFileActivity);
+            }
+        });
+
+        PacketDbButton = (Button) findViewById(R.id.non_root_scanner_db_button);
+        PacketDbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent PacketDbActivity = new Intent(view.getContext(),
+                        com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+                startActivity(PacketDbActivity);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -101,22 +127,20 @@ public class NonRootScanner extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_Packet_Capture_File) {
+        if (id == R.id.nav_homepage) {
+            Intent HomePageActivity = new Intent(this,
+                    com.app.whiff.whiff.UI.HomePage.HomePage.class);
+            startActivity(HomePageActivity);
 
-            Intent i = new Intent(this,
+        } else if (id == R.id.nav_Packet_Capture_File) {
+            Intent NonRootScannerActivity = new Intent(this,
                     com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
-            startActivity(i);
+            startActivity(NonRootScannerActivity);
 
         } else if (id == R.id.nav_Packet_Capture_Db) {
-
-            Intent i = new Intent(this,
+            Intent NonRootTransportActivity = new Intent(this,
                     com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
-            startActivity(i);
-
-        } else if (id == R.id.nav_Import_File) {
-            Intent i = new Intent (this,
-                    com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
-            startActivity(i);
+            startActivity(NonRootTransportActivity);
 
         }
 

@@ -7,6 +7,7 @@
     <string name="navigation_drawer_sniffers">Network Sniffers</string>
     <string name="navigation_drawer_root_packet_capture">Rooted Packet Capture</string>
     <string name="navigation_drawer_non_root_packet_capture">Non-Rooted Packet Capture</string>
+    <string name="navigation_drawer_non_root_packet_capture_all">All Protocol Capture</string>
     <string name="navigation_drawer_non_root_packet_capture_transport">Transport Protocol Capture</string>
     <string name="navigation_drawer_packet_capture">Packet Capture</string>
     <string name="navigation_drawer_arp_spoofer">ARP Spoofer</string>
