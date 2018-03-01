@@ -7,9 +7,4 @@
         android:title="@string/filter"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/export_settings"
-        android:orderInCategory="100"
-        android:title="@string/export"
-        app:showAsAction="never" />
 </menu>

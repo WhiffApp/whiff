@@ -19,11 +19,8 @@
             android:title="@string/title_activity_packetdb_page" />
         <item
             android:id="@+id/nav_Import_File"
-            android:checkable="false"
-            android:enabled="false"
             android:icon="@drawable/ic_file_upload_black_24dp"
-            android:title="Import File"
-            android:visible="false" />
+            android:title="@string/navigation_drawer_import" />
     </group>
 
 </menu>

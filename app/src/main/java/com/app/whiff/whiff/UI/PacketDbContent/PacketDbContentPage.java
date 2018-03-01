@@ -73,7 +73,7 @@ public class PacketDbContentPage extends AppCompatActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
+        // getMenuInflater().inflate(R.menu.home_page, menu);
         return true;
     }
 
@@ -86,10 +86,6 @@ public class PacketDbContentPage extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.filter_settings) {
-            return true;
-        }
-
-        if (id == R.id.export_settings) {
             return true;
         }
 

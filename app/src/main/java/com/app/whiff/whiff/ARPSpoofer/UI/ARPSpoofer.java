@@ -193,10 +193,6 @@ public class ARPSpoofer extends AppCompatActivity
             return true;
         }
 
-        if (id == R.id.export_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

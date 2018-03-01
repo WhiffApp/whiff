@@ -138,7 +138,7 @@ public class HomePage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
+        // getMenuInflater().inflate(R.menu.home_page, menu);
         return true;
     }
 
@@ -151,10 +151,6 @@ public class HomePage extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.filter_settings) {
-            return true;
-        }
-
-        if (id == R.id.export_settings) {
             return true;
         }
 
@@ -184,7 +180,7 @@ public class HomePage extends AppCompatActivity
 
         } else if (id == R.id.nav_Import_File) {
             Intent ImportActivity = new Intent (this,
-                    com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
+                    com.app.whiff.whiff.UI.View.ViewPage.class);
             startActivity(ImportActivity);
 
         } else if (id == R.id.nav_help_faq) {

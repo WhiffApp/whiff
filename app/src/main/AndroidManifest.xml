@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name=".RootScanner.UI.RootScanner"
-            android:label="RootScanner"
+            android:label="Rooted Packet Capture"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity

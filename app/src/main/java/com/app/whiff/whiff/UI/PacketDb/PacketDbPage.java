@@ -192,7 +192,7 @@ public class PacketDbPage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
+        // getMenuInflater().inflate(R.menu.home_page, menu);
         return true;
     }
 
@@ -209,10 +209,6 @@ public class PacketDbPage extends AppCompatActivity
             return true;
         }
 
-        if (id == R.id.export_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -222,12 +218,25 @@ public class PacketDbPage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        // if (id == R.id.nav_Packet_Capture_Db) {
+        if (id == R.id.nav_homepage) {
+            Intent HomePageActivity = new Intent(this,
+                    com.app.whiff.whiff.UI.HomePage.HomePage.class);
+            startActivity(HomePageActivity);
 
-        if (id == R.id.nav_Import_File) {
+        } else if (id == R.id.nav_Packet_Capture_File) {
+            Intent NonRootScannerActivity = new Intent(this,
+                    com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+            startActivity(NonRootScannerActivity);
 
-        } else if (id == R.id.nav_help_faq) {
+        } else if (id == R.id.nav_Packet_Capture_Db) {
+            Intent NonRootTransportActivity = new Intent(this,
+                    com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
+            startActivity(NonRootTransportActivity);
 
+        } else if (id == R.id.nav_Import_File) {
+            Intent ViewActivity = new Intent (this,
+                    com.app.whiff.whiff.UI.View.ViewPage.class);
+            startActivity(ViewActivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
