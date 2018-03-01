@@ -25,4 +25,6 @@
         <item name="android:colorBackground">@color/background_holo_light</item>
     </style>
 
+    <style name="WhiffTheme" parent="AppTheme" />
+
 </resources>

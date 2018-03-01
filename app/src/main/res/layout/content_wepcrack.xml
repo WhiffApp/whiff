@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+<<<<<<< HEAD
     tools:context=".HomePage.WEPCrack"
+=======
+    tools:context=".UI.HomePage.WEPCrack"
+>>>>>>> Thursday-Afternoon-Brunch
     tools:showIn="@layout/activity_wepcrack">
 
 </android.support.constraint.ConstraintLayout>

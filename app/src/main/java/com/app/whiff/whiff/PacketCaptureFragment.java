@@ -1,6 +1,11 @@
 package com.app.whiff.whiff;
 
 
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+import android.net.VpnService;
+>>>>>>> Thursday-Afternoon-Brunch
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,13 +18,33 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+<<<<<<< HEAD
 import com.stericson.RootTools.RootTools;
 
+=======
+import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.app.whiff.whiff.NonRootScanner.Utils;
+import com.app.whiff.whiff.RootScanner.TCPdump;
+import com.app.whiff.whiff.RootScanner.TCPdumpService;
+import com.app.whiff.whiff.RootScanner.UI.RootScanner;
+import com.app.whiff.whiff.UI.PacketFile.PacketFilePage;
+import com.stericson.RootTools.RootTools;
+
+import org.jnetpcap.PcapService;
+
+>>>>>>> Thursday-Afternoon-Brunch
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+import jp.co.taosoftware.android.packetcapture.PacketCaptureService;
+
+import static android.app.Activity.RESULT_OK;
+
+>>>>>>> Thursday-Afternoon-Brunch
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,10 +60,23 @@ public class PacketCaptureFragment extends Fragment {
     public ArrayAdapter devList;
     public ArrayList<String> devStringList=new ArrayList<String>();
 
+<<<<<<< HEAD
+=======
+    public TCPdump tcpdump;
+    public TCPdumpService tcpDumpService;
+
+>>>>>>> Thursday-Afternoon-Brunch
     public PacketCaptureFragment() {
         // Required empty public constructor
     }
 
+<<<<<<< HEAD
+=======
+    private static final int VPN_REQUEST_CODE = 0x0F;
+
+    private boolean waitingForVPNStart;
+
+>>>>>>> Thursday-Afternoon-Brunch
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +101,12 @@ public class PacketCaptureFragment extends Fragment {
             }
         });
 
+<<<<<<< HEAD
+=======
+        tcpdump = new TCPdump(getActivity().getApplicationContext());
+        tcpdump.installTCPdump();
+
+>>>>>>> Thursday-Afternoon-Brunch
         if(!(RootTools.isAccessGiven())){
             RootSwitch.setEnabled(false);
             ARPSpooferSwitch.setEnabled(false);
@@ -70,10 +114,24 @@ public class PacketCaptureFragment extends Fragment {
             RootSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+<<<<<<< HEAD
                     if (RootSwitch.isChecked()){
                         NonRootSwitch.setEnabled(false);
                         ARPSpooferSwitch.setEnabled(true);
 
+=======
+                    if (RootSwitch.isChecked()) {
+                        NonRootSwitch.setEnabled(false);
+                        ARPSpooferSwitch.setEnabled(true);
+
+                        // Start Root Sniffer Activity
+                        String TCPdumpParams = "-U -w whiff.pcap";
+                        startTCPdumpService(TCPdumpParams);
+                    } else if (!RootSwitch.isChecked()) {
+                        stopTCPdumpService();
+                    }
+
+>>>>>>> Thursday-Afternoon-Brunch
                         //Replace with sniffing function
                   /*selectedDev = devSpinner.getSelectedItem().toString();
                     pcap[0] = "su";
@@ -86,7 +144,10 @@ public class PacketCaptureFragment extends Fragment {
                     } catch (IOException e) {
                         Log.i("exception", e.toString());
                     }*/
+<<<<<<< HEAD
                     }
+=======
+>>>>>>> Thursday-Afternoon-Brunch
                     else if (ARPSpooferSwitch.isChecked()){
                         NonRootSwitch.setEnabled(false);
                     }
@@ -103,6 +164,13 @@ public class PacketCaptureFragment extends Fragment {
                     if (NonRootSwitch.isChecked()){
                         RootSwitch.setEnabled(false);
                         ARPSpooferSwitch.setEnabled(false);
+<<<<<<< HEAD
+=======
+
+                        // Start non-root sniffer service
+                        startVPN();
+
+>>>>>>> Thursday-Afternoon-Brunch
                     }
                     else if(RootTools.isRootAvailable()){
                         RootSwitch.setEnabled(true);
@@ -139,6 +207,79 @@ public class PacketCaptureFragment extends Fragment {
         return psView;
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+    private void startVPN()
+    {
+        Intent vpnIntent = VpnService.prepare(getActivity());
+        if (vpnIntent != null)
+            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+        else
+            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == VPN_REQUEST_CODE && resultCode == RESULT_OK)
+        {
+            waitingForVPNStart = true;
+            Intent i = new Intent(getActivity(), PacketCaptureService.class);
+            i.putExtra("CaptureName", Utils.getUniqueTimestampName());
+            getActivity().startService(i);
+            // enableButton(false);
+        }
+    }
+
+    private void startOrStopCapture()
+    {
+        Intent vpnIntent = VpnService.prepare(getActivity());
+        if (vpnIntent != null)
+            startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+        else
+            onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+    }
+
+    private void stopCapture() {
+
+        boolean isRunning = PcapService.isRunning();
+        if (isRunning) {
+            Intent i = getServiceIntent(PcapService.ACTION_STOP);
+            getActivity().startService(i);
+        }
+    }
+
+    private Intent getServiceIntent(String action) {
+        Intent i = new Intent(getActivity(), PcapService.class);
+        i.setAction(action);
+
+        return i;
+    }
+
+    public void startTCPdumpService(String params) {
+        Intent intent = new Intent(getActivity(), TCPdumpService.class);
+        intent.putExtra(TCPdumpService.ACTION_START,params);
+        getActivity().startService(intent);
+    }
+    public void stopTCPdumpService() {
+        new TCPdump(getActivity()).stopSniff();
+        Intent intent = new Intent(getActivity(), TCPdumpService.class);
+        getActivity().stopService(intent);
+    }
+
+>>>>>>> Thursday-Afternoon-Brunch
     private class findNetworkInterfaces extends AsyncTask<Void, Void, Void> {
 
         @Override

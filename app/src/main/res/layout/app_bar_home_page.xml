@@ -24,6 +24,7 @@
         android:id="@+id/include"
         layout="@layout/content_home_page" />
 
+<<<<<<< HEAD
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_start"
         android:layout_width="wrap_content"
@@ -41,4 +42,6 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|bottom"
         app:srcCompat="@drawable/ic_stop_white_24px" />
+=======
+>>>>>>> Thursday-Afternoon-Brunch
 </android.support.design.widget.CoordinatorLayout>

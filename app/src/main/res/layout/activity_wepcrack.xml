@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".HomePage.WEPCrack">
+=======
+    tools:context=".UI.HomePage.WEPCrack">
+>>>>>>> Thursday-Afternoon-Brunch
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
