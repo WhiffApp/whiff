@@ -23,18 +23,15 @@ import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
 import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
+import com.stericson.RootTools.RootTools;
+
+import static com.stericson.RootShell.RootShell.isAccessGiven;
 
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageViewInterface {
 
-    // Buttons to launch other activities
-    public Button RootScannerButton;
-    public Button NonRootScannerButton;
-    public Button TransportProtocolButton;
-    public Button ImportButton;
-    public Button ARPSpooferButton;
-    public Button HelpFaqButton;
+    private Button ARPSpooferButton;
 
     // Reference to presenter
     public HomePagePresenterInterface presenter;
@@ -52,29 +49,30 @@ public class HomePage extends AppCompatActivity
 
         Context context = getApplicationContext();
 
-        RootScannerButton = (Button) findViewById(R.id.RootScannerButton);
-        RootScannerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.RootScannerButtonClicked();
-                Intent RootScannerActivity = new Intent(view.getContext(), RootScanner.class);
-                startActivity(RootScannerActivity);
-            }
-        });
+        Button rootScannerButton = (Button) findViewById(R.id.RootScannerButton);
+        if (!RootTools.isAccessGiven()) {
+            rootScannerButton.setActivated(false);
+        } else{
+            rootScannerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent RootScannerActivity = new Intent(view.getContext(), RootScanner.class);
+                    startActivity(RootScannerActivity);
+                }
+            });
+        }
 
-        NonRootScannerButton = (Button) findViewById(R.id.NonRootScannerButton);
-        NonRootScannerButton.setOnClickListener(new View.OnClickListener() {
+        Button nonRootScannerButton = (Button) findViewById(R.id.NonRootScannerButton);
+        nonRootScannerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.NonRootScannerButtonClicked();
-                // Intent NonRootScannerActivity = new Intent(view.getContext(), NonRootScanner.class);
                 Intent NonRootScannerActivity = new Intent(view.getContext(), com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner.class);
                 startActivity(NonRootScannerActivity);
             }
         });
 
-        TransportProtocolButton = (Button) findViewById(R.id.NonRootScannerTransportButton);
-        TransportProtocolButton.setOnClickListener(new View.OnClickListener() {
+        Button transportProtocolButton = (Button) findViewById(R.id.NonRootScannerTransportButton);
+        transportProtocolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent TransportProtocolActivity = new Intent(view.getContext(), com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
@@ -82,8 +80,8 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        ImportButton = (Button) findViewById(R.id.ImportButton);
-        ImportButton.setOnClickListener(new View.OnClickListener() {
+        Button importButton = (Button) findViewById(R.id.ImportButton);
+        importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent ImportIntent = new Intent (view.getContext(), com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
@@ -91,8 +89,8 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        HelpFaqButton = (Button) findViewById(R.id.HelpButton);
-        HelpFaqButton.setOnClickListener(new View.OnClickListener() {
+        Button helpFaqButton = (Button) findViewById(R.id.HelpButton);
+        helpFaqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(
@@ -101,7 +99,6 @@ public class HomePage extends AppCompatActivity
                 startActivity(browserIntent);
             }
         });
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -117,7 +114,6 @@ public class HomePage extends AppCompatActivity
     }
 
     public void connectWithPresenter() {
-        // presenter = new RootScannerPresenter(this, handler);
         presenter = new HomePagePresenter(this);
     }
 

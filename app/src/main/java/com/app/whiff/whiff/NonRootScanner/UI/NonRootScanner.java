@@ -39,9 +39,6 @@ public class NonRootScanner extends AppCompatActivity
     private static final String TAG = NonRootScanner.class.getSimpleName();
     public NonRootScannerPresenterInterface mPresenter;
 
-    private Button PacketFileButton;
-    private Button PacketDbButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +47,8 @@ public class NonRootScanner extends AppCompatActivity
         setSupportActionBar(toolbar);
         connectWithPresenter();
 
-        PacketFileButton = (Button) findViewById(R.id.non_root_scanner_file_button);
-        PacketFileButton.setOnClickListener(new View.OnClickListener() {
+        Button packetFileButton = (Button) findViewById(R.id.non_root_scanner_file_button);
+        packetFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent PacketFileActivity = new Intent(view.getContext(),
@@ -60,8 +57,8 @@ public class NonRootScanner extends AppCompatActivity
             }
         });
 
-        PacketDbButton = (Button) findViewById(R.id.non_root_scanner_db_button);
-        PacketDbButton.setOnClickListener(new View.OnClickListener() {
+        Button packetDbButton = (Button) findViewById(R.id.non_root_scanner_db_button);
+        packetDbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent PacketDbActivity = new Intent(view.getContext(),

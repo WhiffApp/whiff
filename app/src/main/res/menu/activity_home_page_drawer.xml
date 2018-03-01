@@ -25,8 +25,11 @@
             android:title="@string/navigation_drawer_non_root_packet_capture" />
         <item
             android:id="@+id/nav_non_root_sniffer_transport"
+            android:checkable="false"
+            android:enabled="false"
             android:icon="@drawable/ic_speaker_phone_black_24dp"
-            android:title="@string/navigation_drawer_non_root_packet_capture_transport" />
+            android:title="@string/navigation_drawer_non_root_packet_capture_transport"
+            android:visible="false" />
         <item
             android:id="@+id/nav_Import_File"
             android:icon="@drawable/ic_file_upload_black_24dp"

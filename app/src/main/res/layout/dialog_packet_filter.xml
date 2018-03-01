@@ -32,11 +32,30 @@
 
             <EditText
                 android:id="@+id/edit_protocol"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:hint="@string/hint_packet_filter_protocol"
-                android:gravity="center"/>
+                android:visibility="gone" />
+
+            <CheckBox
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="TCP" />
+
+            <CheckBox
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="UDP" />
+
+            <CheckBox
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="HTTP" />
 
             <LinearLayout
                 android:layout_width="0dip"
@@ -46,8 +65,9 @@
 
                 <CheckBox
                     android:id="@+id/check_protocol"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </LinearLayout>
@@ -71,11 +91,11 @@
 
             <EditText
                 android:id="@+id/edit_sip"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/hint_packet_filter_sip"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:hint="@string/hint_packet_filter_sip" />
 
             <LinearLayout
                 android:layout_width="0dip"
@@ -85,7 +105,7 @@
 
                 <CheckBox
                     android:id="@+id/check_sip"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
@@ -111,11 +131,11 @@
 
             <EditText
                 android:id="@+id/edit_dip"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/hint_packet_filter_dip"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:hint="@string/hint_packet_filter_dip" />
 
             <LinearLayout
                 android:layout_width="0dip"
@@ -125,7 +145,7 @@
 
                 <CheckBox
                     android:id="@+id/check_dip"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
@@ -151,11 +171,11 @@
 
             <EditText
                 android:id="@+id/edit_length"
-                android:layout_width="wrap_content"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/hint_packet_filter_length"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:hint="@string/hint_packet_filter_length" />
 
             <LinearLayout
                 android:layout_width="0dip"
@@ -165,7 +185,7 @@
 
                 <CheckBox
                     android:id="@+id/check_length"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
