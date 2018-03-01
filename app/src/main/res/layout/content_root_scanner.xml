@@ -16,7 +16,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="200dp"
         android:gravity="center"
-        android:hint="Parameters"
+        android:hint="TCPDump parameters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
