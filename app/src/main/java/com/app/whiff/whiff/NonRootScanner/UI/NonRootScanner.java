@@ -120,25 +120,31 @@ public class NonRootScanner extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_homepage) {
-            Intent HomePageActivity = new Intent(this,
-                    com.app.whiff.whiff.UI.HomePage.HomePage.class);
-            startActivity(HomePageActivity);
+        if (id == R.id.nav_root_packet_capture) {
+            Intent RootScannerActivity = new Intent(this,
+                    com.app.whiff.whiff.RootScanner.UI.RootScanner.class);
+            startActivity(RootScannerActivity);
 
-        } else if (id == R.id.nav_Packet_Capture_File) {
+        } else if (id == R.id.nav_non_root_packet_capture) {
             Intent NonRootScannerActivity = new Intent(this,
-                    com.app.whiff.whiff.UI.PacketFile.PacketFilePage.class);
+                    com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner.class);
             startActivity(NonRootScannerActivity);
 
-        } else if (id == R.id.nav_Packet_Capture_Db) {
+        } else if (id == R.id.nav_non_root_sniffer_transport) {
             Intent NonRootTransportActivity = new Intent(this,
                     com.app.whiff.whiff.UI.PacketDb.PacketDbPage.class);
             startActivity(NonRootTransportActivity);
 
         } else if (id == R.id.nav_Import_File) {
-            Intent ViewActivity = new Intent (this,
+            Intent ImportActivity = new Intent (this,
                     com.app.whiff.whiff.UI.View.ViewPage.class);
-            startActivity(ViewActivity);
+            startActivity(ImportActivity);
+
+        } else if (id == R.id.nav_help_faq) {
+            Intent browserIntent = new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://whiffuow.wixsite.com/home"));
+            startActivity(browserIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
