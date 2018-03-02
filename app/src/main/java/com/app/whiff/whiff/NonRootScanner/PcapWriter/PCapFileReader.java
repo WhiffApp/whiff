@@ -157,7 +157,7 @@ public class PCapFileReader implements CaptureFileReader,CaptureFileValid
 			{
 				tmp.add(pkt);
 			}
-			return (byte[][]) tmp.toArray(new byte[][] { {} });
+			return tmp.toArray(new byte[][] { {} });
 		}
 		catch (Exception ex)
 		{
@@ -198,7 +198,7 @@ public class PCapFileReader implements CaptureFileReader,CaptureFileValid
 				in.skip(ph.pktlenUint32);
 				ph = new PCapPacketHeader();
 			}
-			return (PCapPacketHeader[]) tmp.toArray(new PCapPacketHeader[] {});
+			return tmp.toArray(new PCapPacketHeader[] {});
 		}
 		finally
 		{

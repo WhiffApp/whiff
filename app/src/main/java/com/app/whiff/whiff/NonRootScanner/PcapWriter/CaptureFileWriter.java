@@ -22,7 +22,7 @@ public interface CaptureFileWriter
 	 * @return true for success.
 	 * @throws IOException
 	 */
-	public boolean addPacket(byte[] thepkt, long time) throws IOException;
+    boolean addPacket(byte[] thepkt, long time) throws IOException;
 	
 	
 	/**
@@ -31,5 +31,5 @@ public interface CaptureFileWriter
 	 *   to use the created file in the code)
 	 * @throws IOException 
 	 */
-	public void close() throws IOException;
+    void close() throws IOException;
 }

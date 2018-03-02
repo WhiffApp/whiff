@@ -58,7 +58,7 @@ public class JDateTimeTransform {
     }
 
     public interface DateFormat{
-        public String format(JDateTimeTransform date, long delta);
+        String format(JDateTimeTransform date, long delta);
     }
     public String toString(DateFormat format){
         long delta = (System.currentTimeMillis() - currentTime.getTime().getTime())/1000;

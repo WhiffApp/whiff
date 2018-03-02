@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.net.VpnService;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +30,7 @@ import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
 import com.app.whiff.whiff.NonRootScanner.Protocols;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.UI.PacketDbContent.PacketDbContentPage;
+import com.stericson.RootTools.RootTools;
 
 import java.util.List;
 
@@ -55,21 +54,25 @@ public class ViewPage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         connectWithPresenter();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu nav_Menu = navigationView.getMenu();
+        if (!RootTools.isAccessGiven() || !RootTools.isBusyboxAvailable()) {
+            nav_Menu.findItem(R.id.nav_root_packet_capture).setVisible(false);
+        }
 
-        fabImport = (FloatingActionButton) findViewById(R.id.fab_import);
+        fabImport = findViewById(R.id.fab_import);
         fabImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +114,7 @@ public class ViewPage extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -175,7 +178,7 @@ public class ViewPage extends AppCompatActivity
             startActivity(browserIntent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

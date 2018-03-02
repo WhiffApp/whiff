@@ -40,11 +40,11 @@ public class ImportPacketFilePage extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_packetfile_page);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mProgressBar = (LinearLayout) findViewById(R.id.progressLayout);
+        mProgressBar = findViewById(R.id.progressLayout);
 
         // set up the RecyclerView
         mRecyclerView = findViewById(R.id.recycler);
@@ -68,7 +68,7 @@ public class ImportPacketFilePage extends AppCompatActivity implements
 
         //stopImport();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {

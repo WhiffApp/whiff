@@ -21,17 +21,17 @@ public interface CaptureFileReader
 	 *    available then will return null.
 	 * @throws IOException
 	 */
-	public byte[] ReadNextPacket() throws IOException;
+    byte[] ReadNextPacket() throws IOException;
 	
 	/**
 	 * 
 	 * @return the last packet read timestamp
 	 */
-	public long getTimeStamp();
+    long getTimeStamp();
 	
 	/**
 	 * 
 	 * @return the last packet read number.
 	 */
-	public long getCurrentPacket();
+    long getCurrentPacket();
 }

@@ -48,13 +48,13 @@ public class PacketFilePage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packetfile_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         connectWithPresenter();
 
-        fabStart    = (FloatingActionButton) findViewById(R.id.fab_start);
-        fabStop     = (FloatingActionButton) findViewById(R.id.fab_stop);
+        fabStart    = findViewById(R.id.fab_start);
+        fabStop     = findViewById(R.id.fab_stop);
         fabStop.hide();
         fabStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +78,13 @@ public class PacketFilePage extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         PcapService.getIsRunning().subscribe(isRunning -> {
@@ -181,7 +181,7 @@ public class PacketFilePage extends AppCompatActivity
 
         stopCapture();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -273,7 +273,7 @@ public class PacketFilePage extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

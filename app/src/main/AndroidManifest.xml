@@ -44,10 +44,6 @@
             android:icon="@drawable/ic_vpn"
             android:label="@string/navigation_drawer_root_packet_capture" />
 
-        <activity
-            android:name=".UI.HomePage.WEPCrack"
-            android:label="@string/title_activity_wepcrack"
-            android:theme="@style/AppTheme" />
         <activity android:name=".help" />
 
         <service
@@ -57,10 +53,6 @@
             android:icon="@drawable/ic_vpn"
             android:label="@string/navigation_drawer_root_packet_capture" />
 
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".UI.PacketFile.PacketFilePage"
             android:label="@string/title_activity_packetfile_page"
@@ -113,10 +105,6 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".FilterActivity"
-            android:label="@string/title_activity_filter"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

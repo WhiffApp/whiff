@@ -1,15 +1,7 @@
 package com.app.whiff.whiff.NonRootScanner.UI;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.net.Uri;
-import android.net.VpnService;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,17 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 
-import com.app.whiff.whiff.NonRootScanner.FileManager;
-import com.app.whiff.whiff.NonRootScanner.PacketContentFilter;
-import com.app.whiff.whiff.RootScanner.UI.RootScanner;
-import com.app.whiff.whiff.UI.HomePage.WEPCrack;
-import com.app.whiff.whiff.NonRootScanner.PacketCaptureService;
 import com.app.whiff.whiff.R;
-import com.app.whiff.whiff.NonRootScanner.Utils;
-import com.app.whiff.whiff.UI.PacketDb.PacketDbPage;
 
 public class NonRootScanner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NonRootScannerViewInterface {
@@ -43,11 +26,11 @@ public class NonRootScanner extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_non_root_scanner);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         connectWithPresenter();
 
-        Button packetFileButton = (Button) findViewById(R.id.non_root_scanner_file_button);
+        Button packetFileButton = findViewById(R.id.non_root_scanner_file_button);
         packetFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +40,7 @@ public class NonRootScanner extends AppCompatActivity
             }
         });
 
-        Button packetDbButton = (Button) findViewById(R.id.non_root_scanner_db_button);
+        Button packetDbButton = findViewById(R.id.non_root_scanner_db_button);
         packetDbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,13 +50,13 @@ public class NonRootScanner extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -84,7 +67,7 @@ public class NonRootScanner extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -147,7 +130,7 @@ public class NonRootScanner extends AppCompatActivity
             startActivity(browserIntent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

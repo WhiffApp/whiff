@@ -4,9 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,14 +16,9 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
 
-import com.app.whiff.whiff.ARPSpoofer.UI.ARPSpoofer;
-import com.app.whiff.whiff.NonRootScanner.FileManager;
 import com.app.whiff.whiff.R;
 import com.app.whiff.whiff.RootScanner.UI.RootScanner;
-import com.app.whiff.whiff.NonRootScanner.UI.NonRootScanner;
 import com.stericson.RootTools.RootTools;
-
-import static com.stericson.RootShell.RootShell.isAccessGiven;
 
 
 public class HomePage extends AppCompatActivity
@@ -44,7 +36,7 @@ public class HomePage extends AppCompatActivity
 
         setContentView(R.layout.activity_home_page);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         connectWithPresenter(); // RootScannerPresenter object
@@ -52,8 +44,8 @@ public class HomePage extends AppCompatActivity
         Context context = getApplicationContext();
 
 
-        Button rootScannerButton = (Button) findViewById(R.id.RootScannerButton);
-        if (!RootTools.isAccessGiven()) {
+        Button rootScannerButton = findViewById(R.id.RootScannerButton);
+        if (!RootTools.isAccessGiven() || !RootTools.isBusyboxAvailable()) {
             rootScannerButton.setVisibility(View.GONE);
         } else{
             rootScannerButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +57,7 @@ public class HomePage extends AppCompatActivity
             });
         }
 
-        Button nonRootScannerButton = (Button) findViewById(R.id.NonRootScannerButton);
+        Button nonRootScannerButton = findViewById(R.id.NonRootScannerButton);
         nonRootScannerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +66,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        Button transportProtocolButton = (Button) findViewById(R.id.NonRootScannerTransportButton);
+        Button transportProtocolButton = findViewById(R.id.NonRootScannerTransportButton);
         transportProtocolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +75,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        Button importButton = (Button) findViewById(R.id.ImportButton);
+        Button importButton = findViewById(R.id.ImportButton);
         importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +85,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        Button helpFaqButton = (Button) findViewById(R.id.HelpButton);
+        Button helpFaqButton = findViewById(R.id.HelpButton);
         helpFaqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,16 +96,16 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Menu nav_Menu = navigationView.getMenu();
-        if (!RootTools.isAccessGiven()) {
+        if (!RootTools.isAccessGiven() || !RootTools.isBusyboxAvailable()) {
             nav_Menu.findItem(R.id.nav_root_packet_capture).setVisible(false);
         }
     }
@@ -127,7 +119,7 @@ public class HomePage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -190,7 +182,7 @@ public class HomePage extends AppCompatActivity
             startActivity(browserIntent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

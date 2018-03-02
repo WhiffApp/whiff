@@ -37,11 +37,11 @@ public class PacketFileContentPage extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packet_file_content_page);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mProgressBar = (LinearLayout) findViewById(R.id.progressLayout);
+        mProgressBar = findViewById(R.id.progressLayout);
 
         // set up the RecyclerView
         mRecyclerView = findViewById(R.id.recycler);
