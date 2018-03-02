@@ -127,6 +127,8 @@ public class RootScanner extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_root_packet_capture).setVisible(false);
 
 
         // Database

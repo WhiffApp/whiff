@@ -92,6 +92,8 @@ public class PacketDbPage extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_Packet_Capture_Db).setVisible(false);
 
         PacketCaptureService.getIsRunning().subscribe(isRunning -> {
             if (isRunning) {

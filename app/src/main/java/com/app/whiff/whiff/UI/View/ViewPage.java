@@ -71,6 +71,7 @@ public class ViewPage extends AppCompatActivity
         if (!RootTools.isAccessGiven() || !RootTools.isBusyboxAvailable()) {
             nav_Menu.findItem(R.id.nav_root_packet_capture).setVisible(false);
         }
+        nav_Menu.findItem(R.id.nav_Import_File).setVisible(false);
 
         fabImport = findViewById(R.id.fab_import);
         fabImport.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +79,8 @@ public class ViewPage extends AppCompatActivity
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(),
                         com.app.whiff.whiff.UI.ImportPacketFile.ImportPacketFilePage.class);
-                startActivity(i);
+                startActivityForResult(i, 1);
+                refreshList();
             }
         });
 
@@ -108,6 +110,14 @@ public class ViewPage extends AppCompatActivity
         i.setAction(action);
 
         return i;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            refreshList();
+        }
     }
 
 

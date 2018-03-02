@@ -86,6 +86,8 @@ public class PacketFilePage extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_Packet_Capture_File).setVisible(false);
 
         PcapService.getIsRunning().subscribe(isRunning -> {
             if (isRunning) {

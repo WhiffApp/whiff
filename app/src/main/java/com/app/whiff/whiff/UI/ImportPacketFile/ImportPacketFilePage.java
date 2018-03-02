@@ -182,6 +182,7 @@ public class ImportPacketFilePage extends AppCompatActivity implements
                     .setPositiveButton(R.string.dialogOkButton, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            setResult(RESULT_OK, null);
                             finish();
                         }
                     })
